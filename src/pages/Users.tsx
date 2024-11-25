@@ -1,7 +1,7 @@
 "use client"
 
 import { TrendingUp } from "lucide-react"
-import { Area, AreaChart, CartesianGrid, XAxis,Bar, BarChart, LabelList, Pie, PieChart  } from "recharts"
+import { Area, AreaChart, CartesianGrid, XAxis,Bar, BarChart, LabelList, Pie, PieChart, Line, LineChart  } from "recharts"
 
 import {
   Card,
@@ -256,116 +256,116 @@ export function Retention() {
   )
 }
 
+const srcData = [
+  { month: "January", desktop: 186, mobile: 80 },
+  { month: "February", desktop: 305, mobile: 200 },
+  { month: "March", desktop: 237, mobile: 120 },
+  { month: "April", desktop: 73, mobile: 190 },
+  { month: "May", desktop: 209, mobile: 130 },
+  { month: "June", desktop: 214, mobile: 140 },
+]
 
+const srcConfig = {
+  desktop: {
+    label: "Desktop",
+    color: "hsl(var(--chart-1))",
+  },
+  mobile: {
+    label: "Mobile",
+    color: "hsl(var(--chart-2))",
+  },
+} satisfies ChartConfig;
 
-const pieData = [
-    { age: "18-24", visitors: 120, fill: "var(--color-18-24)" },
-    { age: "25-34", visitors: 180, fill: "var(--color-25-34)" },
-    { age: "35-44", visitors: 150, fill: "var(--color-35-44)" },
-    { age: "45-54", visitors: 100, fill: "var(--color-45-54)" },
-    { age: "55-64", visitors: 80, fill: "var(--color-55-64)" },
-    { age: "65+", visitors: 50, fill: "var(--color-65+)" },
-  ]
-  
-  const pieConfig = {
-    visitors: {
-      label: "Visitors",
-    },
-    "18-24": {
-      label: "18-24",
-      color: "hsl(var(--chart-1))",
-    },
-    "25-34": {
-      label: "25-34",
-      color: "hsl(var(--chart-2))",
-    },
-    "35-44": {
-      label: "35-44",
-      color: "hsl(var(--chart-3))",
-    },
-    "45-54": {
-      label: "45-54",
-      color: "hsl(var(--chart-4))",
-    },
-    "55-64": {
-      label: "55-64",
-      color: "hsl(var(--chart-5))",
-    },
-    "65+": {
-      label: "65+",
-      color: "hsl(var(--chart-6))",
-    },
-  } satisfies ChartConfig
-  
-  export function NoOfUser() {
-    return (
-      <Card className="flex flex-col">
-        <CardHeader className="items-center pb-0">
-          <CardTitle>Number of Users per Age Group</CardTitle>
-          <CardDescription>January - June 2024</CardDescription>
-        </CardHeader>
-        <CardContent className="flex-1 pb-0">
-          <ChartContainer
-            config={pieConfig}
-            className="mx-auto aspect-square max-h-[250px] px-0"
+export function Source() {
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>Where Does Our Audience Come From?</CardTitle>
+        <CardDescription>January - June 2024</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <ChartContainer config={srcConfig}>
+          <LineChart
+            accessibilityLayer
+            data={srcData}
+            margin={{
+              left: 12,
+              right: 12,
+            }}
           >
-            <PieChart>
-              <ChartTooltip
-                content={<ChartTooltipContent nameKey="visitors" hideLabel />}
-              />
-              <Pie
-                data={pieData}
-                dataKey="visitors"
-                labelLine={false}
-                label={({ payload, ...props }) => {
-                  return (
-                    <text
-                      cx={props.cx}
-                      cy={props.cy}
-                      x={props.x}
-                      y={props.y}
-                      textAnchor={props.textAnchor}
-                      dominantBaseline={props.dominantBaseline}
-                      fill="hsla(var(--foreground))"
-                    >
-                      {payload.visitors}
-                    </text>
-                  )
-                }}
-                nameKey="age"
-              />
-              <ChartLegend
-              content={<ChartLegendContent nameKey="age" />}
-              className="-translate-y-2 flex-wrap gap-2 [&>*]:basis-1/4 [&>*]:justify-center"
+            <CartesianGrid vertical={false} />
+            <XAxis
+              dataKey="month"
+              tickLine={false}
+              axisLine={false}
+              tickMargin={8}
+              tickFormatter={(value) => value.slice(0, 3)}
             />
-            </PieChart>
-          </ChartContainer>
-        </CardContent>
-        <CardFooter className="flex-col gap-2 text-sm">
-          <div className="flex items-center gap-2 font-medium leading-none">
-            {/* Trending up by 5.2% this month <TrendingUp className="h-4 w-4" /> */}
-            (summary)
-          </div>
-          <div className="leading-none text-muted-foreground">
-            {/* Showing total visitors for the last 6 months */}
-          </div>
-        </CardFooter>
-      </Card>
-    )
-  }
+            <ChartTooltip
+              cursor={false}
+              content={<ChartTooltipContent hideLabel />}
+            />
+            <Line
+              dataKey="desktop"
+              type="natural"
+              stroke="var(--color-desktop)"
+              strokeWidth={2}
+              dot={{
+                fill: "var(--color-desktop)",
+              }}
+              activeDot={{
+                r: 6,
+              }}
+            />
+          </LineChart>
+        </ChartContainer>
+      </CardContent>
+      <CardFooter className="flex-col items-start gap-2 text-sm">
+        <div className="flex gap-2 font-medium leading-none">
+          Summary
+        </div>
+        <div className="leading-none text-muted-foreground">
+          Showing total visitors for the last 6 months
+        </div>
+      </CardFooter>
+    </Card>
+  )
+}
 
 
+export function Box() {
+  return (
+    <>
+    <div className="bg-back border-[1px] border-white rounded-[6px] p-5 font-semibold">Who Are Our Readers?
 
+    <div className="w-1/2 grid grid-cols-2 gap-4">
+    <div className="bg-back border-[1px] border-white rounded-[6px] p-5 font-semibold">User</div>
+    <div className="bg-back border-[1px] border-white rounded-[6px] p-5 font-semibold">User</div>
+    <div className="bg-back border-[1px] border-white rounded-[6px] p-5 font-semibold">User</div>
+    <div className="bg-back border-[1px] border-white rounded-[6px] p-5 font-semibold">User</div>
+    </div>
+    </div>
+    
+    </>
+  )}
 
 const Users = () => {
   return (
     <>
-    <EngagedSession/>
+    <div className="flex">
+  <div className="w-1/2 p-2">
+    <Source />
+  </div>
+  <div className="w-1/2">
+    <Box/>
+  </div>
+</div>
+    {/* <EngagedSession/>
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mt-5">
         
         <Retention/>
-        <NoOfUser/>
-    </div>
+    </div> */}
+
     </>
   )
 }
