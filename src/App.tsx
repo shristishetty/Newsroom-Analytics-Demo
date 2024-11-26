@@ -4,7 +4,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "./components/ui/tabs"
 import Tags from "./pages/Tags"
 import Authors from "./pages/Authors"
 import Users from "./pages/Users"
-import Revenue from './pages/revenue'
+import Revenue from './pages/Revenue'
 // import Welcome from "./Welcome"
 
 

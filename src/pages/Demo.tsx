@@ -7,7 +7,7 @@ import Welcome from "./Welcome"
 const Demo = () => {
   return (
     <>
-    <div className="bg-back">
+    <div className="bg-back h-full">
     <Tabs defaultValue="Tags" className="w-full">
   <TabsList>
     <TabsTrigger value="Tags">Tags</TabsTrigger>

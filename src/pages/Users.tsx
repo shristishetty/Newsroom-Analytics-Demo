@@ -3,6 +3,8 @@
 import * as React from "react"
 import { TrendingUp } from "lucide-react"
 import { Area, AreaChart, CartesianGrid, XAxis,Bar, BarChart, LabelList, Pie, PieChart, Line, LineChart ,Label } from "recharts"
+import { Calendar } from "../components/ui/calendar"
+import { DateRange } from "react-day-picker";
 
 import {
   Card,
@@ -335,35 +337,35 @@ export function Source() {
 
 
 const box1Data = [
-  { browser: "chrome", visitors: 275, fill: "var(--color-chrome)" },
-  { browser: "safari", visitors: 200, fill: "var(--color-safari)" },
-  { browser: "firefox", visitors: 287, fill: "var(--color-firefox)" },
-  { browser: "edge", visitors: 173, fill: "var(--color-edge)" },
-  { browser: "other", visitors: 190, fill: "var(--color-other)" },
+  { age: "18-24", visitors: 120, fill: "var(--color-18-24)" },
+    { age: "25-34", visitors: 180, fill: "var(--color-25-34)" },
+    { age: "35-44", visitors: 150, fill: "var(--color-35-44)" },
+    { age: "45-54", visitors: 100, fill: "var(--color-45-54)" },
+    { age: "55-64", visitors: 80, fill: "var(--color-55-64)" },
 ]
 
 const box1Config = {
   visitors: {
     label: "Visitors",
   },
-  chrome: {
-    label: "Chrome",
+  "18-24": {
+    label: "18-24",
     color: "hsl(var(--chart-1))",
   },
-  safari: {
-    label: "Safari",
+  "25-34": {
+    label: "25-34",
     color: "hsl(var(--chart-2))",
   },
-  firefox: {
-    label: "Firefox",
+  "35-44": {
+    label: "35-44",
     color: "hsl(var(--chart-3))",
   },
-  edge: {
-    label: "Edge",
+  "45-54": {
+    label: "45-54",
     color: "hsl(var(--chart-4))",
   },
-  other: {
-    label: "Other",
+  "55-64": {
+    label: "55-64",
     color: "hsl(var(--chart-5))",
   },
 } satisfies ChartConfig
@@ -374,15 +376,14 @@ export function Box1() {
   }, [])
 
   return (
-    <Card className="flex flex-col">
+    <Card className="flex flex-col w-full">
       <CardHeader className="items-center pb-0">
-        <CardTitle>Pie Chart - Donut with Text</CardTitle>
-        <CardDescription>January - June 2024</CardDescription>
+        <CardTitle>Active Users</CardTitle>
       </CardHeader>
       <CardContent className="flex-1 pb-0">
         <ChartContainer
           config={box1Config}
-          className="mx-auto aspect-square max-h-[250px]"
+          className="mx-auto aspect-square"
         >
           <PieChart>
             <ChartTooltip
@@ -409,14 +410,14 @@ export function Box1() {
                         <tspan
                           x={viewBox.cx}
                           y={viewBox.cy}
-                          className="text-3xl text-text font-bold"
+                          className="fill-white text-3xl font-bold"
                         >
                           {totalVisitors.toLocaleString()}
                         </tspan>
                         <tspan
                           x={viewBox.cx}
                           y={(viewBox.cy || 0) + 24}
-                          className="fill-muted-foreground"
+                          className="fill-text"
                         >
                           Visitors
                         </tspan>
@@ -430,7 +431,7 @@ export function Box1() {
         </ChartContainer>
       </CardContent>
       <CardFooter className="flex-col gap-2 text-sm">
-        <div className="flex items-center text-text gap-2 font-medium leading-none">
+        <div className="flex items-center  gap-2 font-medium leading-none">
           Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
         </div>
         
@@ -440,31 +441,151 @@ export function Box1() {
 }
 
 
+
+const box2Data = [
+  { age: "18-24", visitors: 120, fill: "var(--color-18-24)" },
+    { age: "25-34", visitors: 180, fill: "var(--color-25-34)" },
+    { age: "35-44", visitors: 150, fill: "var(--color-35-44)" },
+    { age: "45-54", visitors: 100, fill: "var(--color-45-54)" },
+    { age: "55-64", visitors: 80, fill: "var(--color-55-64)" },
+]
+
+const box2Config = {
+  visitors: {
+    label: "Visitors",
+  },
+  "18-24": {
+    label: "18-24",
+    color: "hsl(var(--chart-1))",
+  },
+  "25-34": {
+    label: "25-34",
+    color: "hsl(var(--chart-2))",
+  },
+  "35-44": {
+    label: "35-44",
+    color: "hsl(var(--chart-3))",
+  },
+  "45-54": {
+    label: "45-54",
+    color: "hsl(var(--chart-4))",
+  },
+  "55-64": {
+    label: "55-64",
+    color: "hsl(var(--chart-5))",
+  },
+  
+} satisfies ChartConfig
+
+export function Box2() {
+  const totalVisitors = React.useMemo(() => {
+    return box1Data.reduce((acc, curr) => acc + curr.visitors, 0)
+  }, [])
+
+  return (
+    <Card className="flex flex-col w-full">
+      <CardHeader className="items-center pb-0">
+        <CardTitle>Active Users</CardTitle>
+      </CardHeader>
+      <CardContent className="flex-1 pb-0">
+        <ChartContainer
+          config={box2Config}
+          className="mx-auto aspect-square"
+        >
+          <PieChart>
+            <ChartTooltip
+              cursor={false}
+              content={<ChartTooltipContent hideLabel />}
+            />
+            <Pie
+              data={box1Data}
+              dataKey="visitors"
+              nameKey="browser"
+              innerRadius={60}
+              strokeWidth={5}
+            >
+              <Label
+                content={({ viewBox }) => {
+                  if (viewBox && "cx" in viewBox && "cy" in viewBox) {
+                    return (
+                      <text
+                        x={viewBox.cx}
+                        y={viewBox.cy}
+                        textAnchor="middle"
+                        dominantBaseline="middle"
+                      >
+                        <tspan
+                          x={viewBox.cx}
+                          y={viewBox.cy}
+                          className="fill-white text-3xl font-bold"
+                        >
+                          {totalVisitors.toLocaleString()}
+                        </tspan>
+                        <tspan
+                          x={viewBox.cx}
+                          y={(viewBox.cy || 0) + 24}
+                          className="fill-text"
+                        >
+                          Visitors
+                        </tspan>
+                      </text>
+                    )
+                  }
+                }}
+              />
+            </Pie>
+          </PieChart>
+        </ChartContainer>
+      </CardContent>
+      <CardFooter className="flex-col gap-2 text-sm">
+        <div className="flex items-center  gap-2 font-medium leading-none">
+          Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
+        </div>
+        
+      </CardFooter>
+    </Card>
+  )
+}
+
 export function Box() {
   return (
     <>
-    <div className="bg-back border-[1px] border-white rounded-[6px] p-5 font-semibold">Who Are Our Readers?
+    <div className="bg-back border-[1px] border-white rounded-[6px] p-5 h-full font-semibold">Who Are Our Readers?
 
-    <div className="w-1/2 grid grid-cols-2 gap-4">
+    <div className="grid grid-cols-2 mt-5 gap-4">
     <Box1/>
-    {/* <div className="bg-back border-[1px] border-white rounded-[6px] p-5 font-semibold">User</div>
-    <div className="bg-back border-[1px] border-white rounded-[6px] p-5 font-semibold">User</div>
-    <div className="bg-back border-[1px] border-white rounded-[6px] p-5 font-semibold">User</div> */}
+    <Box2/>
     </div>
+    <p className="pt-5 pb-5">
+      (Summary) 
+      lsk;j
+    </p>
     </div>
     
     </>
   )}
 
+
+  
+
 const Users = () => {
+  
   return (
     <>
-    <div className="flex">
-  <div className="w-1/2 p-2">
+    <div className="flex flex-col-2">
+  <div className="w-2/4 p-2">
     <Source />
   </div>
   <div className="w-1/2 p-2">
     <Box/>
+  </div>
+</div>
+<div className="flex flex-col-2">
+  <div className="w-2/4 p-2">
+    <Retention />
+  </div>
+  <div className="w-1/2 p-2">
+    <EngagedSession/>
   </div>
 </div>
     {/* <EngagedSession/>
@@ -478,3 +599,13 @@ const Users = () => {
 }
 
 export default Users
+
+
+    
+
+  {/* <Calendar
+  mode="range" // Enable range mode
+  selected={selectedRange}  // Pass the selected range
+  onSelect={handleRangeSelect}  // Update the selected range
+  className="rounded-md border"
+  /> */}
