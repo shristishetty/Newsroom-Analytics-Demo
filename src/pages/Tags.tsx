@@ -3,7 +3,7 @@
 import * as React from "react"
 // import { TrendingUp } from "lucide-react"
 import { Label, Pie, PieChart } from "recharts"
-import { Bar, BarChart, XAxis, YAxis, CartesianGrid } from "recharts"
+import { Bar, BarChart, XAxis, YAxis, CartesianGrid, LabelList } from "recharts"
 
 "use client"
 
@@ -119,6 +119,10 @@ const chartConfig = {
     label: "Housing",
     color: "hsl(var(--chart-5))",
   },
+  desktop: {
+    label: "Visitors Per Story",
+    color: "hsl(var(--chart-1))",
+  },
 } satisfies ChartConfig
 
 export function Top() {
@@ -129,16 +133,16 @@ export function Top() {
   return (
     <Card className="flex flex-col">
       <CardHeader className="items-center pb-0">
-        <CardTitle>Top Categories</CardTitle>
+        <CardTitle>What Stories Are Capturing Attention?</CardTitle>
         {/* <CardDescription>January - June 2024</CardDescription> */}
         <div className="flex justify-center items-center">
-<DatePickerWithRange/>
+{/* <DatePickerWithRange/> */}
 </div>
       </CardHeader>
       <CardContent className="flex-1 pb-0">
         <ChartContainer
           config={chartConfig}
-          className="mx-auto aspect-square max-h-[250px]"
+          className="mx-auto aspect-square max-h-[350px]"
         >
           <PieChart>
             <ChartTooltip
@@ -149,7 +153,7 @@ export function Top() {
               data={chartData}
               dataKey="visitors"
               nameKey="browser"
-              innerRadius={60}
+              innerRadius={80}
               strokeWidth={5}
             >
               <Label
@@ -165,7 +169,7 @@ export function Top() {
                         <tspan
                           x={viewBox.cx}
                           y={viewBox.cy}
-                          className="fill-foreground text-3xl font-bold"
+                          className="fill-text text-4xl font-bold"
                         >
                           {totalVisitors.toLocaleString()}
                         </tspan>
@@ -203,11 +207,11 @@ export function Top() {
 export function PerAuthor() {
   return (
     <Card>
-      <CardHeader>
-        <CardTitle>Tags Used Per Author</CardTitle>
+      <CardHeader className="items-center pb-0">
+        <CardTitle>Personalized Content by Author</CardTitle>
         {/* <CardDescription>January - June 2024</CardDescription> */}
         <div className="flex justify-center items-center">
-<DatePickerWithRange/>
+{/* <DatePickerWithRange/> */}
 </div>
       </CardHeader>
       <CardContent>
@@ -239,8 +243,8 @@ export function PerAuthor() {
           </BarChart>
         </ChartContainer>
       </CardContent>
-      <CardFooter className="flex-col items-start gap-2 text-sm">
-        <div className="flex gap-2 font-medium leading-none">
+      <CardFooter className="flex-col gap-2 text-sm">
+        <div className="flex items-center gap-2 font-medium leading-none">
           {/* Trending up by 5.2% this month <TrendingUp className="h-4 w-4" /> */}
 (summary)        </div>
         <div className="leading-none text-muted-foreground">
@@ -281,11 +285,11 @@ const charConfig = {
 export function AgeGroup() {
   return (
     <Card>
-      <CardHeader>
-        <CardTitle>Tags per Age Group</CardTitle>
+      <CardHeader className="items-center pb-0">
+        <CardTitle>Reaching Every Age Group</CardTitle>
         {/* <CardDescription>January - June 2024</CardDescription> */}
         <div className="flex justify-center items-center">
-<DatePickerWithRange/>
+{/* <DatePickerWithRange/> */}
 </div>
       </CardHeader>
       <CardContent>
@@ -335,18 +339,78 @@ export function AgeGroup() {
   )
 }
 
+const visitorChartData = [
+  { month: "January", desktop: 186 },
+  { month: "February", desktop: 305 },
+  { month: "March", desktop: 237 },
+  { month: "April", desktop: 73 },
+  { month: "May", desktop: 209 },
+  { month: "June", desktop: 214 },
+]
+
+export function VisitorStoryRatio() {
+  return (
+    <Card>
+      <CardHeader className="items-center pb-0">
+        <CardTitle>Are Readers Staying Engaged?</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <ChartContainer config={chartConfig}>
+          <BarChart
+            accessibilityLayer
+            data={visitorChartData}
+            margin={{
+              top: 20,
+            }}
+          >
+            <CartesianGrid vertical={false} />
+            <XAxis
+              dataKey="month"
+              tickLine={false}
+              tickMargin={10}
+              axisLine={false}
+              tickFormatter={(value) => value.slice(0, 3)}
+            />
+            <ChartTooltip
+              cursor={false}
+              content={<ChartTooltipContent hideLabel />}
+            />
+            <Bar dataKey="desktop" fill="var(--color-desktop)" radius={8}>
+              <LabelList
+                position="top"
+                offset={12}
+                className="fill-foreground"
+                fontSize={12}
+              />
+            </Bar>
+          </BarChart>
+        </ChartContainer>
+      </CardContent>
+      <CardFooter className="flex-col items-start gap-2 text-sm">
+        <div className="flex gap-2 font-medium leading-none">
+          Trending up by 5.2% this month
+        </div>
+        <div className="leading-none text-muted-foreground">
+          Showing total visitors for the last 6 months
+        </div>
+      </CardFooter>
+    </Card>
+  )
+}
+
 
 const Tags = () => {
-    return(
-        <>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-    <Top/>
-    <PerAuthor/>
-    
-</div>
-<AgeGroup/>
-        </>
-    )
-}
+  return (
+      <>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <Top />
+              <AgeGroup />
+              <PerAuthor />
+              <VisitorStoryRatio />
+          </div>
+      </>
+  );
+};
+
 
 export default Tags

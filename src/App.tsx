@@ -4,6 +4,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "./components/ui/tabs"
 import Tags from "./pages/Tags"
 import Authors from "./pages/Authors"
 import Users from "./pages/Users"
+import Revenue from './pages/revenue'
 // import Welcome from "./Welcome"
 
 
@@ -21,13 +22,14 @@ function App() {
       <Tabs defaultValue="User" className="p-5">
   <TabsList>
   <TabsTrigger value="User">User Demographics</TabsTrigger>
-    <TabsTrigger value="Tags">Tags</TabsTrigger>
-    <TabsTrigger value="Author">Author</TabsTrigger>
-    <TabsTrigger value="Revenue">Revenue</TabsTrigger>
+    <TabsTrigger value="Author">Author Performance</TabsTrigger>
+    <TabsTrigger value="Tags">Article Themes</TabsTrigger>
+    <TabsTrigger value="Revenue">Revenue Attribution</TabsTrigger>
   </TabsList>
   <TabsContent value="User"><Users/></TabsContent>
-  {/* <TabsContent value="Author"><Authors/></TabsContent>
-  <TabsContent value="User"><Users/></TabsContent> */}
+  <TabsContent value="Author"><Authors/></TabsContent>
+  <TabsContent value="Tags"><Tags/></TabsContent>
+  <TabsContent value="Revenue"><Revenue/></TabsContent>
 </Tabs>
       </div>
     </>
