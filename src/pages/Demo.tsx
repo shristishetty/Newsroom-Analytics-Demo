@@ -2,7 +2,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "../components/ui/tabs"
 import Tags from "./Tags"
 import Authors from "./Authors"
 import Users from "./Users"
-import Welcome from "./Welcome"
 
 const Demo = () => {
   return (

@@ -17,14 +17,21 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "../components/ui/chart"
-const chartData = [
-  { author: "Stephen", overperformance: 186 },
-  { author: "Peter", overperformance: 305 },
-  { author: "Nancy", overperformance: 237 },
-  { author: "Bridger", overperformance: 73 },
-  { author: "Steve", overperformance: 209 },
-  { author: "Samuel", overperformance: 214 },
-]
+
+const generateRandomNumber = (min: number, max: number) => {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+};
+
+// Overperformance
+const generateRandomChartData = () => {
+  const authors = ["Stephen", "Peter", "Nancy", "Bridger", "Steve", "Samuel"];
+  return authors.map((author) => ({
+    author,
+    overperformance: generateRandomNumber(50, 400), // Random overperformance between 50 and 400
+  }));
+};
+
+const chartData = generateRandomChartData();
 
 const chartConfig = {
   overperformance: {
@@ -85,13 +92,17 @@ export function Overperformance() {
 }
 
 
-const post = [
-    { author: "Alice", visitors: 275, fill: "var(--color-alice)" },
-    { author: "Bob", visitors: 200, fill: "var(--color-bob)" },
-    { author: "Charlie", visitors: 187, fill: "var(--color-charlie)" },
-    { author: "David", visitors: 173, fill: "var(--color-david)" },
-    { author: "Eve", visitors: 90, fill: "var(--color-eve)" },
-  ];
+const generateRandomPostData = () => {
+  const authors = ["Alice", "Bob", "Charlie", "David", "Eve"];
+  return authors.map((author) => ({
+    author,
+    visitors: generateRandomNumber(50, 300), // Random visitors between 50 and 300
+    fill: `var(--color-${author.toLowerCase()})`, // Use author's name as the color variable
+  }));
+};
+
+// Post chart data with random values
+const post = generateRandomPostData();
   
   const postchart = {
     visitors: {

@@ -19,14 +19,23 @@ import {
   ChartLegend,
   ChartLegendContent
 } from "@/components/ui/chart"
-const graphchartData = [
-  { month: "January", desktop: 186, mobile: 80 },
-  { month: "February", desktop: 305, mobile: 200 },
-  { month: "March", desktop: 237, mobile: 120 },
-  { month: "April", desktop: 73, mobile: 190 },
-  { month: "May", desktop: 209, mobile: 130 },
-  { month: "June", desktop: 214, mobile: 140 },
-]
+
+const generateRandomNumber = (min: number, max: number) => {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+};
+
+const generateRandomData = () => {
+  return [
+    { month: "January", desktop: generateRandomNumber(50, 300), mobile: generateRandomNumber(50, 300) },
+    { month: "February", desktop: generateRandomNumber(50, 300), mobile: generateRandomNumber(50, 300) },
+    { month: "March", desktop: generateRandomNumber(50, 300), mobile: generateRandomNumber(50, 300) },
+    { month: "April", desktop: generateRandomNumber(50, 300), mobile: generateRandomNumber(50, 300) },
+    { month: "May", desktop: generateRandomNumber(50, 300), mobile: generateRandomNumber(50, 300) },
+    { month: "June", desktop: generateRandomNumber(50, 300), mobile: generateRandomNumber(50, 300) },
+  ];
+};
+
+const graphchartData = generateRandomData();
 
 export function EventCount() {
   return (
@@ -66,6 +75,19 @@ export function EventCount() {
   )
 }
 
+const generateRandom2Data = () => {
+  return [
+    { month: "January", desktop: generateRandomNumber(50, 300), mobile: generateRandomNumber(50, 300) },
+    { month: "February", desktop: generateRandomNumber(50, 300), mobile: generateRandomNumber(50, 300) },
+    { month: "March", desktop: generateRandomNumber(50, 300), mobile: generateRandomNumber(50, 300) },
+    { month: "April", desktop: generateRandomNumber(50, 300), mobile: generateRandomNumber(50, 300) },
+    { month: "May", desktop: generateRandomNumber(50, 300), mobile: generateRandomNumber(50, 300) },
+    { month: "June", desktop: generateRandomNumber(50, 300), mobile: generateRandomNumber(50, 300) },
+  ];
+};
+
+const graph2chartData = generateRandom2Data();
+
 export function SubscriberThemes() {
   return (
     <Card>
@@ -74,7 +96,7 @@ export function SubscriberThemes() {
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig}>
-          <BarChart accessibilityLayer data={graphchartData}>
+          <BarChart accessibilityLayer data={graph2chartData}>
             <CartesianGrid vertical={false} />
             <XAxis
               dataKey="month"
@@ -114,13 +136,16 @@ export function SubscriberThemes() {
 
 import * as React from "react"
 
-  const piechartData = [
-    { browser: "politics", visitors: 275, fill: "var(--color-politics)" },
-    { browser: "art", visitors: 200, fill: "var(--color-art)" },
-    { browser: "environment", visitors: 287, fill: "var(--color-environment)" },
-    { browser: "health", visitors: 173, fill: "var(--color-health)" },
-    { browser: "housing", visitors: 190, fill: "var(--color-housing)" },
-  ]
+const generateRandomPieData = () => {
+  return [
+    { browser: "politics", visitors: generateRandomNumber(150, 350), fill: "var(--color-politics)" },
+    { browser: "art", visitors: generateRandomNumber(150, 350), fill: "var(--color-art)" },
+    { browser: "environment", visitors: generateRandomNumber(150, 350), fill: "var(--color-environment)" },
+    { browser: "health", visitors: generateRandomNumber(150, 350), fill: "var(--color-health)" },
+    { browser: "housing", visitors: generateRandomNumber(150, 350), fill: "var(--color-housing)" },
+  ];
+};
+const piechartData = generateRandomPieData();
   
   const chartConfig = {
     visitors: {
@@ -217,7 +242,7 @@ import * as React from "react"
                             y={(viewBox.cy || 0) + 24}
                             className="fill-muted-foreground"
                           >
-                            Visitors
+                            Dollars ($)
                           </tspan>
                         </text>
                       )

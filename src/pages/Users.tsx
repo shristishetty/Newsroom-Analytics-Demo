@@ -3,8 +3,6 @@
 import * as React from "react"
 import { TrendingUp } from "lucide-react"
 import { Area, AreaChart, CartesianGrid, XAxis,Bar, BarChart, LabelList, Pie, PieChart, Line, LineChart ,Label } from "recharts"
-import { Calendar } from "../components/ui/calendar"
-import { DateRange } from "react-day-picker";
 
 import {
   Card,
@@ -24,21 +22,28 @@ import {
 } from "../components/ui/chart"
 
 
-const chartData = [
-    { month: "January", "18-24": 115, "25-34": 145, "35-44": 90, "45-54": 55, "55-64": 35, "65+": 25 },
-    { month: "February", "18-24": 130, "25-34": 160, "35-44": 120, "45-54": 65, "55-64": 40, "65+": 30 },
-    { month: "March", "18-24": 105, "25-34": 180, "35-44": 110, "45-54": 70, "55-64": 45, "65+": 35 },
-    { month: "April", "18-24": 160, "25-34": 130, "35-44": 95, "45-54": 85, "55-64": 55, "65+": 45 },
-    { month: "May", "18-24": 140, "25-34": 200, "35-44": 120, "45-54": 100, "55-64": 50, "65+": 40 },
-    { month: "June", "18-24": 125, "25-34": 165, "35-44": 115, "45-54": 95, "55-64": 60, "65+": 50 },
-    { month: "July", "18-24": 170, "25-34": 150, "35-44": 130, "45-54": 75, "55-64": 45, "65+": 35 },
-    { month: "August", "18-24": 145, "25-34": 180, "35-44": 105, "45-54": 85, "55-64": 55, "65+": 40 },
-    { month: "September", "18-24": 160, "25-34": 175, "35-44": 125, "45-54": 95, "55-64": 50, "65+": 45 },
-    { month: "October", "18-24": 135, "25-34": 150, "35-44": 140, "45-54": 70, "55-64": 55, "65+": 30 },
-    { month: "November", "18-24": 155, "25-34": 190, "35-44": 100, "45-54": 90, "55-64": 60, "65+": 45 },
-    { month: "December", "18-24": 180, "25-34": 210, "35-44": 130, "45-54": 85, "55-64": 40, "65+": 50 },
+const generateRandomNumber = (min: number, max: number) => {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+};
+
+// Engaged Session
+const generateRandomChartData = () => {
+  const months = [
+    "January", "February", "March", "April", "May", "June", "July", 
+    "August", "September", "October", "November", "December"
   ];
-  
+
+  return months.map((month) => ({
+    month,
+    "18-24": generateRandomNumber(30, 200),
+    "25-34": generateRandomNumber(50, 250),
+    "35-44": generateRandomNumber(40, 150),
+    "45-54": generateRandomNumber(30, 120),
+    "55-64": generateRandomNumber(20, 100),
+    "65+": generateRandomNumber(10, 70),
+  }));
+};
+const chartData =generateRandomChartData();
   
 
 const chartConfig = {
@@ -189,19 +194,20 @@ export function EngagedSession() {
   );
 }
 
+// Retention Data
+const generateRandomRetentionData = () => {
+  const ageGroups = ["18-24", "25-34", "35-44", "45-54", "55-64", "65+"];
+  return ageGroups.map((age) => ({
+    age,
+    desktop: generateRandomNumber(40, 90),
+  }));
+};
 
-const retData = [
-  { age: "18-24", desktop: 45 },
-  { age: "25-34", desktop: 58 },
-  { age: "35-44", desktop: 74 },
-  { age: "45-54", desktop: 64 },
-  { age: "55-64", desktop: 88 },
-  { age: "65+", desktop: 68 },
-]
+const retData = generateRandomRetentionData();
 
 const ret = {
   desktop: {
-    label: "Desktop",
+    label: "Retention",
     color: "hsl(var(--chart-1))",
   },
 } satisfies ChartConfig
@@ -259,18 +265,25 @@ export function Retention() {
   )
 }
 
-const srcData = [
-  { month: "January", desktop: 186, mobile: 80 },
-  { month: "February", desktop: 305, mobile: 200 },
-  { month: "March", desktop: 237, mobile: 120 },
-  { month: "April", desktop: 73, mobile: 190 },
-  { month: "May", desktop: 209, mobile: 130 },
-  { month: "June", desktop: 214, mobile: 140 },
-]
+// Traffic
+const generateRandomSourceData = () => {
+  const months = [
+    "Instagram", "Facebook", "Google", "X", "Reddit", "Bluesky"
+  ];
+
+  return months.map((month) => ({
+    month,
+    desktop: generateRandomNumber(50, 300),
+    mobile: generateRandomNumber(50, 250),
+  }));
+};
+
+const srcData = generateRandomSourceData();
+
 
 const srcConfig = {
   desktop: {
-    label: "Desktop",
+    label: "Traffic",
     color: "hsl(var(--chart-1))",
   },
   mobile: {
@@ -320,6 +333,7 @@ export function Source() {
                 r: 6,
               }}
             />
+            
           </LineChart>
         </ChartContainer>
       </CardContent>
@@ -335,36 +349,47 @@ export function Source() {
   )
 }
 
+// Active Users
+const generateRandomBoxData = () => {
+  const boxData = [
+    { age: "1", fill: "var(--color-1)" },
+    { age: "2", fill: "var(--color-2)" },
+    { age: "3", fill: "var(--color-3)" },
+    { age: "4", fill: "var(--color-4)" },
+    { age: "5", fill: "var(--color-5)" },
+  ];
 
-const box1Data = [
-  { age: "18-24", visitors: 120, fill: "var(--color-18-24)" },
-    { age: "25-34", visitors: 180, fill: "var(--color-25-34)" },
-    { age: "35-44", visitors: 150, fill: "var(--color-35-44)" },
-    { age: "45-54", visitors: 100, fill: "var(--color-45-54)" },
-    { age: "55-64", visitors: 80, fill: "var(--color-55-64)" },
-]
+  // Update visitors with random numbers for each item
+  return boxData.map((item) => ({
+    ...item,
+    visitors: generateRandomNumber(1000, 300), // Generate random visitors count
+  }));
+};
+
+// Generate the random box data
+const box1Data = generateRandomBoxData();
 
 const box1Config = {
   visitors: {
     label: "Visitors",
   },
-  "18-24": {
+  "1": {
     label: "18-24",
     color: "hsl(var(--chart-1))",
   },
-  "25-34": {
+  "2": {
     label: "25-34",
     color: "hsl(var(--chart-2))",
   },
-  "35-44": {
+  "3": {
     label: "35-44",
     color: "hsl(var(--chart-3))",
   },
-  "45-54": {
+  "4": {
     label: "45-54",
     color: "hsl(var(--chart-4))",
   },
-  "55-64": {
+  "5": {
     label: "55-64",
     color: "hsl(var(--chart-5))",
   },
@@ -393,7 +418,7 @@ export function Box1() {
             <Pie
               data={box1Data}
               dataKey="visitors"
-              nameKey="browser"
+              nameKey="age"
               innerRadius={60}
               strokeWidth={5}
             >
@@ -442,35 +467,47 @@ export function Box1() {
 
 
 
-const box2Data = [
-  { age: "18-24", visitors: 120, fill: "var(--color-18-24)" },
-    { age: "25-34", visitors: 180, fill: "var(--color-25-34)" },
-    { age: "35-44", visitors: 150, fill: "var(--color-35-44)" },
-    { age: "45-54", visitors: 100, fill: "var(--color-45-54)" },
-    { age: "55-64", visitors: 80, fill: "var(--color-55-64)" },
-]
 
+
+const generateRandomBox2Data = () => {
+  const box2Data = [
+    { age: "1", fill: "var(--color-1)" },
+    { age: "2", fill: "var(--color-2)" },
+    { age: "3", fill: "var(--color-3)" },
+    { age: "4", fill: "var(--color-4)" },
+    { age: "5", fill: "var(--color-5)" },
+  ];
+
+  // Update visitors with random numbers for each item
+  return box2Data.map((item) => ({
+    ...item,
+    visitors: generateRandomNumber(50, 100), // Generate random visitors count
+  }));
+};
+
+// Generate the random box data
+const box2Data = generateRandomBox2Data();
 const box2Config = {
   visitors: {
     label: "Visitors",
   },
-  "18-24": {
+  "1": {
     label: "18-24",
     color: "hsl(var(--chart-1))",
   },
-  "25-34": {
+  "2": {
     label: "25-34",
     color: "hsl(var(--chart-2))",
   },
-  "35-44": {
+  "3": {
     label: "35-44",
     color: "hsl(var(--chart-3))",
   },
-  "45-54": {
+  "4": {
     label: "45-54",
     color: "hsl(var(--chart-4))",
   },
-  "55-64": {
+  "5": {
     label: "55-64",
     color: "hsl(var(--chart-5))",
   },
@@ -479,13 +516,13 @@ const box2Config = {
 
 export function Box2() {
   const totalVisitors = React.useMemo(() => {
-    return box1Data.reduce((acc, curr) => acc + curr.visitors, 0)
+    return box2Data.reduce((acc, curr) => acc + curr.visitors, 0)
   }, [])
 
   return (
     <Card className="flex flex-col w-full">
       <CardHeader className="items-center pb-0">
-        <CardTitle>Active Users</CardTitle>
+        <CardTitle>New Users</CardTitle>
       </CardHeader>
       <CardContent className="flex-1 pb-0">
         <ChartContainer
@@ -498,9 +535,9 @@ export function Box2() {
               content={<ChartTooltipContent hideLabel />}
             />
             <Pie
-              data={box1Data}
+              data={box2Data}
               dataKey="visitors"
-              nameKey="browser"
+              nameKey="age"
               innerRadius={60}
               strokeWidth={5}
             >
@@ -552,7 +589,7 @@ export function Box() {
     <>
     <div className="bg-back border-[1px] border-white rounded-[6px] p-5 h-full font-semibold">Who Are Our Readers?
 
-    <div className="grid grid-cols-2 mt-5 gap-4">
+    <div className="pt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
     <Box1/>
     <Box2/>
     </div>

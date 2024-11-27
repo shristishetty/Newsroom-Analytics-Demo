@@ -5,72 +5,6 @@ import * as React from "react"
 import { Label, Pie, PieChart } from "recharts"
 import { Bar, BarChart, XAxis, YAxis, CartesianGrid, LabelList } from "recharts"
 
-"use client"
-
-import { addDays, format } from "date-fns"
-import { CalendarIcon } from "lucide-react"
-import { DateRange } from "react-day-picker"
-
-import { cn } from "../lib/utils"
-import { Button } from "../components/ui/button"
-import { Calendar } from "../components/ui/calendar"
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "../components/ui/popover"
-
-export function DatePickerWithRange({
-  className,
-}: React.HTMLAttributes<HTMLDivElement>) {
-  const [date, setDate] = React.useState<DateRange | undefined>({
-    from: new Date(2022, 0, 1),
-    to: addDays(new Date(2022, 0, 20), 20),
-  })
-
-  return (
-    <div className={cn("grid gap-2", className)}>
-      <Popover>
-        <PopoverTrigger asChild>
-          <Button
-            id="date"
-            variant={"outline"}
-            className={cn(
-              "w-[300px] justify-start text-left font-normal",
-              !date && "text-muted-foreground"
-            )}
-          >
-            <CalendarIcon />
-            {date?.from ? (
-              date.to ? (
-                <>
-                  {format(date.from, "LLL dd, y")} -{" "}
-                  {format(date.to, "LLL dd, y")}
-                </>
-              ) : (
-                format(date.from, "LLL dd, y")
-              )
-            ) : (
-              <span>Pick a date</span>
-            )}
-          </Button>
-        </PopoverTrigger>
-        <PopoverContent className="w-auto p-0" align="start">
-          <Calendar
-            initialFocus
-            mode="range"
-            defaultMonth={date?.from}
-            selected={date}
-            onSelect={setDate}
-            numberOfMonths={2}
-          />
-        </PopoverContent>
-      </Popover>
-    </div>
-  )
-}
-
-
 import {
   Card,
   CardContent,
@@ -87,13 +21,19 @@ import {
   ChartLegend,
   ChartLegendContent
 } from "../components/ui/chart"
+
+const generateRandomNumber = (min: number, max: number) => {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+};
+
+// Top
 const chartData = [
-  { browser: "politics", visitors: 275, fill: "var(--color-politics)" },
-  { browser: "art", visitors: 200, fill: "var(--color-art)" },
-  { browser: "environment", visitors: 287, fill: "var(--color-environment)" },
-  { browser: "health", visitors: 173, fill: "var(--color-health)" },
-  { browser: "housing", visitors: 190, fill: "var(--color-housing)" },
-]
+  { browser: "politics", visitors: generateRandomNumber(100, 500), fill: "var(--color-politics)" },
+  { browser: "art", visitors: generateRandomNumber(100, 500), fill: "var(--color-art)" },
+  { browser: "environment", visitors: generateRandomNumber(100, 500), fill: "var(--color-environment)" },
+  { browser: "health", visitors: generateRandomNumber(100, 500), fill: "var(--color-health)" },
+  { browser: "housing", visitors: generateRandomNumber(100, 500), fill: "var(--color-housing)" },
+];
 
 const chartConfig = {
   visitors: {
@@ -203,6 +143,14 @@ export function Top() {
   )
 }
 
+const chart2Data = [
+  { browser: "politics", visitors: generateRandomNumber(100, 500), fill: "var(--color-politics)" },
+  { browser: "art", visitors: generateRandomNumber(100, 500), fill: "var(--color-art)" },
+  { browser: "environment", visitors: generateRandomNumber(100, 500), fill: "var(--color-environment)" },
+  { browser: "health", visitors: generateRandomNumber(100, 500), fill: "var(--color-health)" },
+  { browser: "housing", visitors: generateRandomNumber(100, 500), fill: "var(--color-housing)" },
+];
+
 
 export function PerAuthor() {
   return (
@@ -218,7 +166,7 @@ export function PerAuthor() {
         <ChartContainer config={chartConfig}>
           <BarChart
             accessibilityLayer
-            data={chartData}
+            data={chart2Data}
             layout="vertical"
             margin={{
               left: 0,
@@ -259,13 +207,14 @@ export function PerAuthor() {
 
 
 const age = [
-  { month: "18-24", housing: 186, politics: 80 },
-  { month: "25-34", housing: 305, politics: 200,government:435 },
-  { month: "35-44", housing: 237, politics: 120, government:374 },
-  { month: "45-54", housing: 73, politics: 190, government:265 },
-  { month: "55-64", housing: 209, politics: 130, government: 233 },
-  { month: "65+", housing: 214, politics: 140 },
-]
+  { month: "18-24", housing: generateRandomNumber(50, 200), politics: generateRandomNumber(50, 150), government: generateRandomNumber(100, 300) },
+  { month: "25-34", housing: generateRandomNumber(100, 300), politics: generateRandomNumber(100, 250), government: generateRandomNumber(200, 500) },
+  { month: "35-44", housing: generateRandomNumber(100, 250), politics: generateRandomNumber(80, 200), government: generateRandomNumber(100, 400) },
+  { month: "45-54", housing: generateRandomNumber(50, 150), politics: generateRandomNumber(100, 250), government: generateRandomNumber(150, 400) },
+  { month: "55-64", housing: generateRandomNumber(100, 300), politics: generateRandomNumber(50, 200), government: generateRandomNumber(100, 350) },
+  { month: "65+", housing: generateRandomNumber(100, 250), politics: generateRandomNumber(50, 200), government: generateRandomNumber(100, 300) },
+];
+
 
 const charConfig = {
   housing: {
@@ -340,13 +289,14 @@ export function AgeGroup() {
 }
 
 const visitorChartData = [
-  { month: "January", desktop: 186 },
-  { month: "February", desktop: 305 },
-  { month: "March", desktop: 237 },
-  { month: "April", desktop: 73 },
-  { month: "May", desktop: 209 },
-  { month: "June", desktop: 214 },
-]
+  { month: "January", desktop: generateRandomNumber(50, 300) },
+  { month: "February", desktop: generateRandomNumber(50, 300) },
+  { month: "March", desktop: generateRandomNumber(50, 300) },
+  { month: "April", desktop: generateRandomNumber(50, 300) },
+  { month: "May", desktop: generateRandomNumber(50, 300) },
+  { month: "June", desktop: generateRandomNumber(50, 300) },
+];
+
 
 export function VisitorStoryRatio() {
   return (
