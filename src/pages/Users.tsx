@@ -565,38 +565,18 @@ export function Box() {
     </>
   )}
 
-
-  
-
-const Users = () => {
-  
-  return (
-    <>
-    <div className="flex flex-col-2">
-  <div className="w-2/4 p-2">
-    <Source />
-  </div>
-  <div className="w-1/2 p-2">
-    <Box/>
-  </div>
-</div>
-<div className="flex flex-col-2">
-  <div className="w-2/4 p-2">
-    <Retention />
-  </div>
-  <div className="w-1/2 p-2">
-    <EngagedSession/>
-  </div>
-</div>
-    {/* <EngagedSession/>
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mt-5">
-        
-        <Retention/>
-    </div> */}
-
-    </>
-  )
-}
+  const Users = () => {
+    return (
+        <>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <Source />
+                <Box />
+                <Retention />
+                <EngagedSession />
+            </div>
+        </>
+    );
+  };
 
 export default Users
 
