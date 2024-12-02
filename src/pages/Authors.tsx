@@ -32,6 +32,9 @@ const generateRandomChartData = () => {
 };
 
 const chartData = generateRandomChartData();
+const sortedop = [...chartData].sort((a, b) => b.overperformance - a.overperformance);
+const first_op = sortedop[0].author;
+const least_op = sortedop[sortedop.length - 1].author;
 
 const chartConfig = {
   overperformance: {
@@ -72,7 +75,7 @@ export function Overperformance() {
               <LabelList
                 position="top"
                 offset={12}
-                className="fill-foreground"
+                className="fill-text"
                 fontSize={12}
               />
             </Bar>
@@ -83,8 +86,8 @@ export function Overperformance() {
         <div className="flex gap-2 font-medium leading-none">
           {/* Trending up by 5.2% this author <TrendingUp className="h-4 w-4" /> */}
         </div>
-        <div className="leading-none text-muted-foreground">
-          (summary)
+        <div className="leading-none text-text">
+        The plot shows that {first_op} is the highest performer, while {least_op} is the lowest. To enhance overall results, it is important to work on increasing engagement for {least_op} while preserving the strong performance of {first_op}.
         </div>
       </CardFooter>
     </Card>
@@ -103,6 +106,10 @@ const generateRandomPostData = () => {
 
 // Post chart data with random values
 const post = generateRandomPostData();
+
+const sortedpost = [...post].sort((a, b) => b.visitors - a.visitors);
+const first = sortedpost[0].author;
+const least = sortedpost[sortedpost.length - 1].author;
   
   const postchart = {
     visitors: {
@@ -131,6 +138,7 @@ const post = generateRandomPostData();
   } satisfies ChartConfig;
   
   export function Post() {
+    
     return (
       <Card>
         <CardHeader>
@@ -170,8 +178,8 @@ const post = generateRandomPostData();
           <div className="flex gap-2 font-medium leading-none">
             {/* Trending up by 5.2% this month <TrendingUp className="h-4 w-4" /> */}
           </div>
-          <div className="leading-none text-muted-foreground">
-            (summary)
+          <div className="leading-none text-text">
+            The plot shows that {first} has posted the most articles, while {least} has posted the fewest. To improve overall content output, focus on encouraging more contributions from {least} while sustaining the strong posting rate of {first}.
           </div>
         </CardFooter>
       </Card>

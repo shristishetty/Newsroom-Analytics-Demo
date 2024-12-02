@@ -1,4 +1,3 @@
-
 "use client"
 
 import * as React from "react"
@@ -25,12 +24,13 @@ import {
 
 export function DatePickerWithRange({
   className,
-}: React.HTMLAttributes<HTMLDivElement>) {
-  const [date, setDate] = React.useState<DateRange | undefined>({
-    from: new Date(2022, 0, 20),
-    to: addDays(new Date(2022, 0, 20), 20),
-  })
-
+  selectedDateRange,
+  setSelectedDateRange,
+}: {
+  className?: string;
+  selectedDateRange: DateRange | undefined;
+  setSelectedDateRange: React.Dispatch<React.SetStateAction<DateRange | undefined>>;
+}) {
   return (
     <div className={cn("grid gap-2", className)}>
       <Popover>
@@ -40,18 +40,18 @@ export function DatePickerWithRange({
             variant={"outline"}
             className={cn(
               "w-[300px] justify-start text-left font-normal",
-              !date && "text-muted-foreground"
+              !selectedDateRange && "text-muted-foreground"
             )}
           >
             <CalendarIcon />
-            {date?.from ? (
-              date.to ? (
+            {selectedDateRange?.from ? (
+              selectedDateRange.to ? (
                 <>
-                  {format(date.from, "LLL dd, y")} -{" "}
-                  {format(date.to, "LLL dd, y")}
+                  {format(selectedDateRange.from, "LLL dd, y")} -{" "}
+                  {format(selectedDateRange.to, "LLL dd, y")}
                 </>
               ) : (
-                format(date.from, "LLL dd, y")
+                format(selectedDateRange.from, "LLL dd, y")
               )
             ) : (
               <span>Pick a date</span>
@@ -62,9 +62,9 @@ export function DatePickerWithRange({
           <Calendar
             initialFocus
             mode="range"
-            defaultMonth={date?.from}
-            selected={date}
-            onSelect={setDate}
+            defaultMonth={selectedDateRange?.from}
+            selected={selectedDateRange}
+            onSelect={setSelectedDateRange}
             numberOfMonths={2}
           />
         </PopoverContent>
@@ -73,46 +73,63 @@ export function DatePickerWithRange({
   )
 }
 
-
 function App() {
+  const [selectedDateRange, setSelectedDateRange] = React.useState<DateRange | undefined>({
+    from: new Date(2022, 0, 20),
+    to: addDays(new Date(2022, 0, 20), 20),
+  })
 
   return (
     <>
-    <div className='bg-back text-text p-6'>
-      <div className='w-full text-justify sm:w-1/2 sm:text-start'>
-      <h1 className='text-3xl font-bold pl-5'>Newsroom Analytics</h1>
-      <p className='text-lg pl-5 mt-3 leading-normal'>We help newsrooms make informed decisions, from identifying where to make their next hire to optimizing advertising spending, all aimed at enhancing audience engagement and driving revenue growth.</p>
-      </div>
-      <div className="p-5">
-      <Tabs defaultValue="User">
-  <div className="flex flex-col md:flex-row items-start gap-4">
-    <div className="overflow-x-auto whitespace-nowrap flex-1">
-      <TabsList className="flex gap-2">
-        <TabsTrigger value="User" className="p-2">User Demographics</TabsTrigger>
-        <TabsTrigger value="Author" className="p-2">Author Performance</TabsTrigger>
-        <TabsTrigger value="Tags" className="p-2">Article Themes</TabsTrigger>
-        <TabsTrigger value="Revenue" className="p-2">Revenue Attribution</TabsTrigger>
-      </TabsList>
-    </div>
+      <div className='bg-back text-text p-6'>
+        <div className='w-full text-justify sm:w-1/2 sm:text-start'>
+          <h1 className='text-3xl font-bold pl-5'>Newsroom Analytics</h1>
+          <p className='text-lg pl-5 mt-3 leading-normal'>
+            We help newsrooms make informed decisions, from identifying where to make their next hire to optimizing advertising spending, all aimed at enhancing audience engagement and driving revenue growth.
+          </p>
+        </div>
+        <div className="p-5">
+          <Tabs defaultValue="User">
+            <div className="flex flex-col md:flex-row items-start gap-4">
+              <div className="overflow-x-auto whitespace-nowrap flex-1">
+                <TabsList className="flex gap-2">
+                  <TabsTrigger value="User" className="p-2">User Demographics</TabsTrigger>
+                  <TabsTrigger value="Author" className="p-2">Author Performance</TabsTrigger>
+                  <TabsTrigger value="Tags" className="p-2">Article Themes</TabsTrigger>
+                  <TabsTrigger value="Revenue" className="p-2">Revenue Attribution</TabsTrigger>
+                </TabsList>
+              </div>
 
-    {/* DateRangePicker positioned next to TabsList on desktop */}
-    <div className="mt-4 md:mt-0 md:ml-4">
-      <DatePickerWithRange />
-    </div>
-  </div>
+              {/* DateRangePicker positioned next to TabsList on desktop */}
+              <div className="mt-4 md:mt-0 md:ml-4">
+                <DatePickerWithRange
+                  selectedDateRange={selectedDateRange}
+                  setSelectedDateRange={setSelectedDateRange}
+                />
+              </div>
+            </div>
 
-  <TabsContent value="User"><Users /></TabsContent>
-  <TabsContent value="Author"><Authors /></TabsContent>
-  <TabsContent value="Tags"><Tags /></TabsContent>
-  <TabsContent value="Revenue"><Revenue /></TabsContent>
-</Tabs>
+            <TabsContent value="User">
+              {/* <Users selectedDateRange={selectedDateRange} /> */}
+              <Users/>
+            </TabsContent>
+            <TabsContent value="Author">
+              <Authors />
+            </TabsContent>
+            <TabsContent value="Tags">
+              <Tags />
+            </TabsContent>
+            <TabsContent value="Revenue">
+              <Revenue />
+            </TabsContent>
+          </Tabs>
+        </div>
 
-  </div>
-  <h1 className='text-3xl text-center font-bold pl-5 mb-5'>More Features To Have</h1>
-  <Features/>
-  <hr/>
-  <h1 className='text-3xl text-center font-bold pl-5 mt-3'>Find Our Product Interesting?</h1>
-  <h2 className='text-lg text-center pl-5'>Contact us at swapneet@mit.edu</h2>
+        <h1 className='text-3xl text-center font-bold pl-5 mb-5'>More Features To Have</h1>
+        <Features />
+        <hr />
+        <h1 className='text-3xl text-center font-bold pl-5 mt-3'>Find Our Product Interesting?</h1>
+        <h2 className='text-lg text-center pl-5'>Contact us at swapneet@mit.edu</h2>
       </div>
     </>
   )
