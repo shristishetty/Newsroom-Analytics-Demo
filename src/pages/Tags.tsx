@@ -28,11 +28,11 @@ const generateRandomNumber = (min: number, max: number) => {
 
 // Top
 const chartData = [
-  { browser: "politics", visitors: generateRandomNumber(100, 500), fill: "var(--color-politics)" },
-  { browser: "art", visitors: generateRandomNumber(100, 500), fill: "var(--color-art)" },
-  { browser: "environment", visitors: generateRandomNumber(100, 500), fill: "var(--color-environment)" },
-  { browser: "health", visitors: generateRandomNumber(100, 500), fill: "var(--color-health)" },
-  { browser: "housing", visitors: generateRandomNumber(100, 500), fill: "var(--color-housing)" },
+  { browser: "politics", visitors: generateRandomNumber(1000, 5000), fill: "var(--color-politics)" },
+  { browser: "art", visitors: generateRandomNumber(1000, 5000), fill: "var(--color-art)" },
+  { browser: "environment", visitors: generateRandomNumber(1000, 5000), fill: "var(--color-environment)" },
+  { browser: "health", visitors: generateRandomNumber(1000, 5000), fill: "var(--color-health)" },
+  { browser: "housing", visitors: generateRandomNumber(1000, 5000), fill: "var(--color-housing)" },
 ];
 
 const chartConfig = {
