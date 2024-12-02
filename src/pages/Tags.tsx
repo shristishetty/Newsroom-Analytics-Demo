@@ -34,6 +34,11 @@ const chartData = [
   { browser: "health", visitors: generateRandomNumber(1000, 5000), fill: "var(--color-health)" },
   { browser: "housing", visitors: generateRandomNumber(1000, 5000), fill: "var(--color-housing)" },
 ];
+const mostStory = Math.max(...chartData.map((item) => item.visitors));
+const mostLabel = chartData.find((item) => item.visitors === mostStory)?.browser || "";
+
+const leastStory = Math.min(...chartData.map((item) => item.visitors));
+const leastLabel = chartData.find((item) => item.visitors === leastStory)?.browser || "";
 
 const chartConfig = {
   visitors: {
@@ -69,6 +74,8 @@ export function Top() {
   const totalVisitors = React.useMemo(() => {
     return chartData.reduce((acc, curr) => acc + curr.visitors, 0)
   }, [])
+
+
 
   return (
     <Card className="flex flex-col">
@@ -133,9 +140,9 @@ export function Top() {
         <div className="flex items-center gap-2 font-medium leading-none">
           {/* Trending up by 5.2% this month <TrendingUp className="h-4 w-4" /> */}
         </div>
-        <div className="leading-none text-muted-foreground">
+        <div className="leading-none text-text">
           {/* Showing total visitors for the last 6 months */}
-          (summary)
+The plot shows that {mostLabel} is receiving the most attention, while {leastLabel} is getting the least. To enhance overall engagement, attention should be directed toward increasing content for {leastLabel} while maintaining the strong appeal of {mostLabel}.
         </div>
       </CardFooter>
     </Card>
@@ -153,14 +160,26 @@ const chart2Data = [
 
 
 export function PerAuthor() {
+  // Find the max and min visitors and their corresponding browser labels
+  const maxData = chart2Data.reduce((max, current) => {
+    return current.visitors > max.visitors ? current : max;
+  });
+  const minData = chart2Data.reduce((min, current) => {
+    return current.visitors < min.visitors ? current : min;
+  });
+
+  const mostLabel = maxData.browser;  // Browser with the most visitors
+  const most = maxData.visitors;      // Maximum number of visitors
+  const leastLabel = minData.browser; // Browser with the least visitors
+  const least = minData.visitors;    // Minimum number of visitors
+
   return (
     <Card>
       <CardHeader className="items-center pb-0">
         <CardTitle>Personalized Content by Author</CardTitle>
-        {/* <CardDescription>January - June 2024</CardDescription> */}
         <div className="flex justify-center items-center">
-{/* <DatePickerWithRange/> */}
-</div>
+          {/* <DatePickerWithRange/> */}
+        </div>
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig}>
@@ -193,15 +212,16 @@ export function PerAuthor() {
       </CardContent>
       <CardFooter className="flex-col gap-2 text-sm">
         <div className="flex items-center gap-2 font-medium leading-none">
-          {/* Trending up by 5.2% this month <TrendingUp className="h-4 w-4" /> */}
-(summary)        </div>
+        The plot shows that Author has posted the most content on {mostLabel}, with {most} posts, while the least on {leastLabel}, with only {least} posts. To improve content balance, efforts should focus on increasing Author's posts on {leastLabel} while maintaining strong contribution to {mostLabel}.
+        </div>
         <div className="leading-none text-muted-foreground">
           {/* Showing total visitors for the last 6 months */}
         </div>
       </CardFooter>
     </Card>
-  )
+  );
 }
+
 
 
 
@@ -231,15 +251,45 @@ const charConfig = {
   },
 } satisfies ChartConfig
 
+interface AgeGroupData {
+  month: string;
+  housing: number;
+  politics: number;
+  government: number;
+}
+
+interface MaxMinStats {
+  mostLabel: string;
+  most: number;
+  leastLabel: string;
+  least: number;
+}
 export function AgeGroup() {
+  // Find the most and least for each category
+  const getMaxMin = (data: AgeGroupData[], key: keyof AgeGroupData): MaxMinStats => {
+    const maxData = data.reduce((max, current) => current[key] > max[key] ? current : max);
+    const minData = data.reduce((min, current) => current[key] < min[key] ? current : min);
+
+    // Return an object with most and least as numbers, and labels as strings
+    return {
+      mostLabel: maxData.month,  // Month with the most value (string)
+      most: Number(maxData[key]), // Ensure that we are returning a number
+      leastLabel: minData.month, // Month with the least value (string)
+      least: Number(minData[key]), // Ensure that we are returning a number
+    };
+  };
+
+  const housingStats = getMaxMin(age, "housing");
+  const politicsStats = getMaxMin(age, "politics");
+  const governmentStats = getMaxMin(age, "government");
+
   return (
     <Card>
       <CardHeader className="items-center pb-0">
         <CardTitle>Reaching Every Age Group</CardTitle>
-        {/* <CardDescription>January - June 2024</CardDescription> */}
         <div className="flex justify-center items-center">
-{/* <DatePickerWithRange/> */}
-</div>
+          {/* <DatePickerWithRange/> */}
+        </div>
       </CardHeader>
       <CardContent>
         <ChartContainer config={charConfig}>
@@ -277,16 +327,18 @@ export function AgeGroup() {
       </CardContent>
       <CardFooter className="flex-col items-start gap-2 text-sm">
         <div className="flex gap-2 font-medium leading-none">
-          {/* Trending up by 5.2% this month <TrendingUp className="h-4 w-4" /> */}
-          (summary)
+          {/* Displaying the most and least data */}
+          
+          The plot shows that Politics is most popular among the {politicsStats.mostLabel} age group, while it is least popular with the {politicsStats.mostLabel} group. Government has the highest reach with the {governmentStats.mostLabel} age group, while it has the lowest reach with the {governmentStats.leastLabel} group. Housing, on the other hand, is most engaged with by the {housingStats.mostLabel} age group, and least engaged with by the {housingStats.leastLabel} group.
         </div>
         <div className="leading-none text-muted-foreground">
           {/* Showing total visitors for the last 6 months */}
         </div>
       </CardFooter>
     </Card>
-  )
+  );
 }
+
 
 const visitorChartData = [
   { month: "January", desktop: generateRandomNumber(50, 300) },
