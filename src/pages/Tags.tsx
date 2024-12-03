@@ -136,11 +136,8 @@ export function Top() {
           </PieChart>
         </ChartContainer>
       </CardContent>
-      <CardFooter className="flex-col gap-2 text-sm">
-        <div className="flex items-center gap-2 font-medium leading-none">
-          {/* Trending up by 5.2% this month <TrendingUp className="h-4 w-4" /> */}
-        </div>
-        <div className="leading-none text-text">
+      <CardFooter className="flex-col text-center gap-2 text-sm">
+        <div className="leading-none text-muted-foreground">
           {/* Showing total visitors for the last 6 months */}
 The plot shows that {mostLabel} is receiving the most attention, while {leastLabel} is getting the least. To enhance overall engagement, attention should be directed toward increasing content for {leastLabel} while maintaining the strong appeal of {mostLabel}.
         </div>
@@ -210,12 +207,10 @@ export function PerAuthor() {
           </BarChart>
         </ChartContainer>
       </CardContent>
-      <CardFooter className="flex-col gap-2 text-sm">
-        <div className="flex items-center gap-2 font-medium leading-none">
-        The plot shows that Author has posted the most content on {mostLabel}, with {most} posts, while the least on {leastLabel}, with only {least} posts. To improve content balance, efforts should focus on increasing Author's posts on {leastLabel} while maintaining strong contribution to {mostLabel}.
-        </div>
+      <CardFooter className="flex-col text-center gap-2 text-sm">
         <div className="leading-none text-muted-foreground">
           {/* Showing total visitors for the last 6 months */}
+        The plot shows that Author has posted the most content on {mostLabel}, with {most} posts, while the least on {leastLabel}, with only {least} posts. To improve content balance, efforts should focus on increasing Author's posts on {leastLabel} while maintaining strong contribution to {mostLabel}.
         </div>
       </CardFooter>
     </Card>
@@ -325,14 +320,10 @@ export function AgeGroup() {
           </BarChart>
         </ChartContainer>
       </CardContent>
-      <CardFooter className="flex-col items-start gap-2 text-sm">
-        <div className="flex gap-2 font-medium leading-none">
-          {/* Displaying the most and least data */}
-          
-          The plot shows that Politics is most popular among the {politicsStats.mostLabel} age group, while it is least popular with the {politicsStats.mostLabel} group. Government has the highest reach with the {governmentStats.mostLabel} age group, while it has the lowest reach with the {governmentStats.leastLabel} group. Housing, on the other hand, is most engaged with by the {housingStats.mostLabel} age group, and least engaged with by the {housingStats.leastLabel} group.
-        </div>
+      <CardFooter className="flex-col text-center gap-2 text-sm">
         <div className="leading-none text-muted-foreground">
           {/* Showing total visitors for the last 6 months */}
+          The plot shows that Politics is most popular among the {politicsStats.mostLabel} age group, while it is least popular with the {politicsStats.mostLabel} group. Government has the highest reach with the {governmentStats.mostLabel} age group, while it has the lowest reach with the {governmentStats.leastLabel} group. Housing, on the other hand, is most engaged with by the {housingStats.mostLabel} age group, and least engaged with by the {housingStats.leastLabel} group.
         </div>
       </CardFooter>
     </Card>
@@ -388,12 +379,9 @@ export function VisitorStoryRatio() {
           </BarChart>
         </ChartContainer>
       </CardContent>
-      <CardFooter className="flex-col items-start gap-2 text-sm">
-        <div className="flex gap-2 font-medium leading-none">
-          Trending up by 5.2% this month
-        </div>
+      <CardFooter className="flex-col text-center gap-2 text-sm">
         <div className="leading-none text-muted-foreground">
-          Showing total visitors for the last 6 months
+          Visitor Story Ratios
         </div>
       </CardFooter>
     </Card>

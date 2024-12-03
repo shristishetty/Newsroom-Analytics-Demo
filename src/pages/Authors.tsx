@@ -46,7 +46,7 @@ const chartConfig = {
 export function Overperformance() {
   return (
     <Card>
-      <CardHeader>
+      <CardHeader className="items-center pb-0">
         <CardTitle>Author Overperformance</CardTitle>
         <CardDescription>January - June 2024</CardDescription>
       </CardHeader>
@@ -65,7 +65,6 @@ export function Overperformance() {
               tickLine={false}
               tickMargin={10}
               axisLine={false}
-              tickFormatter={(value) => value.slice(0, 3)}
             />
             <ChartTooltip
               cursor={false}
@@ -82,11 +81,8 @@ export function Overperformance() {
           </BarChart>
         </ChartContainer>
       </CardContent>
-      <CardFooter className="flex-col items-start gap-2 text-sm">
-        <div className="flex gap-2 font-medium leading-none">
-          {/* Trending up by 5.2% this author <TrendingUp className="h-4 w-4" /> */}
-        </div>
-        <div className="leading-none text-text">
+      <CardFooter className="flex-col text-center gap-2 text-sm">
+        <div className="leading-none text-muted-foreground">
         The plot shows that {first_op} is the highest performer, while {least_op} is the lowest. To enhance overall results, it is important to work on increasing engagement for {least_op} while preserving the strong performance of {first_op}.
         </div>
       </CardFooter>
@@ -141,7 +137,7 @@ const least = sortedpost[sortedpost.length - 1].author;
     
     return (
       <Card>
-        <CardHeader>
+        <CardHeader className="items-center pb-0">
           <CardTitle>Numbers of Articles Posted By Authors</CardTitle>
           <CardDescription>January - June 2024</CardDescription>
         </CardHeader>
@@ -174,11 +170,8 @@ const least = sortedpost[sortedpost.length - 1].author;
             </BarChart>
           </ChartContainer>
         </CardContent>
-        <CardFooter className="flex-col items-start gap-2 text-sm">
-          <div className="flex gap-2 font-medium leading-none">
-            {/* Trending up by 5.2% this month <TrendingUp className="h-4 w-4" /> */}
-          </div>
-          <div className="leading-none text-text">
+        <CardFooter className="flex-col text-center gap-2 text-sm">
+          <div className="leading-none text-muted-foreground">
             The plot shows that {first} has posted the most articles, while {least} has posted the fewest. To improve overall content output, focus on encouraging more contributions from {least} while sustaining the strong posting rate of {first}.
           </div>
         </CardFooter>

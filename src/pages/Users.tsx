@@ -234,7 +234,7 @@ export function EngagedSession() {
 
   return (
     <Card>
-      <CardHeader>
+      <CardHeader className="items-center pb-0">
         <CardTitle>Engaged Sessions</CardTitle>
         <CardDescription></CardDescription>
       </CardHeader>
@@ -336,12 +336,10 @@ export function EngagedSession() {
         </ChartContainer>
       </CardContent>
       <CardFooter>
-        <div className="flex w-full items-start gap-2 text-sm">
+        <div className="flex w-full text-center gap-2 text-sm">
           <div className="grid gap-2">
-            <div className="flex items-center gap-2 font-medium leading-none">
+            <div className="leading-none text-muted-foreground">
               Engaged sessions show {most} sessions per month for the {mostLabel} age group, compared to {least} sessions per month for the {leastLabel} group. To enhance overall engagement, prioritize increasing session frequency in the lower-performing segment while continuing to nurture high levels of activity in the more engaged group.
-            </div>
-            <div className="flex items-center gap-2 leading-none text-muted-foreground">
               {/* January - December 2024 */}
             </div>
           </div>
@@ -387,7 +385,7 @@ export function Retention() {
   const leastLabel = retData.find((item) => item.desktop === leastRetention)?.age || "";
   return (
     <Card>
-      <CardHeader>
+      <CardHeader className="items-center pb-0">
         <CardTitle>Retention Percentage Per Age Group</CardTitle>
         <CardDescription>January - June 2024</CardDescription>
       </CardHeader>
@@ -423,13 +421,8 @@ export function Retention() {
           </BarChart>
         </ChartContainer>
       </CardContent>
-      <CardFooter className="flex-col items-start gap-2 text-sm">
-        <div className="flex gap-2 font-medium leading-none">
-          {/* Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
-           */}
-           {/* (summary) */}
-        </div>
-        <div className="leading-none text-text text-center">
+      <CardFooter className="flex-col text-center gap-2 text-sm">
+        <div className="leading-none text-muted-foreground">
           {/* Showing total visitors for the last 6 months */}
           Retention rates show {mostRetention}% for the {mostLabel} age group, compared to {leastRetention}% for the {leastLabel} group. To improve overall retention, focus on boosting engagement in the lower-performing segment while maintaining strong connections with the higher-performing group.
         </div>
@@ -546,7 +539,7 @@ const srcConfig = {
 export function Source() {
   return (
     <Card>
-      <CardHeader>
+      <CardHeader className="items-center pb-0">
         <CardTitle>Where Does Our Audience Come From?</CardTitle>
         <CardDescription>
           Showing total visitors for the last 6 months
@@ -569,12 +562,9 @@ export function Source() {
           </RadarChart>
         </ChartContainer>
       </CardContent>
-      <CardFooter className="flex-col gap-2 text-sm">
-        <div className="flex items-center gap-2 font-medium leading-none">
+      <CardFooter className="flex-col text-center gap-2 text-sm">
+        <div className="leading-none text-muted-foreground">
         Visitor traffic peaks on {first} and {second}, while {least} and {least2} show lower engagement. <br/>Focus on strengthening successful channels and optimizing underperforming ones.
-        </div>
-        <div className="flex items-center gap-2 leading-none text-muted-foreground">
-        {/* Visitor traffic peaks on {first} and {second}, while {least} and {least2} show lower engagement. <br/>Focus on strengthening successful channels and optimizing underperforming ones. */}
         </div>
       </CardFooter>
     </Card>
@@ -823,15 +813,17 @@ export function Box() {
   const [newVisitors, setNewVisitors] = React.useState(0);
   return (
     <>
-    <div className="bg-back border-[1px] border-white rounded-[6px] p-5 h-full font-semibold">Who Are Our Readers?
+    <div className="text-center bg-back border-[1px] border-white rounded-[6px] p-5 h-full">Who Are Our Readers?
 
     <div className="pt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
     <Box1 onTotalVisitors={setActiveVisitors}/>
     <Box2 onTotalVisitors={setNewVisitors}/>
     </div>
-    <p className="pt-5 pb-5 text-text text-center">
+    <CardFooter className="pt-5 flex-col text-center gap-2 text-sm">
+          <div className="leading-none text-muted-foreground">
     With {activeVisitors.toLocaleString()} active users and {newVisitors.toLocaleString()} new visitors, now is the time to strengthen engagement and convert these visitors into long-term supporters. Focus on building lasting connections to drive sustained growth.
-    </p>
+          </div>
+    </CardFooter>
     </div>
     
     </>

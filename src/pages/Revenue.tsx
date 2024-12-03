@@ -194,7 +194,7 @@ const piechartData = generateRandomPieData();
         <CardContent className="flex-1 pb-0">
           <ChartContainer
             config={chartConfig}
-            className="mx-auto aspect-square max-h-[300px]"
+            className="mx-auto aspect-square max-h-[250px]"
           >
             <PieChart>
               <ChartTooltip
@@ -205,7 +205,7 @@ const piechartData = generateRandomPieData();
                 data={chartData}
                 dataKey="visitors"
                 nameKey="browser"
-                innerRadius={80}
+                innerRadius={60}
                 strokeWidth={5}
               >
                 <Label
