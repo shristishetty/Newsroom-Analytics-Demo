@@ -73,7 +73,8 @@ export function SubscriberThemes() {
 
 const generateRandom2Data = () => {
   return [
-    { browser: "Event Count", desktop: 25348, mobile: 47285 }, // Mobile overtakes desktop due to casual scrolling on social media.
+    { browser: "Subscribers", eventcount: 25348}, // Mobile overtakes desktop due to casual scrolling on social media.
+    { browser: "Non-Subscribers", eventcount: 47285 }, // Mobile overtakes desktop due to casual scrolling on social media.
   ];  
 };
 
@@ -90,26 +91,14 @@ export function EventCount() {
           <BarChart accessibilityLayer data={graph2chartData}>
             <CartesianGrid vertical={false} />
             <XAxis
-              dataKey="month"
+              dataKey="browser"
               tickLine={false}
               tickMargin={10}
               axisLine={false}
-              tickFormatter={(value) => value.slice(0, 3)}
             />
             <ChartTooltip content={<ChartTooltipContent hideLabel />} />
             <ChartLegend content={<ChartLegendContent />} />
-            <Bar
-              dataKey="desktop"
-              stackId="a"
-              fill="var(--color-desktop)"
-              radius={[0, 0, 4, 4]}
-            />
-            <Bar
-              dataKey="mobile"
-              stackId="a"
-              fill="var(--color-mobile)"
-              radius={[4, 4, 0, 0]}
-            />
+            <Bar dataKey="eventcount" fill="var(--color-desktop)" radius={8} />
           </BarChart>
         </ChartContainer>
       </CardContent>
@@ -167,6 +156,10 @@ const piechartData = generateRandomPieData();
       label: "Non-Subscribers",
       color: "hsl(var(--chart-2))",
     },
+    eventcount: {
+      label: "Event Count",
+      color: "hsl(var(--chart-1))",
+    }
   } satisfies ChartConfig
   
   const chartData = [
