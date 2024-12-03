@@ -97,6 +97,7 @@ function App() {
                   <TabsTrigger value="Author" className="p-2">Author Performance</TabsTrigger>
                   <TabsTrigger value="Tags" className="p-2">Article Themes</TabsTrigger>
                   <TabsTrigger value="Revenue" className="p-2">Revenue Attribution</TabsTrigger>
+                  <TabsTrigger value="Features" className="p-2">Features</TabsTrigger>
                 </TabsList>
               </div>
 
@@ -122,11 +123,14 @@ function App() {
             <TabsContent value="Revenue">
               <Revenue />
             </TabsContent>
+            <TabsContent value="Features">
+              <Features />
+            </TabsContent>
           </Tabs>
         </div>
 
-        <h1 className='text-3xl text-center font-bold pl-5 mb-5'>More Features To Have</h1>
-        <Features />
+        {/* <h1 className='text-3xl text-center font-bold pl-5 mb-5'>More Features To Have</h1> */}
+        {/* <Features /> */}
         <hr />
         <h1 className='text-3xl text-center font-bold pl-5 mt-3'>Find Our Product Interesting?</h1>
         <h2 className='text-lg text-center pl-5'>Contact us at swapneet@mit.edu</h2>
