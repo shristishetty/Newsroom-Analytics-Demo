@@ -1,6 +1,8 @@
 "use client"
 
 import * as React from "react"
+import { useEffect, useState } from "react";
+
 import { TrendingUp } from "lucide-react"
 import { Area, AreaChart, CartesianGrid, XAxis,Bar, BarChart, LabelList, Pie, PieChart, Line, LineChart ,Label, PolarAngleAxis, PolarGrid, Radar, RadarChart, Rectangle  } from "recharts"
 
@@ -21,6 +23,7 @@ import {
   ChartLegendContent,
 } from "../components/ui/chart"
 
+import retenData from "../data/retention.json"
 
 const generateRandomNumber = (min: number, max: number) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -224,6 +227,36 @@ const reteData = [
   { browser: "5", visitors: generateRandomNumber(40, 90), fill: "var(--color-5)" },
 ]
 
+
+// Define the structure of the data item, including the 'visitors' field
+interface RetentionDataItem {
+  browser: string;
+  months: {
+    [month: string]: number; // A dynamic key for months with number values
+  };
+  fill: string;
+  visitors: number; // Add the visitors field here to store calculated retention
+}
+
+// Define the type for selectedDateRange
+type DateRange = [string, string]; // Assuming the date range is an array of two month names
+
+// Define the type for the Retention component props
+interface RetentionProps {
+  selectedDateRange: DateRange;
+}
+
+const retData: RetentionDataItem[] = retenData.data.map((item) => {
+  // Calculate the average retention based on the months data
+  const averageRetention = (Object.values(item.months).reduce((sum, value) => sum + value, 0)) / 3;
+
+  // Return the item with an added 'visitors' property (average retention)
+  return {
+    ...item,
+    visitors: averageRetention, // Add 'visitors' to the object
+  };
+});
+
 const reteConfig = {
   visitors: {
     label: "Retention",
@@ -248,25 +281,45 @@ const reteConfig = {
     label: "55-64",
     color: "hsl(var(--chart-5))",
   },
+} satisfies ChartConfig;
 
-} satisfies ChartConfig
+export function Retention({ selectedDateRange }: RetentionProps) {
+  const [filteredData, setFilteredData] = useState(retData);
 
-export function Retention() {
-  const mostRetention = Math.max(...reteData.map((item) => item.visitors));
-  const leastRetention = Math.min(...reteData.map((item) => item.visitors));
+  // Update filtered data when selectedDateRange changes
+  useEffect(() => {
+    const [startMonth, endMonth] = selectedDateRange; // Assuming selectedDateRange is an array with start and end month names (e.g., ["January", "March"])
 
-  // Find the corresponding age group (label) for the most and least retention values
-  const mostLabel = reteData.find((item) => item.visitors === mostRetention)?.browser || "";
-  const leastLabel = reteData.find((item) => item.visitors === leastRetention)?.browser || "";
+    // Filter data based on whether the months fall within the selected range
+    const filtered = retData.filter((item) => {
+      // Check if the months in the selected range exist in the item.months object
+      const monthsInRange = Object.keys(item.months).some((month) => {
+        const monthIndex = new Date(`${month} 1`).getMonth(); // Convert month name to month index
+        const startIndex = new Date(`${startMonth} 1`).getMonth(); // Convert start month to index
+        const endIndex = new Date(`${endMonth} 1`).getMonth(); // Convert end month to index
+        return monthIndex >= startIndex && monthIndex <= endIndex;
+      });
+      return monthsInRange;
+    });
+
+    setFilteredData(filtered);
+  }, [selectedDateRange]);
+
+  const mostRetention = Math.max(...filteredData.map((item) => item.visitors));
+  const leastRetention = Math.min(...filteredData.map((item) => item.visitors));
+
+  // Find the corresponding browser label for the most and least retention values
+  const mostLabel = filteredData.find((item) => item.visitors === mostRetention)?.browser || "";
+  const leastLabel = filteredData.find((item) => item.visitors === leastRetention)?.browser || "";
+
   return (
     <Card>
       <CardHeader className="items-center pb-0">
         <CardTitle>Retention Percentage Per Age Group</CardTitle>
-        
       </CardHeader>
       <CardContent>
         <ChartContainer config={reteConfig}>
-          <BarChart accessibilityLayer data={reteData}>
+          <BarChart accessibilityLayer data={filteredData}>
             <CartesianGrid vertical={false} />
             <XAxis
               dataKey="browser"
@@ -291,14 +344,16 @@ export function Retention() {
         </ChartContainer>
       </CardContent>
       <CardFooter className="flex-col text-center gap-2 text-sm">
-        
         <div className="leading-none text-muted-foreground">
-        Retention rates show {mostRetention}% for the {mostLabel} age group, compared to {leastRetention}% for the {leastLabel} group. To improve overall retention, focus on boosting engagement in the lower-performing segment while maintaining strong connections with the higher-performing group.
+          Retention rates show {mostRetention}% for the {mostLabel} browser, compared to {leastRetention}% for the {leastLabel} browser. To improve overall retention, focus on boosting engagement in the lower-performing segment while maintaining strong connections with the higher-performing group.
         </div>
       </CardFooter>
     </Card>
-  )
+  );
 }
+
+
+
 
 
 
@@ -625,13 +680,17 @@ export function Box() {
     </>
   )}
 
-  const Users = () => {
+ 
+  const Users = ({ selectedDateRange }: { selectedDateRange?: DateRange }) => {
+    const defaultDateRange: DateRange = ["January", "December"]; // Example default range
+  const range = selectedDateRange || defaultDateRange;
+  console.log(range)
     return (
         <>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <Source />
                 <Box />
-                <Retention />
+                <Retention selectedDateRange={range}/>
                 <EngagedSession />
             </div>
         </>
