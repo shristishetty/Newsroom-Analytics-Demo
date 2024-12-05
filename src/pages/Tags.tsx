@@ -136,7 +136,7 @@ export function Top() {
           </PieChart>
         </ChartContainer>
       </CardContent>
-      <CardFooter className="flex-col text-center gap-2 text-sm">
+      <CardFooter className="flex-col text-center gap-2 text-base">
         <div className="leading-none text-muted-foreground">
           {/* Showing total visitors for the last 6 months */}
 The plot shows that {mostLabel} is receiving the most attention, while {leastLabel} is getting the least. To enhance overall engagement, attention should be directed toward increasing content for {leastLabel} while maintaining the strong appeal of {mostLabel}.
@@ -207,7 +207,7 @@ export function PerAuthor() {
           </BarChart>
         </ChartContainer>
       </CardContent>
-      <CardFooter className="flex-col text-center gap-2 text-sm">
+      <CardFooter className="flex-col text-center gap-2 text-base">
         <div className="leading-none text-muted-foreground">
           {/* Showing total visitors for the last 6 months */}
         The plot shows that Author has posted the most content on {mostLabel}, with {most} posts, while the least on {leastLabel}, with only {least} posts. To improve content balance, efforts should focus on increasing Author's posts on {leastLabel} while maintaining strong contribution to {mostLabel}.
@@ -320,7 +320,7 @@ export function AgeGroup() {
           </BarChart>
         </ChartContainer>
       </CardContent>
-      <CardFooter className="flex-col text-center gap-2 text-sm">
+      <CardFooter className="flex-col text-center gap-2 text-base">
         <div className="leading-none text-muted-foreground">
           {/* Showing total visitors for the last 6 months */}
           The plot shows that Politics is most popular among the {politicsStats.mostLabel} age group, while it is least popular with the {politicsStats.mostLabel} group. Government has the highest reach with the {governmentStats.mostLabel} age group, while it has the lowest reach with the {governmentStats.leastLabel} group. Housing, on the other hand, is most engaged with by the {housingStats.mostLabel} age group, and least engaged with by the {housingStats.leastLabel} group.
@@ -379,7 +379,7 @@ export function VisitorStoryRatio() {
           </BarChart>
         </ChartContainer>
       </CardContent>
-      <CardFooter className="flex-col text-center gap-2 text-sm">
+      <CardFooter className="flex-col text-center gap-2 text-base">
         <div className="leading-none text-muted-foreground">
           Visitor Story Ratios
         </div>

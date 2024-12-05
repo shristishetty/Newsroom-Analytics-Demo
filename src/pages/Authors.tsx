@@ -81,7 +81,7 @@ export function Overperformance() {
           </BarChart>
         </ChartContainer>
       </CardContent>
-      <CardFooter className="flex-col text-center gap-2 text-sm">
+      <CardFooter className="flex-col text-center gap-2 text-base">
         <div className="leading-none text-muted-foreground">
         The plot shows that {first_op} is the highest performer, while {least_op} is the lowest. To enhance overall results, it is important to work on increasing engagement for {least_op} while preserving the strong performance of {first_op}.
         </div>
@@ -170,7 +170,7 @@ const least = sortedpost[sortedpost.length - 1].author;
             </BarChart>
           </ChartContainer>
         </CardContent>
-        <CardFooter className="flex-col text-center gap-2 text-sm">
+        <CardFooter className="flex-col text-center gap-2 text-base">
           <div className="leading-none text-muted-foreground">
             The plot shows that {first} has posted the most articles, while {least} has posted the fewest. To improve overall content output, focus on encouraging more contributions from {least} while sustaining the strong posting rate of {first}.
           </div>

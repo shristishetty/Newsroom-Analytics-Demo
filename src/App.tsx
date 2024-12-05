@@ -132,7 +132,7 @@ function App() {
         {/* <h1 className='text-3xl text-center font-bold pl-5 mb-5'>More Features To Have</h1> */}
         {/* <Features /> */}
         <hr />
-        <h1 className='text-3xl text-center font-bold pl-5 mt-3'>Find Our Product Interesting?</h1>
+        <h1 className='text-3xl text-center font-bold pl-5 mt-6'>Find Our Product Interesting?</h1>
         <h2 className='text-lg text-center pl-5'>Contact us at swapneet@mit.edu</h2>
       </div>
     </>

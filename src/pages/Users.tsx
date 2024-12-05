@@ -201,7 +201,7 @@ export function EngagedSession() {
         </ChartContainer>
       </CardContent>
       <CardFooter>
-        <div className="flex w-full text-center gap-2 text-sm">
+        <div className="flex w-full text-center gap-2 text-base">
           <div className="grid gap-2">
             <div className="leading-none text-muted-foreground">
               Engaged sessions show {most} sessions per month for the {mostLabel} age group, compared to {least} sessions per month for the {leastLabel} group. To enhance overall engagement, prioritize increasing session frequency in the lower-performing segment while continuing to nurture high levels of activity in the more engaged group.
@@ -290,7 +290,7 @@ export function Retention() {
           </BarChart>
         </ChartContainer>
       </CardContent>
-      <CardFooter className="flex-col text-center gap-2 text-sm">
+      <CardFooter className="flex-col text-center gap-2 text-base">
         
         <div className="leading-none text-muted-foreground">
         Retention rates show {mostRetention}% for the {mostLabel} age group, compared to {leastRetention}% for the {leastLabel} group. To improve overall retention, focus on boosting engagement in the lower-performing segment while maintaining strong connections with the higher-performing group.
@@ -358,7 +358,7 @@ export function Source() {
           </RadarChart>
         </ChartContainer>
       </CardContent>
-      <CardFooter className="flex-col text-center gap-2 text-sm">
+      <CardFooter className="flex-col text-center gap-2 text-base">
         <div className="leading-none text-muted-foreground">
         Visitor traffic peaks on {first} and {second}, while {least} and {least2} show lower engagement. <br/>Focus on strengthening successful channels and optimizing underperforming ones.
         </div>
@@ -615,7 +615,7 @@ export function Box() {
     <Box1 onTotalVisitors={setActiveVisitors}/>
     <Box2 onTotalVisitors={setNewVisitors}/>
     </div>
-    <CardFooter className="pt-5 flex-col text-center gap-2 text-sm">
+    <CardFooter className="pt-5 flex-col text-center gap-2 text-base">
           <div className="leading-none text-muted-foreground">
     With {activeVisitors.toLocaleString()} active users and {newVisitors.toLocaleString()} new visitors, now is the time to strengthen engagement and convert these visitors into long-term supporters. Focus on building lasting connections to drive sustained growth.
           </div>

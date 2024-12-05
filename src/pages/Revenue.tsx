@@ -62,7 +62,7 @@ export function SubscriberThemes() {
           </BarChart>
         </ChartContainer>
       </CardContent>
-      <CardFooter className="flex-col text-center gap-2 text-sm">
+      <CardFooter className="flex-col text-center gap-2 text-base">
         <div className="leading-none text-muted-foreground">
         With Non-Subscribers driving higher event counts in Health and Politics, there’s a greater opportunity to target this audience for increased engagement, especially on-the-go topics.
         </div>
@@ -102,7 +102,7 @@ export function EventCount() {
           </BarChart>
         </ChartContainer>
       </CardContent>
-      <CardFooter className="flex-col text-center gap-2 text-sm">
+      <CardFooter className="flex-col text-center gap-2 text-base">
         <div className="leading-none text-muted-foreground">
         Considering the significantly higher event count from Non-Subscribers, there is a larger audience that needs to be targeted for greater reach.
         </div>
@@ -234,7 +234,7 @@ const piechartData = generateRandomPieData();
             </PieChart>
           </ChartContainer>
         </CardContent>
-        <CardFooter className="flex-col text-center gap-2 text-sm">
+        <CardFooter className="flex-col text-center gap-2 text-base">
           <div className="leading-none text-muted-foreground">
           To maximize revenue potential, investing in Health and Politics, which attract the highest visitor engagement, could yield significant returns.
           </div>
