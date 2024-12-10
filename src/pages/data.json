@@ -6,11 +6,12 @@
         "Google": {"Jan": 1234, "Feb": 1152, "Mar": 1296, "Apr": 1378, "May": 1123, "Jun": 1432, "Jul": 1217, "Aug": 1583, "Sep": 1396, "Oct": 1492, "Nov": 1379, "Dec": 1678},
         "Instagram": {"Jan": 891, "Feb": 843, "Mar": 902, "Apr": 864, "May": 853, "Jun": 905, "Jul": 917, "Aug": 933, "Sep": 886, "Oct": 951, "Nov": 899, "Dec": 976},
         "Bluesky": {"Jan": 319, "Feb": 287, "Mar": 341, "Apr": 355, "May": 303, "Jun": 374, "Jul": 308, "Aug": 396, "Sep": 338, "Oct": 382, "Nov": 361, "Dec": 417},
-        "Reddit": {"Jan": 598, "Feb": 617, "Mar": 573, "Apr": 639, "May": 583, "Jun": 647, "Jul": 603, "Aug": 665, "Sep": 623, "Oct": 692, "Nov": 677, "Dec": 715}
+        "Reddit": {"Jan": 598, "Feb": 617, "Mar": 573, "Apr": 639, "May": 583, "Jun": 647, "Jul": 603, "Aug": 665, "Sep": 623, "Oct": 692, "Nov": 677, "Dec": 715},
+        "Facebook": {"Jan": 200, "Feb": 800, "Mar": 700, "Apr": 300, "May": 357, "Jun": 297, "Jul": 1423, "Aug": 550, "Sep": 562, "Oct": 452, "Nov": 762, "Dec": 654}
       }
     },
     {
-      "title": "Users",
+      "title": "Users--",
       "data": {
         "Active": {"Jan": 3198, "Feb": 2986, "Mar": 3279, "Apr": 3487, "May": 3125, "Jun": 3594, "Jul": 3412, "Aug": 3719, "Sep": 3246, "Oct": 3814, "Nov": 3582, "Dec": 3976},
         "New": {"Jan": 1198, "Feb": 1117, "Mar": 1246, "Apr": 1292, "May": 1147, "Jun": 1396, "Jul": 1243, "Aug": 1447, "Sep": 1209, "Oct": 1487, "Nov": 1297, "Dec": 1592}
@@ -19,15 +20,15 @@
     {
       "title": "Retention Percentage",
       "data": {
-        "18-24": {"Jan": 42, "Feb": 43, "Mar": 41, "Apr": 44, "May": 40, "Jun": 45, "Jul": 43, "Aug": 46, "Sep": 42, "Oct": 47, "Nov": 44, "Dec": 48},
-        "25-34": {"Jan": 38, "Feb": 39, "Mar": 37, "Apr": 40, "May": 36, "Jun": 41, "Jul": 39, "Aug": 42, "Sep": 38, "Oct": 43, "Nov": 40, "Dec": 44},
-        "35-44": {"Jan": 35, "Feb": 36, "Mar": 34, "Apr": 37, "May": 33, "Jun": 38, "Jul": 36, "Aug": 39, "Sep": 35, "Oct": 40, "Nov": 37, "Dec": 41},
-        "45-54": {"Jan": 28, "Feb": 29, "Mar": 27, "Apr": 30, "May": 26, "Jun": 31, "Jul": 29, "Aug": 32, "Sep": 28, "Oct": 33, "Nov": 30, "Dec": 34},
-        "55+": {"Jan": 22, "Feb": 23, "Mar": 21, "Apr": 24, "May": 20, "Jun": 25, "Jul": 23, "Aug": 26, "Sep": 22, "Oct": 27, "Nov": 24, "Dec": 28}
+        "18-24": {"fill":"var(--color-1)" ,"Jan": 42, "Feb": 43, "Mar": 41, "Apr": 44, "May": 40, "Jun": 45, "Jul": 43, "Aug": 46, "Sep": 42, "Oct": 47, "Nov": 44, "Dec": 48},
+        "25-34": {"fill":"var(--color-2)","Jan": 38, "Feb": 39, "Mar": 37, "Apr": 40, "May": 36, "Jun": 41, "Jul": 39, "Aug": 42, "Sep": 38, "Oct": 43, "Nov": 40, "Dec": 44},
+        "35-44": {"fill":"var(--color-3)","Jan": 35, "Feb": 36, "Mar": 34, "Apr": 37, "May": 33, "Jun": 38, "Jul": 36, "Aug": 39, "Sep": 35, "Oct": 40, "Nov": 37, "Dec": 41},
+        "45-54": {"fill":"var(--color-4)","Jan": 28, "Feb": 29, "Mar": 27, "Apr": 30, "May": 26, "Jun": 31, "Jul": 29, "Aug": 32, "Sep": 28, "Oct": 33, "Nov": 30, "Dec": 34},
+        "55+": {"fill":"var(--color-5)","Jan": 22, "Feb": 23, "Mar": 21, "Apr": 24, "May": 20, "Jun": 25, "Jul": 23, "Aug": 26, "Sep": 22, "Oct": 27, "Nov": 24, "Dec": 28}
       }
     },
     {
-      "title": "Engaged Sessions",
+      "title": "Engaged Sessions--",
       "data": {
         "18-24": {"Jan": 229, "Feb": 247, "Mar": 239, "Apr": 259, "May": 224, "Jun": 269, "Jul": 252, "Aug": 277, "Sep": 231, "Oct": 297, "Nov": 264, "Dec": 309},
         "25-34": {"Jan": 198, "Feb": 209, "Mar": 222, "Apr": 228, "May": 194, "Jun": 239, "Jul": 217, "Aug": 248, "Sep": 201, "Oct": 258, "Nov": 233, "Dec": 269},
@@ -39,35 +40,35 @@
     {
       "title": "Article Overperformance",
       "data": {
-        "Stephen": {"Jan": 153, "Feb": 164, "Mar": 176, "Apr": 182, "May": 147, "Jun": 201, "Jul": 174, "Aug": 211, "Sep": 162, "Oct": 223, "Nov": 185, "Dec": 232},
-        "Peter": {"Jan": 138, "Feb": 145, "Mar": 153, "Apr": 162, "May": 127, "Jun": 178, "Jul": 152, "Aug": 189, "Sep": 140, "Oct": 198, "Nov": 163, "Dec": 207},
-        "Charlie": {"Jan": 129, "Feb": 136, "Mar": 149, "Apr": 152, "May": 115, "Jun": 172, "Jul": 142, "Aug": 180, "Sep": 129, "Oct": 191, "Nov": 155, "Dec": 200},
-        "Nancy": {"Jan": 181, "Feb": 195, "Mar": 207, "Apr": 215, "May": 173, "Jun": 229, "Jul": 202, "Aug": 243, "Sep": 191, "Oct": 254, "Nov": 216, "Dec": 261},
-        "Steve": {"Jan": 141, "Feb": 155, "Mar": 161, "Apr": 172, "May": 137, "Jun": 193, "Jul": 167, "Aug": 203, "Sep": 154, "Oct": 218, "Nov": 176, "Dec": 225}
+        "Stephen": {"fill":"var(--color-step)","Jan": 153, "Feb": 164, "Mar": 176, "Apr": 182, "May": 147, "Jun": 201, "Jul": 174, "Aug": 211, "Sep": 162, "Oct": 223, "Nov": 185, "Dec": 232},
+        "Peter": {"fill":"var(--color-peter)","Jan": 138, "Feb": 145, "Mar": 153, "Apr": 162, "May": 127, "Jun": 178, "Jul": 152, "Aug": 189, "Sep": 140, "Oct": 198, "Nov": 163, "Dec": 207},
+        "Charlie": {"fill":"var(--color-charlie)","Jan": 129, "Feb": 136, "Mar": 149, "Apr": 152, "May": 115, "Jun": 172, "Jul": 142, "Aug": 180, "Sep": 129, "Oct": 191, "Nov": 155, "Dec": 200},
+        "Nancy": {"fill":"var(--color-nancy)","Jan": 181, "Feb": 195, "Mar": 207, "Apr": 215, "May": 173, "Jun": 229, "Jul": 202, "Aug": 243, "Sep": 191, "Oct": 254, "Nov": 216, "Dec": 261},
+        "Steve": {"fill":"var(--color-steve)","Jan": 141, "Feb": 155, "Mar": 161, "Apr": 172, "May": 137, "Jun": 193, "Jul": 167, "Aug": 203, "Sep": 154, "Oct": 218, "Nov": 176, "Dec": 225}
       }
     },
     {
       "title": "Total Articles",
       "data": {
-        "Stephen": {"Jan": 12, "Feb": 15, "Mar": 14, "Apr": 16, "May": 13, "Jun": 18, "Jul": 17, "Aug": 20, "Sep": 18, "Oct": 21, "Nov": 19, "Dec": 23},
-        "Peter": {"Jan": 9, "Feb": 10, "Mar": 11, "Apr": 13, "May": 9, "Jun": 15, "Jul": 13, "Aug": 16, "Sep": 12, "Oct": 17, "Nov": 14, "Dec": 19},
-        "Charlie": {"Jan": 8, "Feb": 10, "Mar": 10, "Apr": 12, "May": 8, "Jun": 13, "Jul": 11, "Aug": 15, "Sep": 10, "Oct": 14, "Nov": 12, "Dec": 17},
-        "Nancy": {"Jan": 15, "Feb": 17, "Mar": 18, "Apr": 20, "May": 16, "Jun": 23, "Jul": 21, "Aug": 25, "Sep": 19, "Oct": 26, "Nov": 22, "Dec": 30},
-        "Steve": {"Jan": 11, "Feb": 13, "Mar": 12, "Apr": 14, "May": 11, "Jun": 16, "Jul": 14, "Aug": 18, "Sep": 13, "Oct": 19, "Nov": 16, "Dec": 22}
+        "Stephen": {"fill":"var(--color-step)","Jan": 12, "Feb": 15, "Mar": 14, "Apr": 16, "May": 13, "Jun": 18, "Jul": 17, "Aug": 20, "Sep": 18, "Oct": 21, "Nov": 19, "Dec": 23},
+        "Peter": {"fill":"var(--color-peter)","Jan": 9, "Feb": 10, "Mar": 11, "Apr": 13, "May": 9, "Jun": 15, "Jul": 13, "Aug": 16, "Sep": 12, "Oct": 17, "Nov": 14, "Dec": 19},
+        "Charlie": {"fill":"var(--color-charlie)","Jan": 8, "Feb": 10, "Mar": 10, "Apr": 12, "May": 8, "Jun": 13, "Jul": 11, "Aug": 15, "Sep": 10, "Oct": 14, "Nov": 12, "Dec": 17},
+        "Nancy": {"fill":"var(--color-nancy)","Jan": 15, "Feb": 17, "Mar": 18, "Apr": 20, "May": 16, "Jun": 23, "Jul": 21, "Aug": 25, "Sep": 19, "Oct": 26, "Nov": 22, "Dec": 30},
+        "Steve": {"fill":"var(--color-steve)","Jan": 11, "Feb": 13, "Mar": 12, "Apr": 14, "May": 11, "Jun": 16, "Jul": 14, "Aug": 18, "Sep": 13, "Oct": 19, "Nov": 16, "Dec": 22}
       }
     },
     {
         "title": "Top Categories (Articles Published)",
         "data": {
-          "Environment": {"Jan": 45, "Feb": 50, "Mar": 48, "Apr": 52, "May": 46, "Jun": 53, "Jul": 55, "Aug": 58, "Sep": 50, "Oct": 60, "Nov": 54, "Dec": 63},
-          "Health": {"Jan": 42, "Feb": 45, "Mar": 44, "Apr": 47, "May": 43, "Jun": 49, "Jul": 51, "Aug": 54, "Sep": 46, "Oct": 57, "Nov": 50, "Dec": 61},
-          "Housing": {"Jan": 35, "Feb": 38, "Mar": 36, "Apr": 40, "May": 37, "Jun": 42, "Jul": 44, "Aug": 47, "Sep": 39, "Oct": 50, "Nov": 43, "Dec": 53},
-          "Politics": {"Jan": 60, "Feb": 65, "Mar": 63, "Apr": 68, "May": 61, "Jun": 70, "Jul": 73, "Aug": 76, "Sep": 67, "Oct": 79, "Nov": 72, "Dec": 82},
-          "Arts": {"Jan": 25, "Feb": 27, "Mar": 26, "Apr": 28, "May": 26, "Jun": 30, "Jul": 31, "Aug": 33, "Sep": 29, "Oct": 35, "Nov": 32, "Dec": 37}
+          "Environment": {"fill":"var(--color-environment)","Jan": 45, "Feb": 50, "Mar": 48, "Apr": 52, "May": 46, "Jun": 53, "Jul": 55, "Aug": 58, "Sep": 50, "Oct": 60, "Nov": 54, "Dec": 63},
+          "Health": {"fill":"var(--color-health)","Jan": 42, "Feb": 45, "Mar": 44, "Apr": 47, "May": 43, "Jun": 49, "Jul": 51, "Aug": 54, "Sep": 46, "Oct": 57, "Nov": 50, "Dec": 61},
+          "Housing": {"fill":"var(--color-housing)","Jan": 35, "Feb": 38, "Mar": 36, "Apr": 40, "May": 37, "Jun": 42, "Jul": 44, "Aug": 47, "Sep": 39, "Oct": 50, "Nov": 43, "Dec": 53},
+          "Politics": {"fill":"var(--color-politics)","Jan": 60, "Feb": 65, "Mar": 63, "Apr": 68, "May": 61, "Jun": 70, "Jul": 73, "Aug": 76, "Sep": 67, "Oct": 79, "Nov": 72, "Dec": 82},
+          "Arts": {"fill":"var(--color-arts)","Jan": 25, "Feb": 27, "Mar": 26, "Apr": 28, "May": 26, "Jun": 30, "Jul": 31, "Aug": 33, "Sep": 29, "Oct": 35, "Nov": 32, "Dec": 37}
         }
       },
       {
-        "title": "Articles by Age Group",
+        "title": "Articles by Age Group--",
         "data": {
           "18-24": {"Jan": 110, "Feb": 115, "Mar": 112, "Apr": 120, "May": 115, "Jun": 123, "Jul": 125, "Aug": 130, "Sep": 119, "Oct": 135, "Nov": 128, "Dec": 140},
           "25-34": {"Jan": 95, "Feb": 100, "Mar": 97, "Apr": 105, "May": 100, "Jun": 108, "Jul": 110, "Aug": 116, "Sep": 105, "Oct": 120, "Nov": 112, "Dec": 125},
@@ -77,9 +78,16 @@
         }
       },
       {
-        "title": "Articles in Each Category by Author",
+        "title": "Articles in Each Category by Author--",
         "data": {
           "Environment": {
+            "Stephen": {"Jan": 5, "Feb": 6, "Mar": 5, "Apr": 6, "May": 5, "Jun": 6, "Jul": 7, "Aug": 7, "Sep": 6, "Oct": 8, "Nov": 7, "Dec": 8},
+            "Peter": {"Jan": 4, "Feb": 4, "Mar": 4, "Apr": 5, "May": 4, "Jun": 5, "Jul": 6, "Aug": 6, "Sep": 5, "Oct": 7, "Nov": 6, "Dec": 7},
+            "Charlie": {"Jan": 3, "Feb": 4, "Mar": 3, "Apr": 4, "May": 3, "Jun": 4, "Jul": 5, "Aug": 5, "Sep": 4, "Oct": 6, "Nov": 5, "Dec": 6},
+            "Nancy": {"Jan": 6, "Feb": 7, "Mar": 6, "Apr": 7, "May": 6, "Jun": 8, "Jul": 8, "Aug": 9, "Sep": 7, "Oct": 10, "Nov": 9, "Dec": 10},
+            "Steve": {"Jan": 4, "Feb": 5, "Mar": 4, "Apr": 5, "May": 4, "Jun": 5, "Jul": 6, "Aug": 6, "Sep": 5, "Oct": 7, "Nov": 6, "Dec": 7}
+          },
+          "Politics": {
             "Stephen": {"Jan": 5, "Feb": 6, "Mar": 5, "Apr": 6, "May": 5, "Jun": 6, "Jul": 7, "Aug": 7, "Sep": 6, "Oct": 8, "Nov": 7, "Dec": 8},
             "Peter": {"Jan": 4, "Feb": 4, "Mar": 4, "Apr": 5, "May": 4, "Jun": 5, "Jul": 6, "Aug": 6, "Sep": 5, "Oct": 7, "Nov": 6, "Dec": 7},
             "Charlie": {"Jan": 3, "Feb": 4, "Mar": 3, "Apr": 4, "May": 3, "Jun": 4, "Jul": 5, "Aug": 5, "Sep": 4, "Oct": 6, "Nov": 5, "Dec": 6},
@@ -89,7 +97,7 @@
         }
       },
       {
-        "title": "Visitors per Story Ratio by Author",
+        "title": "Visitors per Story Ratio by Author--",
         "data": {
           "Stephen": {"Jan": 1.8, "Feb": 1.9, "Mar": 1.7, "Apr": 1.9, "May": 1.8, "Jun": 2.0, "Jul": 2.0, "Aug": 2.2, "Sep": 1.9, "Oct": 2.3, "Nov": 2.1, "Dec": 2.4},
           "Peter": {"Jan": 1.6, "Feb": 1.7, "Mar": 1.5, "Apr": 1.7, "May": 1.6, "Jun": 1.8, "Jul": 1.8, "Aug": 1.9, "Sep": 1.7, "Oct": 2.0, "Nov": 1.9, "Dec": 2.1},
@@ -101,18 +109,18 @@
       {
         "title": "Subscribers vs Non-Subscribers",
         "data": {
-          "Subscribers": {"Jan": 2500, "Feb": 2520, "Mar": 2530, "Apr": 2550, "May": 2570, "Jun": 2580, "Jul": 2600, "Aug": 2620, "Sep": 2630, "Oct": 2650, "Nov": 2670, "Dec": 2700},
-          "Non-Subscribers": {"Jan": 7500, "Feb": 7520, "Mar": 7530, "Apr": 7550, "May": 7570, "Jun": 7580, "Jul": 7600, "Aug": 7620, "Sep": 7630, "Oct": 7650, "Nov": 7670, "Dec": 7700}
+          "Subscribers": {"fill":"var(--color-Subscribers)","Jan": 2500, "Feb": 2520, "Mar": 2530, "Apr": 2550, "May": 2570, "Jun": 2580, "Jul": 2600, "Aug": 2620, "Sep": 2630, "Oct": 2650, "Nov": 2670, "Dec": 2700},
+          "NonSubscribers": {"fill":"var(--color-NonSubscribers)","Jan": 7500, "Feb": 7520, "Mar": 7530, "Apr": 7550, "May": 7570, "Jun": 7580, "Jul": 7600, "Aug": 7620, "Sep": 7630, "Oct": 7650, "Nov": 7670, "Dec": 7700}
         }
       },
       {
         "title": "Revenue per Article Theme (USD)",
         "data": {
-          "Environment": {"Jan": 120, "Feb": 125, "Mar": 130, "Apr": 135, "May": 140, "Jun": 145, "Jul": 150, "Aug": 155, "Sep": 160, "Oct": 165, "Nov": 170, "Dec": 175},
-          "Health": {"Jan": 110, "Feb": 115, "Mar": 120, "Apr": 125, "May": 130, "Jun": 135, "Jul": 140, "Aug": 145, "Sep": 150, "Oct": 155, "Nov": 160, "Dec": 165},
-          "Housing": {"Jan": 90, "Feb": 95, "Mar": 100, "Apr": 105, "May": 110, "Jun": 115, "Jul": 120, "Aug": 125, "Sep": 130, "Oct": 135, "Nov": 140, "Dec": 145},
-          "Politics": {"Jan": 150, "Feb": 155, "Mar": 160, "Apr": 165, "May": 170, "Jun": 175, "Jul": 180, "Aug": 185, "Sep": 190, "Oct": 195, "Nov": 200, "Dec": 205},
-          "Arts": {"Jan": 70, "Feb": 75, "Mar": 80, "Apr": 85, "May": 90, "Jun": 95, "Jul": 100, "Aug": 105, "Sep": 110, "Oct": 115, "Nov": 120, "Dec": 125}
+          "Environment": {"fill":"var(--color-environment)","Jan": 120, "Feb": 125, "Mar": 130, "Apr": 135, "May": 140, "Jun": 145, "Jul": 150, "Aug": 155, "Sep": 160, "Oct": 165, "Nov": 170, "Dec": 175},
+          "Health": {"fill":"var(--color-health)","Jan": 110, "Feb": 115, "Mar": 120, "Apr": 125, "May": 130, "Jun": 135, "Jul": 140, "Aug": 145, "Sep": 150, "Oct": 155, "Nov": 160, "Dec": 165},
+          "Housing": {"fill":"var(--color-housing)","Jan": 90, "Feb": 95, "Mar": 100, "Apr": 105, "May": 110, "Jun": 115, "Jul": 120, "Aug": 125, "Sep": 130, "Oct": 135, "Nov": 140, "Dec": 145},
+          "Politics": {"fill":"var(--color-politics)","Jan": 150, "Feb": 155, "Mar": 160, "Apr": 165, "May": 170, "Jun": 175, "Jul": 180, "Aug": 185, "Sep": 190, "Oct": 195, "Nov": 200, "Dec": 205},
+          "Arts": {"fill":"var(--color-art)","Jan": 70, "Feb": 75, "Mar": 80, "Apr": 85, "May": 90, "Jun": 95, "Jul": 100, "Aug": 105, "Sep": 110, "Oct": 115, "Nov": 120, "Dec": 125}
         }
       }
   ]

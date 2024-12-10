@@ -1,7 +1,7 @@
 "use client"
 
 import { TrendingUp } from "lucide-react"
-import { Bar, BarChart, CartesianGrid, XAxis , PieChart, Pie, Label} from "recharts"
+import { Bar, BarChart, CartesianGrid, XAxis , PieChart, Pie, Label,LabelList} from "recharts"
 
 import {
   Card,
@@ -20,6 +20,9 @@ import {
   ChartLegendContent
 } from "@/components/ui/chart"
 
+import dataJson from './data.json';
+import { format } from "date-fns";
+
 const generateRandomNumber = (min: number, max: number) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
@@ -36,11 +39,11 @@ const generateRandomData = () => {
 
 const graphchartData = generateRandomData();
 
-export function SubscriberThemes() {
+export function SubscriberThemes({ selectedMonth }: { selectedMonth?: Date }) {
   return (
     <Card>
       <CardHeader className="items-center pb-0">
-        <CardTitle>What Do Subscribers Want?</CardTitle>
+        <CardTitle className="font-bold">What Do Subscribers Want?</CardTitle>
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig}>
@@ -71,90 +74,158 @@ export function SubscriberThemes() {
   )
 }
 
-const generateRandom2Data = () => {
-  return [
-    { browser: "Subscribers", eventcount: 25348}, // Mobile overtakes desktop due to casual scrolling on social media.
-    { browser: "Non-Subscribers", eventcount: 47285 }, // Mobile overtakes desktop due to casual scrolling on social media.
-  ];  
+
+interface VisitorData {
+  value: number;
+  fill: string;
+}
+
+// Define the structure of the data
+interface MonthData {
+  Subscribers: VisitorData;
+  NonSubscribers: VisitorData;
+}
+
+const CustomTooltip = ({ active, payload }: any) => {
+  if (active && payload && payload.length) {
+    const { value } = payload[0];  // Access the first payload item
+    return (
+      <div style={{ backgroundColor: '#000', padding: '5px', border: '1px solid #ccc', color:"#fff"}}>
+        <p>{`Visitors: ${value}`}</p>
+      </div>
+    );
+  }
+  return null;
 };
 
-const graph2chartData = generateRandom2Data();
+const eventConfig = {
+  visitors: {
+    label: "Visitors"
+  },
+  Subscribers: {
+    label: "Subscribers",
+    color: "hsl(var(--chart-sub))"
+  },
+  NonSubscribers: {
+    label: "Non Subscribers",
+    color: "hsl(var(--chart-nonsub))"
+  }
+}
 
-export function EventCount() {
+
+export function EventCount({ selectedMonth }: { selectedMonth?: Date }) {
+  const selectedMonthName = selectedMonth ? format(selectedMonth, "MMM") : "Jan";
+
+  // Find the "Article Overperformance" graph data
+  const graphData = dataJson.graphs.find(graph => graph.title === "Subscribers vs Non-Subscribers")?.data;
+
+  // If graphData is undefined or null, handle it gracefully
+  if (!graphData) {
+    return <div>No data available</div>;
+  }
+
+  // Safely get the data for the month
+  const monthData: MonthData = {
+    Subscribers: graphData.Subscribers
+      ? {
+          value: Number(graphData.Subscribers[selectedMonthName as keyof typeof graphData.Subscribers]) || 0, // Coerce to number
+          // fill: graphData.Subscribers.fill
+          fill: eventConfig["Subscribers"].color
+        }
+      : { value: 0, fill: "" },
+    
+    NonSubscribers: graphData.NonSubscribers
+      ? {
+          value: Number(graphData.NonSubscribers[selectedMonthName as keyof typeof graphData.NonSubscribers]) || 0, // Coerce to number
+          fill: graphData.NonSubscribers.fill
+        }
+      : { value: 0, fill: "" }
+  };
+
+  
+  // Convert the monthData object into an array for sorting and chart rendering
+  const sortedData = Object.entries(monthData)
+  .map(([cate, data]) => ({
+    cate,
+    visitors: data.value,
+    fill: data.fill,
+  }))
+  .sort((a, b) => b.visitors - a.visitors); // Sorting based on the 'value' of visitors
+
+console.log(sortedData);
+
   return (
     <Card>
       <CardHeader className="items-center pb-0">
-        <CardTitle>How Do Subscribers and Non-Subscribers Compare?</CardTitle>
+        <CardTitle className="font-bold">How Do Subscribers and Non-Subscribers Compare?</CardTitle>
+        <CardDescription>Showing data for {selectedMonthName} 2024</CardDescription>
       </CardHeader>
       <CardContent>
-        <ChartContainer config={chartConfig}>
-          <BarChart accessibilityLayer data={graph2chartData}>
+        <ChartContainer config={eventConfig}>
+          <BarChart accessibilityLayer data={sortedData}>
             <CartesianGrid vertical={false} />
             <XAxis
-              dataKey="browser"
+              dataKey="cate"  // Use category name (e.g., 'Subscribers', 'NonSubscribers')
               tickLine={false}
               tickMargin={10}
               axisLine={false}
             />
-            <ChartTooltip content={<ChartTooltipContent hideLabel />} />
+            <ChartTooltip content={<CustomTooltip />} />  {/* Use custom tooltip */}
             <ChartLegend content={<ChartLegendContent />} />
-            <Bar dataKey="eventcount" fill="var(--color-desktop)" radius={8} />
+            <Bar dataKey="visitors" radius={8} > {/* Display the value of visitors */}
+            <LabelList
+                position="top"
+                offset={5}
+                className="fill-text"
+                fontSize={12}
+              />
+              </Bar>
           </BarChart>
         </ChartContainer>
       </CardContent>
       <CardFooter className="flex-col text-center gap-2 text-base">
         <div className="leading-none text-muted-foreground">
-        Considering the significantly higher event count from Non-Subscribers, there is a larger audience that needs to be targeted for greater reach.
+          Considering the significantly higher event count from Non-Subscribers, there is a larger audience that needs to be targeted for greater reach.
         </div>
       </CardFooter>
     </Card>
-  )
+  );
 }
 
 import * as React from "react"
 
-const generateRandomPieData = () => {
-  return [
-    { browser: "politics", visitors: generateRandomNumber(150, 350), fill: "var(--color-politics)" },
-    { browser: "art", visitors: generateRandomNumber(150, 350), fill: "var(--color-art)" },
-    { browser: "environment", visitors: generateRandomNumber(150, 350), fill: "var(--color-environment)" },
-    { browser: "health", visitors: generateRandomNumber(150, 350), fill: "var(--color-health)" },
-    { browser: "housing", visitors: generateRandomNumber(150, 350), fill: "var(--color-housing)" },
-  ];
-};
-const piechartData = generateRandomPieData();
   
   const chartConfig = {
     visitors: {
       label: "Visitors",
     },
-    politics: {
+    Politics: {
       label: "Politics",
-      color: "hsl(var(--chart-1))",
+      color: "hsl(var(--chart-a1))",
     },
-    art: {
+    Arts: {
       label: "Art & Culture",
-      color: "hsl(var(--chart-2))",
+      color: "hsl(var(--chart-a2))",
     },
-    environment: {
+    Environment: {
       label: "Environment",
-      color: "hsl(var(--chart-3))",
+      color: "hsl(var(--chart-a3))",
     },
-    health: {
+    Health: {
       label: "Health",
-      color: "hsl(var(--chart-4))",
+      color: "hsl(var(--chart-a4))",
     },
-    housing: {
+    Housing: {
       label: "Housing",
-      color: "hsl(var(--chart-5))",
+      color: "hsl(var(--chart-a5))",
     },
     desktop: {
       label: "Subscribers",
-      color: "hsl(var(--chart-1))",
+      color: "hsl(var(--chart-sub))",
     },
     mobile: {
       label: "Non-Subscribers",
-      color: "hsl(var(--chart-2))",
+      color: "hsl(var(--chart-nonsub))",
     },
     eventcount: {
       label: "Event Count",
@@ -162,27 +233,43 @@ const piechartData = generateRandomPieData();
     }
   } satisfies ChartConfig
   
-  const chartData = [
-    { browser: "Politics", visitors: 4215, fill: "var(--color-politics)" },
-    { browser: "Art", visitors: 1567, fill: "var(--color-art)" },
-    { browser: "Environment", visitors: 2196, fill: "var(--color-environment)" },
-    { browser: "Health", visitors: 6879, fill: "var(--color-health)" },
-    { browser: "Housing", visitors: 1845, fill: "var(--color-housing)" },
-  ]
 
-  export function RevenueAttribution() {
-    const totalVisitors = React.useMemo(() => {
-      return piechartData.reduce((acc, curr) => acc + curr.visitors, 0)
-    }, [])
+
+  export function RevenueAttribution({ selectedMonth }: { selectedMonth?: Date }) {
+    // Default to "Jan" if no month is provided
+    const selectedMonthName = selectedMonth ? format(selectedMonth, "MMM") : "Jan";
+  
+    // Get the revenue data for the selected month
+    const revenueData = Object.entries(
+      dataJson.graphs.find((graph) => graph.title === "Revenue per Article Theme (USD)")?.data || {}
+    ).map(([theme, revenuePerMonth]) => {
+      return {
+        theme,
+        revenue: revenuePerMonth[selectedMonthName as keyof typeof revenuePerMonth] || 0,
+        color: chartConfig[theme]?.color || "#ff0",
+      };
+    });
+    
+  
+    // Calculate total revenue for the selected month
+    const totalRevenue = React.useMemo(() => {
+      return revenueData.reduce((acc, curr) => acc + curr.revenue, 0);
+    }, [revenueData]);
+  
+    // Prepare chart data for the pie chart
+    const chartData = revenueData.map((data) => ({
+      browser: data.theme, // Use the theme name as the browser label
+      visitors: data.revenue, // Map revenue to the 'visitors' field
+      fill: data.color, // Include the fill color from chartConfig
+    }));
   
     return (
       <Card className="flex flex-col">
         <CardHeader className="items-center pb-0">
-          <CardTitle>Where Is the Revenue Coming From?</CardTitle>
-          {/* <CardDescription>January - June 2024</CardDescription> */}
+          <CardTitle className="font-bold">Where Is the Revenue Coming From?</CardTitle>
           <div className="flex justify-center items-center">
-  {/* <DatePickerWithRange/> */}
-  </div>
+            {/* Optionally, add a date picker here */}
+          </div>
         </CardHeader>
         <CardContent className="flex-1 pb-0">
           <ChartContainer
@@ -216,7 +303,7 @@ const piechartData = generateRandomPieData();
                             y={viewBox.cy}
                             className="fill-text text-4xl font-bold"
                           >
-                            {totalVisitors.toLocaleString()}
+                            {totalRevenue.toLocaleString()}
                           </tspan>
                           <tspan
                             x={viewBox.cx}
@@ -226,8 +313,9 @@ const piechartData = generateRandomPieData();
                             Dollars ($)
                           </tspan>
                         </text>
-                      )
+                      );
                     }
+                    return null;
                   }}
                 />
               </Pie>
@@ -236,21 +324,24 @@ const piechartData = generateRandomPieData();
         </CardContent>
         <CardFooter className="flex-col text-center gap-2 text-base">
           <div className="leading-none text-muted-foreground">
-          To maximize revenue potential, investing in Health and Politics, which attract the highest visitor engagement, could yield significant returns.
+            To maximize revenue potential, investing in Health and Politics, which attract the highest visitor engagement, could yield significant returns.
           </div>
         </CardFooter>
       </Card>
-  )
-}
+    );
+  }
 
+type RevenueProps = {
+  selectedMonth?: Date;
+};
 
-const Revenue = () => {
+const Revenue : React.FC<RevenueProps> = ({ selectedMonth }) => {
     return (
         <>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
-                <EventCount/>
-                <SubscriberThemes/>
-                <RevenueAttribution/>
+                <EventCount selectedMonth={selectedMonth}/>
+                <SubscriberThemes selectedMonth={selectedMonth}/>
+                <RevenueAttribution selectedMonth={selectedMonth}/>
             </div>
         </>
     );

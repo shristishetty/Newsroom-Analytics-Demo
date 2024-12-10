@@ -3,8 +3,9 @@
 import * as React from "react"
 import { useEffect, useState } from "react";
 
-import { TrendingUp } from "lucide-react"
+import { Facebook, TrendingUp } from "lucide-react"
 import { Area, AreaChart, CartesianGrid, XAxis,Bar, BarChart, LabelList, Pie, PieChart, Line, LineChart ,Label, PolarAngleAxis, PolarGrid, Radar, RadarChart, Rectangle  } from "recharts"
+import { format } from "date-fns";
 
 import {
   Card,
@@ -23,7 +24,8 @@ import {
   ChartLegendContent,
 } from "../components/ui/chart"
 
-import retenData from "../data/retention.json"
+import dataJson from './data.json';
+
 
 const generateRandomNumber = (min: number, max: number) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -73,7 +75,7 @@ const charConfig = {
   
 } satisfies ChartConfig;
 
-// Retention Data
+
 
 
 type AgeGroup = "18-24" | "25-34" | "35-44" | "45-54" | "55-64" ;
@@ -113,7 +115,7 @@ export function EngagedSession() {
   return (
     <Card>
       <CardHeader className="items-center pb-0">
-        <CardTitle>Engaged Sessions</CardTitle>
+        <CardTitle className="font-bold">Engaged Sessions</CardTitle>
         <CardDescription></CardDescription>
       </CardHeader>
       <CardContent>
@@ -219,43 +221,6 @@ export function EngagedSession() {
 
 
 
-const reteData = [
-  { browser: "1", visitors: generateRandomNumber(40, 90), fill: "var(--color-1)" },
-  { browser: "2", visitors: generateRandomNumber(40, 90), fill: "var(--color-2)" },
-  { browser: "3", visitors: generateRandomNumber(40, 90), fill: "var(--color-3)" },
-  { browser: "4", visitors: generateRandomNumber(40, 90), fill: "var(--color-4)" },
-  { browser: "5", visitors: generateRandomNumber(40, 90), fill: "var(--color-5)" },
-]
-
-
-// Define the structure of the data item, including the 'visitors' field
-interface RetentionDataItem {
-  browser: string;
-  months: {
-    [month: string]: number; // A dynamic key for months with number values
-  };
-  fill: string;
-  visitors: number; // Add the visitors field here to store calculated retention
-}
-
-// Define the type for selectedDateRange
-type DateRange = [string, string]; // Assuming the date range is an array of two month names
-
-// Define the type for the Retention component props
-interface RetentionProps {
-  selectedDateRange: DateRange;
-}
-
-const retData: RetentionDataItem[] = retenData.data.map((item) => {
-  // Calculate the average retention based on the months data
-  const averageRetention = (Object.values(item.months).reduce((sum, value) => sum + value, 0)) / 3;
-
-  // Return the item with an added 'visitors' property (average retention)
-  return {
-    ...item,
-    visitors: averageRetention, // Add 'visitors' to the object
-  };
-});
 
 const reteConfig = {
   visitors: {
@@ -281,79 +246,99 @@ const reteConfig = {
     label: "55-64",
     color: "hsl(var(--chart-5))",
   },
-} satisfies ChartConfig;
 
-export function Retention({ selectedDateRange }: RetentionProps) {
-  const [filteredData, setFilteredData] = useState(retData);
+} satisfies ChartConfig
 
-  // Update filtered data when selectedDateRange changes
-  useEffect(() => {
-    const [startMonth, endMonth] = selectedDateRange; // Assuming selectedDateRange is an array with start and end month names (e.g., ["January", "March"])
 
-    // Filter data based on whether the months fall within the selected range
-    const filtered = retData.filter((item) => {
-      // Check if the months in the selected range exist in the item.months object
-      const monthsInRange = Object.keys(item.months).some((month) => {
-        const monthIndex = new Date(`${month} 1`).getMonth(); // Convert month name to month index
-        const startIndex = new Date(`${startMonth} 1`).getMonth(); // Convert start month to index
-        const endIndex = new Date(`${endMonth} 1`).getMonth(); // Convert end month to index
-        return monthIndex >= startIndex && monthIndex <= endIndex;
-      });
-      return monthsInRange;
-    });
 
-    setFilteredData(filtered);
-  }, [selectedDateRange]);
+export function Retention({ selectedMonth }: { selectedMonth?: Date }) {
+  // Set default to January if no month is selected
+  const selectedMonthName = selectedMonth ? format(selectedMonth, "MMM") : "Jan"; // Default to "Jan" if no month is provided
 
-  const mostRetention = Math.max(...filteredData.map((item) => item.visitors));
-  const leastRetention = Math.min(...filteredData.map((item) => item.visitors));
+  // Find the "Retention Percentage" graph data
+  const graphData = dataJson.graphs.find(graph => graph.title === "Retention Percentage")?.data;
 
-  // Find the corresponding browser label for the most and least retention values
-  const mostLabel = filteredData.find((item) => item.visitors === mostRetention)?.browser || "";
-  const leastLabel = filteredData.find((item) => item.visitors === leastRetention)?.browser || "";
+  // If no "Retention Percentage" data is found, return null
+  if (!graphData) {
+    console.error("No Retention Percentage data found.");
+    return null;
+  }
+
+  // Map the data based on the selected month
+  const filteredData = Object.entries(graphData).map(([ageGroup, monthlyData]) => ({
+    ageGroup,
+    retention: monthlyData[selectedMonthName] || 0,
+    fill: monthlyData.fill,  // Store the fill color
+  }));
+
+  // Debugging: Log the filtered data
+  console.log("Filtered Data for Chart:", filteredData);
+
+  // Check if filteredData has valid content
+  if (filteredData.length === 0) {
+    console.error("No valid data found for the selected month.");
+    return null;
+  }
+
+  // Find the max and min retention values for the chart
+  const mostRetention = Math.max(...filteredData.map(item => item.retention));
+  const leastRetention = Math.min(...filteredData.map(item => item.retention));
+
+  // Find the corresponding age group (label) for the most and least retention values
+  const mostLabel = filteredData.find(item => item.retention === mostRetention)?.ageGroup || "";
+  const leastLabel = filteredData.find(item => item.retention === leastRetention)?.ageGroup || "";
 
   return (
     <Card>
       <CardHeader className="items-center pb-0">
-        <CardTitle>Retention Percentage Per Age Group</CardTitle>
+        <CardTitle className="font-bold">Retention Percentage Per Age Group</CardTitle>
       </CardHeader>
       <CardContent>
         <ChartContainer config={reteConfig}>
-          <BarChart accessibilityLayer data={filteredData}>
-            <CartesianGrid vertical={false} />
-            <XAxis
-              dataKey="browser"
-              tickLine={false}
-              tickMargin={10}
-              axisLine={false}
-              tickFormatter={(value) =>
-                reteConfig[value as keyof typeof reteConfig]?.label
+        {/* BarChart component from recharts */}
+        <BarChart data={filteredData} width={500} height={300}>
+          <CartesianGrid vertical={false} />
+          <XAxis
+            dataKey="ageGroup"
+            tickLine={false}
+            tickMargin={10}
+            axisLine={false}
+            tickFormatter={(value) => value} // Display age group labels
+          />
+          {/* Re-enabling tooltip with custom content */}
+          <ChartTooltip
+            cursor={false}
+            content={({ payload, label }) => {
+              if (payload && payload.length) {
+                const { retention } = payload[0].payload;
+                return (
+                  <div style={{ backgroundColor: '#000', padding: '5px', border: '1px solid #ccc', color:"#fff"}}>
+                    <strong>{label}</strong><br />
+                    Retention: {retention}%
+                  </div>
+                );
               }
-            />
-            <ChartTooltip
-              cursor={false}
-              content={<ChartTooltipContent hideLabel />}
-            />
-            <Bar
-              dataKey="visitors"
-              strokeWidth={2}
-              radius={8}
-              activeIndex={2}
-            />
-          </BarChart>
+              return null;
+            }}
+          />
+          <Bar
+            dataKey="retention"
+            strokeWidth={2}
+            radius={8}
+          />
+          
+        </BarChart>
         </ChartContainer>
       </CardContent>
-      <CardFooter className="flex-col text-center gap-2 text-base">
-        
+      <CardFooter className="flex-col text-center gap-2 text-sm">
         <div className="leading-none text-muted-foreground">
-          Retention rates show {mostRetention}% for the {mostLabel} browser, compared to {leastRetention}% for the {leastLabel} browser. To improve overall retention, focus on boosting engagement in the lower-performing segment while maintaining strong connections with the higher-performing group.
+          Retention rates show {mostRetention}% for the {mostLabel} age group, compared to {leastRetention}% for the {leastLabel} group. 
+          To improve overall retention, focus on boosting engagement in the lower-performing segment while maintaining strong connections with the higher-performing group.
         </div>
       </CardFooter>
     </Card>
   );
 }
-
-
 
 
 
@@ -372,29 +357,54 @@ const generateRandomSourceData = () => {
 };
 
 const srcData = generateRandomSourceData();
-const sortedDataByDesktop = [...srcData].sort((a, b) => b.desktop - a.desktop);
-const first = sortedDataByDesktop[0].month;
-const second = sortedDataByDesktop[1].month;
 
-const least = sortedDataByDesktop[sortedDataByDesktop.length - 1].month;
-const least2 = sortedDataByDesktop[sortedDataByDesktop.length - 2].month;
 
 const srcConfig = {
   desktop: {
     label: "Traffic",
-    color: "hsl(var(--chart-1))",
+    color: "hsl(var(--ring))",
   },
 
 } satisfies ChartConfig;
 
+export function Source({ selectedMonth }: { selectedMonth?: Date }) {
+  // Default to "Jan" if no month is provided
+  const selectedMonthName = selectedMonth ? format(selectedMonth, "MMM") : "Jan"; 
 
-export function Source() {
+  // Find the "User Demographics" graph data
+  const graphData = dataJson.graphs.find(graph => graph.title === "User Demographics")?.data;
+
+  // If graphData is undefined or null, handle it gracefully
+  if (!graphData) {
+    return <div>No data available</div>;
+  }
+
+  // Now, ensure each platform's data exists for the selected month
+  const monthData = {
+    Google: graphData.Google ? graphData.Google[selectedMonthName as keyof typeof graphData.Google] : 0,
+    Instagram: graphData.Instagram ? graphData.Instagram[selectedMonthName as keyof typeof graphData.Instagram] : 0,
+    Bluesky: graphData.Bluesky ? graphData.Bluesky[selectedMonthName as keyof typeof graphData.Bluesky] : 0,
+    Reddit: graphData.Reddit ? graphData.Reddit[selectedMonthName as keyof typeof graphData.Reddit] : 0,
+    Facebook: graphData.Facebook ? graphData.Facebook[selectedMonthName as keyof typeof graphData.Facebook] : 0
+  };
+
+  // Sort the data for each platform based on the selected month
+  const sortedData = Object.entries(monthData)
+    .map(([platform, count]) => ({ platform, count }))
+    .sort((a, b) => b.count - a.count); // Sort descending by count
+
+  // Extract the months with the highest and lowest engagement
+  const first = sortedData[0].platform;
+  const second = sortedData[1].platform;
+  const least = sortedData[sortedData.length - 1].platform;
+  const least2 = sortedData[sortedData.length - 2].platform;
+
   return (
     <Card>
       <CardHeader className="items-center pb-0">
-        <CardTitle>Where Does Our Audience Come From?</CardTitle>
+        <CardTitle className="font-bold">Where Does Our Audience Come From?</CardTitle>
         <CardDescription>
-          Showing total visitors for the last 6 months
+          Showing total visitors for the selected month: {selectedMonthName}
         </CardDescription>
       </CardHeader>
       <CardContent className="pb-1">
@@ -402,13 +412,13 @@ export function Source() {
           config={srcConfig}
           className="mx-auto max-h-[300px]"
         >
-          <RadarChart data={srcData}>
+          <RadarChart data={sortedData}>
             <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
-            <PolarAngleAxis dataKey="month" />
+            <PolarAngleAxis dataKey="platform" />
             <PolarGrid />
             <Radar
-              dataKey="desktop"
-              fill="var(--color-desktop)"
+              dataKey="count"
+              fill="var(--color-desktop)" // Adjust the fill color dynamically if needed
               fillOpacity={0.6}
             />
           </RadarChart>
@@ -416,11 +426,11 @@ export function Source() {
       </CardContent>
       <CardFooter className="flex-col text-center gap-2 text-base">
         <div className="leading-none text-muted-foreground">
-        Visitor traffic peaks on {first} and {second}, while {least} and {least2} show lower engagement. <br/>Focus on strengthening successful channels and optimizing underperforming ones.
+          Visitor traffic peaks on {first} and {second}, while {least} and {least2} show lower engagement. <br/>Focus on strengthening successful channels and optimizing underperforming ones.
         </div>
       </CardFooter>
     </Card>
-  )
+  );
 }
 
 
@@ -665,7 +675,7 @@ export function Box() {
   const [newVisitors, setNewVisitors] = React.useState(0);
   return (
     <>
-    <div className="text-center bg-back border-[1px] border-white rounded-[6px] p-5 h-full">Who Are Our Readers?
+    <div className="text-center bg-back border-[1px] border-white rounded-[6px] p-5 h-full font-bold">Who Are Our Readers?
 
     <div className="pt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
     <Box1 onTotalVisitors={setActiveVisitors}/>
@@ -681,17 +691,18 @@ export function Box() {
     </>
   )}
 
- 
-  const Users = ({ selectedDateRange }: { selectedDateRange?: DateRange }) => {
-    const defaultDateRange: DateRange = ["January", "December"]; // Example default range
-  const range = selectedDateRange || defaultDateRange;
-  console.log(range)
+  type UsersProps = {
+    selectedMonth?: Date;
+  };
+
+  const Users : React.FC<UsersProps> = ({ selectedMonth }) =>  {
+    
     return (
         <>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                <Source />
+                <Source selectedMonth={selectedMonth} />
                 <Box />
-                <Retention selectedDateRange={range}/>
+                <Retention selectedMonth={selectedMonth} />
                 <EngagedSession />
             </div>
         </>
