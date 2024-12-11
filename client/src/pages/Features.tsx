@@ -17,14 +17,10 @@ export function OffPlatform() {
     <Card className="flex flex-col">
       <CardHeader className="items-center">
         <CardTitle>On-and-Off Platform Analysis</CardTitle>
-        <CardDescription>January - June 2024</CardDescription>
       </CardHeader>
-      <CardFooter className="flex-col gap-2 text-base">
-        <div className="flex items-center gap-2 font-medium leading-none">
-          Trending up by 5.2% this month
-        </div>
+      <CardFooter className="flex-col text-center gap-2 text-base">
         <div className="leading-none text-muted-foreground">
-          Showing total visitors for the last 6 months
+        It leverages real-time insights, such as those from Google Trends, to identify trending topics in the current landscape. Unlike traditional methods that rely on past data, this approach enables editorial teams to craft timely and relevant content that aligns with audience interests, maximizing engagement and ensuring up-to-date relevance in a rapidly evolving digital environment.
         </div>
       </CardFooter>
     </Card>
@@ -36,12 +32,8 @@ export function PredictClick() {
     <Card className="flex flex-col">
       <CardHeader className="items-center">
         <CardTitle>Predictive Click Model</CardTitle>
-        <CardDescription>January - June 2024</CardDescription>
       </CardHeader>
-      <CardFooter className="flex-col gap-2 text-base">
-        <div className="flex items-center gap-2 font-medium leading-none">
-          Trending up by 5.2% this month
-        </div>
+      <CardFooter className="flex-col text-center gap-2 text-base">
         <div className="leading-none text-muted-foreground">
         Leverage advanced algorithms to predict the likelihood of users clicking on specific content. By analyzing interest, recency, topic similarity, and trendiness, this feature enables data-driven decisions to optimize content strategy, enhance engagement, and recommend relevant new topics effectively.
         </div>
@@ -55,14 +47,10 @@ export function Sentiment() {
     <Card className="flex flex-col">
       <CardHeader className="items-center">
         <CardTitle>Advanced Theme and Sentiment Insights Linked to Revenue</CardTitle>
-        <CardDescription>January - June 2024</CardDescription>
       </CardHeader>
-      <CardFooter className="flex-col gap-2 text-base">
-        <div className="flex items-center gap-2 font-medium leading-none">
-          Trending up by 5.2% this month
-        </div>
+      <CardFooter className="flex-col text-center gap-2 text-base">
         <div className="leading-none text-muted-foreground">
-          Showing total visitors for the last 6 months
+        This feature connects sentiment and theme analysis directly to revenue, focusing on user engagement. It helps editorial teams identify emotional drivers behind their most profitable content, enabling strategic content creation. Future enhancements could include analyzing user comments (with permissions) and integrating insights with social media platforms for a comprehensive view of audience engagement.
         </div>
       </CardFooter>
     </Card>
@@ -74,14 +62,10 @@ export function Anomaly() {
     <Card className="flex flex-col">
       <CardHeader className="items-center">
         <CardTitle>Anomaly detection for Events</CardTitle>
-        <CardDescription>January - June 2024</CardDescription>
       </CardHeader>
-      <CardFooter className="flex-col gap-2 text-base">
-        <div className="flex items-center gap-2 font-medium leading-none">
-          Trending up by 5.2% this month
-        </div>
+      <CardFooter className="flex-col text-center gap-2 text-base">
         <div className="leading-none text-muted-foreground">
-          Showing total visitors for the last 6 months
+        It identifies unusual spikes in traffic for specific articles or authors, providing alerts about potential issues or extraordinary performance. This allows teams to respond quickly, either to capitalize on unexpected success or address possible concerns, such as legal challenges. It ensures proactive management of content dynamics, maximizing opportunities while mitigating risks.
         </div>
       </CardFooter>
     </Card>
