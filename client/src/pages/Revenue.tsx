@@ -43,7 +43,7 @@ export function SubscriberThemes({ selectedMonth }: { selectedMonth?: Date }) {
   return (
     <Card>
       <CardHeader className="items-center pb-0">
-        <CardTitle className="font-bold">What Do Subscribers Want?</CardTitle>
+        <CardTitle className="font-bold text-lg">What Do Subscribers Want?</CardTitle>
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig}>
@@ -157,7 +157,7 @@ console.log(sortedData);
   return (
     <Card>
       <CardHeader className="items-center pb-0">
-        <CardTitle className="font-bold">How Do Subscribers and Non-Subscribers Compare?</CardTitle>
+        <CardTitle className="font-bold text-lg">How Do Subscribers and Non-Subscribers Compare?</CardTitle>
         <CardDescription>Showing data for {selectedMonthName} 2024</CardDescription>
       </CardHeader>
       <CardContent>
@@ -266,7 +266,7 @@ import * as React from "react"
     return (
       <Card className="flex flex-col">
         <CardHeader className="items-center pb-0">
-          <CardTitle className="font-bold">Where Is the Revenue Coming From?</CardTitle>
+          <CardTitle className="font-bold text-lg">Where Is the Revenue Coming From?</CardTitle>
           <div className="flex justify-center items-center">
             {/* Optionally, add a date picker here */}
           </div>

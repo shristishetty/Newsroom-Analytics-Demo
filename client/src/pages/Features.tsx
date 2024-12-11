@@ -16,7 +16,7 @@ export function OffPlatform() {
   return (
     <Card className="flex flex-col">
       <CardHeader className="items-center">
-        <CardTitle>On-and-Off Platform Analysis</CardTitle>
+        <CardTitle className="text-lg font-bold">On-and-Off Platform Analysis</CardTitle>
         <CardDescription>January - June 2024</CardDescription>
       </CardHeader>
       <CardFooter className="flex-col gap-2 text-base">
@@ -35,7 +35,7 @@ export function PredictClick() {
   return (
     <Card className="flex flex-col">
       <CardHeader className="items-center">
-        <CardTitle>Predictive Click Model</CardTitle>
+        <CardTitle className="text-lg font-bold">Predictive Click Model</CardTitle>
         <CardDescription>January - June 2024</CardDescription>
       </CardHeader>
       <CardFooter className="flex-col gap-2 text-base">
@@ -54,7 +54,7 @@ export function Sentiment() {
   return (
     <Card className="flex flex-col">
       <CardHeader className="items-center">
-        <CardTitle>Advanced Theme and Sentiment Insights Linked to Revenue</CardTitle>
+        <CardTitle className="text-lg font-bold">Advanced Theme and Sentiment Insights Linked to Revenue</CardTitle>
         <CardDescription>January - June 2024</CardDescription>
       </CardHeader>
       <CardFooter className="flex-col gap-2 text-base">
@@ -73,7 +73,7 @@ export function Anomaly() {
   return (
     <Card className="flex flex-col">
       <CardHeader className="items-center">
-        <CardTitle>Anomaly detection for Events</CardTitle>
+        <CardTitle className="text-lg font-bold">Anomaly detection for Events</CardTitle>
         <CardDescription>January - June 2024</CardDescription>
       </CardHeader>
       <CardFooter className="flex-col gap-2 text-base">

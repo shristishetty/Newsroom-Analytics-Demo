@@ -115,7 +115,7 @@ export function EngagedSession() {
   return (
     <Card>
       <CardHeader className="items-center pb-0">
-        <CardTitle className="font-bold">Engaged Sessions</CardTitle>
+        <CardTitle className="font-bold text-lg">Engaged Sessions</CardTitle>
         <CardDescription></CardDescription>
       </CardHeader>
       <CardContent>
@@ -291,7 +291,7 @@ export function Retention({ selectedMonth }: { selectedMonth?: Date }) {
   return (
     <Card>
       <CardHeader className="items-center pb-0">
-        <CardTitle className="font-bold">Retention Percentage Per Age Group</CardTitle>
+        <CardTitle className="font-bold text-lg">Retention Percentage Per Age Group</CardTitle>
       </CardHeader>
       <CardContent>
         <ChartContainer config={reteConfig}>
@@ -341,24 +341,7 @@ export function Retention({ selectedMonth }: { selectedMonth?: Date }) {
 }
 
 
-
-
 // Traffic
-const generateRandomSourceData = () => {
-  const months = [
-    "Instagram", "Facebook", "Google", "X", "Reddit", "Bluesky"
-  ];
-
-  return months.map((month) => ({
-    month,
-    desktop: generateRandomNumber(50, 300),
-    mobile: generateRandomNumber(50, 250),
-  }));
-};
-
-const srcData = generateRandomSourceData();
-
-
 const srcConfig = {
   desktop: {
     label: "Traffic",
@@ -402,7 +385,7 @@ export function Source({ selectedMonth }: { selectedMonth?: Date }) {
   return (
     <Card>
       <CardHeader className="items-center pb-0">
-        <CardTitle className="font-bold">Where Does Our Audience Come From?</CardTitle>
+        <CardTitle className="font-bold text-lg">Where Does Our Audience Come From?</CardTitle>
         <CardDescription>
           Showing total visitors for the selected month: {selectedMonthName}
         </CardDescription>
@@ -434,262 +417,115 @@ export function Source({ selectedMonth }: { selectedMonth?: Date }) {
 }
 
 
-// Active Users
-const generateRandomBoxData = () => {
-  const boxData = [
-    { age: "1", fill: "var(--color-1)" },
-    { age: "2", fill: "var(--color-2)" },
-    { age: "3", fill: "var(--color-3)" },
-    { age: "4", fill: "var(--color-4)" },
-    { age: "5", fill: "var(--color-5)" },
-  ];
-
-  // Update visitors with random numbers for each item
-  return boxData.map((item) => ({
-    ...item,
-    visitors: generateRandomNumber(1000, 300), // Generate random visitors count
-  }));
-};
-
-// Generate the random box data
-const box1Data = generateRandomBoxData();
-
-const box1Config = {
-  visitors: {
-    label: "Visitors",
+const ageConfig = {
+  housing: {
+    label: "Housing",
+    color: "hsl(var(--chart-a5))",
   },
-  "1": {
-    label: "18-24",
-    color: "hsl(var(--chart-1))",
+  politics: {
+    label: "Politics",
+    color: "hsl(var(--chart-a1))",
   },
-  "2": {
-    label: "25-34",
-    color: "hsl(var(--chart-2))",
-  },
-  "3": {
-    label: "35-44",
-    color: "hsl(var(--chart-3))",
-  },
-  "4": {
-    label: "45-54",
-    color: "hsl(var(--chart-4))",
-  },
-  "5": {
-    label: "55-64",
-    color: "hsl(var(--chart-5))",
+  government: {
+    label: "Arts",
+    color: "hsl(var(--chart-a2))",
   },
 } satisfies ChartConfig
 
-interface Box1Props {
-  onTotalVisitors: (visitors: number) => void;
+const age = [
+  { month: "18-24", housing: generateRandomNumber(50, 200), politics: generateRandomNumber(50, 150), government: generateRandomNumber(100, 300) },
+  { month: "25-34", housing: generateRandomNumber(100, 300), politics: generateRandomNumber(100, 250), government: generateRandomNumber(200, 500) },
+  { month: "35-44", housing: generateRandomNumber(100, 250), politics: generateRandomNumber(80, 200), government: generateRandomNumber(100, 400) },
+  { month: "45-54", housing: generateRandomNumber(50, 150), politics: generateRandomNumber(100, 250), government: generateRandomNumber(150, 400) },
+  { month: "55-64", housing: generateRandomNumber(100, 300), politics: generateRandomNumber(50, 200), government: generateRandomNumber(100, 350) },
+  { month: "65+", housing: generateRandomNumber(100, 250), politics: generateRandomNumber(50, 200), government: generateRandomNumber(100, 300) },
+];
+
+
+interface AgeGroupData {
+  month: string;
+  housing: number;
+  politics: number;
+  government: number;
 }
-export function Box1({ onTotalVisitors }:Box1Props) {
-  const totalVisitors = React.useMemo(() => {
-    return box1Data.reduce((acc, curr) => acc + curr.visitors, 0)
-  }, [])
-  React.useEffect(() => {
-    onTotalVisitors(totalVisitors);
-  }, [totalVisitors, onTotalVisitors]);
+
+interface MaxMinStats {
+  mostLabel: string;
+  most: number;
+  leastLabel: string;
+  least: number;
+}
+
+export function AgeGroup() {
+  // Find the most and least for each category
+  const getMaxMin = (data: AgeGroupData[], key: keyof AgeGroupData): MaxMinStats => {
+    const maxData = data.reduce((max, current) => current[key] > max[key] ? current : max);
+    const minData = data.reduce((min, current) => current[key] < min[key] ? current : min);
+
+    // Return an object with most and least as numbers, and labels as strings
+    return {
+      mostLabel: maxData.month,  // Month with the most value (string)
+      most: Number(maxData[key]), // Ensure that we are returning a number
+      leastLabel: minData.month, // Month with the least value (string)
+      least: Number(minData[key]), // Ensure that we are returning a number
+    };
+  };
+
+  const housingStats = getMaxMin(age, "housing");
+  const politicsStats = getMaxMin(age, "politics");
+  const governmentStats = getMaxMin(age, "government");
 
   return (
-    <Card className="flex flex-col w-full">
+    <Card>
       <CardHeader className="items-center pb-0">
-        <CardTitle>Active Users</CardTitle>
+        <CardTitle className="font-bold text-lg">Reaching Every Age Group</CardTitle>
+        <div className="flex justify-center items-center">
+          {/* <DatePickerWithRange/> */}
+        </div>
       </CardHeader>
-      <CardContent className="flex-1 pb-0">
-        <ChartContainer
-          config={box1Config}
-          className="mx-auto aspect-square"
-        >
-          <PieChart>
-            <ChartTooltip
-              cursor={false}
-              content={<ChartTooltipContent hideLabel />}
+      <CardContent>
+        <ChartContainer config={ageConfig}>
+          <BarChart accessibilityLayer data={age}>
+            <CartesianGrid vertical={false} />
+            <XAxis
+              dataKey="month"
+              tickLine={false}
+              tickMargin={10}
+              axisLine={false}
+              tickFormatter={(value) => value.slice(0, 3)}
             />
-            <Pie
-              data={box1Data}
-              dataKey="visitors"
-              nameKey="age"
-              innerRadius={60}
-              strokeWidth={5}
-            >
-              <Label
-                content={({ viewBox }) => {
-                  if (viewBox && "cx" in viewBox && "cy" in viewBox) {
-                    return (
-                      <text
-                        x={viewBox.cx}
-                        y={viewBox.cy}
-                        textAnchor="middle"
-                        dominantBaseline="middle"
-                      >
-                        <tspan
-                          x={viewBox.cx}
-                          y={viewBox.cy}
-                          className="fill-white text-3xl font-bold"
-                        >
-                          {totalVisitors.toLocaleString()}
-                        </tspan>
-                        <tspan
-                          x={viewBox.cx}
-                          y={(viewBox.cy || 0) + 24}
-                          className="fill-text"
-                        >
-                          Visitors
-                        </tspan>
-                      </text>
-                    )
-                  }
-                }}
-              />
-            </Pie>
-          </PieChart>
+            <ChartTooltip content={<ChartTooltipContent hideLabel />} />
+            <ChartLegend content={<ChartLegendContent />} />
+            <Bar
+              dataKey="housing"
+              stackId="a"
+              fill="var(--color-housing)"
+              radius={[0, 0, 4, 4]}
+            />
+            <Bar
+              dataKey="politics"
+              stackId="a"
+              fill="var(--color-politics)"
+              radius={[0, 0, 0, 0]}
+            />
+            <Bar
+              dataKey="government"
+              stackId="a"
+              fill="var(--color-government)"
+              radius={[4, 4, 0, 0]}
+            />
+          </BarChart>
         </ChartContainer>
       </CardContent>
+      <CardFooter className="flex-col text-center gap-2 text-base">
+        <div className="leading-none text-muted-foreground">
+          {/* Showing total visitors for the last 6 months */}
+          The plot shows that Politics is most popular among the {politicsStats.mostLabel} age group, while it is least popular with the {politicsStats.mostLabel} group. Government has the highest reach with the {governmentStats.mostLabel} age group, while it has the lowest reach with the {governmentStats.leastLabel} group. Housing, on the other hand, is most engaged with by the {housingStats.mostLabel} age group, and least engaged with by the {housingStats.leastLabel} group.
+        </div>
+      </CardFooter>
     </Card>
-  )
+  );
 }
-
-
-
-
-
-const generateRandomBox2Data = () => {
-  const box2Data = [
-    { age: "1", fill: "var(--color-1)" },
-    { age: "2", fill: "var(--color-2)" },
-    { age: "3", fill: "var(--color-3)" },
-    { age: "4", fill: "var(--color-4)" },
-    { age: "5", fill: "var(--color-5)" },
-  ];
-
-  // Update visitors with random numbers for each item
-  return box2Data.map((item) => ({
-    ...item,
-    visitors: generateRandomNumber(50, 100), // Generate random visitors count
-  }));
-};
-
-// Generate the random box data
-const box2Data = generateRandomBox2Data();
-const box2Config = {
-  visitors: {
-    label: "Visitors",
-  },
-  "1": {
-    label: "18-24",
-    color: "hsl(var(--chart-1))",
-  },
-  "2": {
-    label: "25-34",
-    color: "hsl(var(--chart-2))",
-  },
-  "3": {
-    label: "35-44",
-    color: "hsl(var(--chart-3))",
-  },
-  "4": {
-    label: "45-54",
-    color: "hsl(var(--chart-4))",
-  },
-  "5": {
-    label: "55-64",
-    color: "hsl(var(--chart-5))",
-  },
-  
-} satisfies ChartConfig
-
-interface Box2Props {
-  onTotalVisitors: (visitors: number) => void;
-}
-export function Box2({ onTotalVisitors }:Box2Props) {
-  const totalVisitors = React.useMemo(() => {
-    return box2Data.reduce((acc, curr) => acc + curr.visitors, 0)
-  }, [])
-  React.useEffect(() => {
-    onTotalVisitors(totalVisitors);
-  }, [totalVisitors, onTotalVisitors]);
-
-
-  return (
-    <Card className="flex flex-col w-full">
-      <CardHeader className="items-center pb-0">
-        <CardTitle>New Users</CardTitle>
-      </CardHeader>
-      <CardContent className="flex-1 pb-0">
-        <ChartContainer
-          config={box2Config}
-          className="mx-auto aspect-square"
-        >
-          <PieChart>
-            <ChartTooltip
-              cursor={false}
-              content={<ChartTooltipContent hideLabel />}
-            />
-            <Pie
-              data={box2Data}
-              dataKey="visitors"
-              nameKey="age"
-              innerRadius={60}
-              strokeWidth={5}
-            >
-              <Label
-                content={({ viewBox }) => {
-                  if (viewBox && "cx" in viewBox && "cy" in viewBox) {
-                    return (
-                      <text
-                        x={viewBox.cx}
-                        y={viewBox.cy}
-                        textAnchor="middle"
-                        dominantBaseline="middle"
-                      >
-                        <tspan
-                          x={viewBox.cx}
-                          y={viewBox.cy}
-                          className="fill-white text-3xl font-bold"
-                        >
-                          {totalVisitors.toLocaleString()}
-                        </tspan>
-                        <tspan
-                          x={viewBox.cx}
-                          y={(viewBox.cy || 0) + 24}
-                          className="fill-text"
-                        >
-                          Visitors
-                        </tspan>
-                      </text>
-                    )
-                  }
-                }}
-              />
-            </Pie>
-          </PieChart>
-        </ChartContainer>
-      </CardContent>
-    </Card>
-  )
-}
-
-export function Box() {
-  const [activeVisitors, setActiveVisitors] = React.useState(0);
-  const [newVisitors, setNewVisitors] = React.useState(0);
-  return (
-    <>
-    <div className="text-center bg-back border-[1px] border-white rounded-[6px] p-5 h-full font-bold">Who Are Our Readers?
-
-    <div className="pt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
-    <Box1 onTotalVisitors={setActiveVisitors}/>
-    <Box2 onTotalVisitors={setNewVisitors}/>
-    </div>
-    <CardFooter className="pt-5 flex-col text-center gap-2 text-base">
-          <div className="leading-none text-muted-foreground">
-    With {activeVisitors.toLocaleString()} active users and {newVisitors.toLocaleString()} new visitors, now is the time to strengthen engagement and convert these visitors into long-term supporters. Focus on building lasting connections to drive sustained growth.
-          </div>
-    </CardFooter>
-    </div>
-    
-    </>
-  )}
 
   type UsersProps = {
     selectedMonth?: Date;
@@ -701,9 +537,10 @@ export function Box() {
         <>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <Source selectedMonth={selectedMonth} />
-                <Box />
+                
                 <Retention selectedMonth={selectedMonth} />
                 <EngagedSession />
+                <AgeGroup/>
             </div>
         </>
     );
