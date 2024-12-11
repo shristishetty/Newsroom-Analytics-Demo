@@ -7,6 +7,7 @@ import Authors from "./Authors";
 import Users from "./Users";
 import Revenue from './Revenue';
 import Features from './Features';
+import Landing from './Landing';
 
 import { useState } from 'react';
 import React from "react";
@@ -46,13 +47,13 @@ function Dashboard() {
         </p>
       </div>
       <div className="p-5">
-        <Tabs defaultValue="User">
+        <Tabs defaultValue="Landing">
           <div className="flex flex-col md:flex-row items-start gap-4">
             <div className="overflow-x-auto whitespace-nowrap flex-1">
               <TabsList className="flex gap-2">
+              <TabsTrigger value="Landing" className="p-2">Info</TabsTrigger>
                 <TabsTrigger value="User" className="p-2">User Demographics</TabsTrigger>
                 <TabsTrigger value="Author" className="p-2">Author Performance</TabsTrigger>
-                <TabsTrigger value="Tags" className="p-2">Article Themes</TabsTrigger>
                 <TabsTrigger value="Revenue" className="p-2">Revenue Attribution</TabsTrigger>
                 <TabsTrigger value="Features" className="p-2">Features</TabsTrigger>
               </TabsList>
@@ -70,8 +71,8 @@ function Dashboard() {
           <TabsContent value="Author">
             <Authors selectedMonth={selectedMonth}/>
           </TabsContent>
-          <TabsContent value="Tags">
-            <Tags selectedMonth={selectedMonth}/>
+          <TabsContent value="Landing">
+            <Landing/>
           </TabsContent>
           <TabsContent value="Revenue">
             <Revenue selectedMonth={selectedMonth} />
