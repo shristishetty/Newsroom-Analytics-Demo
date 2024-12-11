@@ -22,6 +22,9 @@ import {
   ChartLegendContent
 } from "../components/ui/chart"
 
+import dataJson from './data.json';
+import { format } from "date-fns";
+
 const generateRandomNumber = (min: number, max: number) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
@@ -46,23 +49,23 @@ const chartConfig = {
   },
   politics: {
     label: "Politics",
-    color: "hsl(var(--chart-1))",
+    color: "hsl(var(--chart-a1))",
   },
-  art: {
+  arts: {
     label: "Art & Culture",
-    color: "hsl(var(--chart-2))",
+    color: "hsl(var(--chart-a2))",
   },
   environment: {
     label: "Environment",
-    color: "hsl(var(--chart-3))",
+    color: "hsl(var(--chart-a3))",
   },
   health: {
     label: "Health",
-    color: "hsl(var(--chart-4))",
+    color: "hsl(var(--chart-a4))",
   },
   housing: {
     label: "Housing",
-    color: "hsl(var(--chart-5))",
+    color: "hsl(var(--chart-a5))",
   },
   desktop: {
     label: "Visitors Per Story",
@@ -70,37 +73,60 @@ const chartConfig = {
   },
 } satisfies ChartConfig
 
-export function Top() {
-  const totalVisitors = React.useMemo(() => {
-    return chartData.reduce((acc, curr) => acc + curr.visitors, 0)
-  }, [])
+export function Top({ selectedMonth }: { selectedMonth?: Date }) {
+  // Default to "Jan" if no month is provided
+  const selectedMonthName = selectedMonth
+    ? format(selectedMonth, "MMM")
+    : "Jan";
 
+  // Extract data for the selected month, including 'fill' color
+  const categoryData = Object.entries(
+    dataJson.graphs.find((graph) => graph.title === "Top Categories (Articles Published)")?.data || {}
+  ).map(([category, values]) => {
+    return {
+      category,
+      articles: values[selectedMonthName as keyof typeof values] || 0,
+      fill: values.fill, // Include the fill color from the JSON
+    };
+  });
 
+  // Calculate total articles for the selected month
+  const totalArticles = React.useMemo(() => {
+    return categoryData.reduce((acc, curr) => acc + curr.articles, 0);
+  }, [categoryData]);
+
+  // Determine the most and least popular categories
+  const mostCategory = categoryData.reduce((prev, curr) =>
+    curr.articles > prev.articles ? curr : prev,
+    categoryData[0]
+  );
+
+  const leastCategory = categoryData.reduce((prev, curr) =>
+    curr.articles < prev.articles ? curr : prev,
+    categoryData[0]
+  );
+
+  // Prepare chart data for the pie chart
+  const chartData = categoryData.map((data) => ({
+    browser: data.category, // Use the category name as the browser label
+    visitors: data.articles, // Map articles to the 'visitors' field
+    fill: data.fill, // Include the fill color
+  }));
 
   return (
     <Card className="flex flex-col">
       <CardHeader className="items-center pb-0">
-        <CardTitle>What Stories Are Capturing Attention?</CardTitle>
-        {/* <CardDescription>January - June 2024</CardDescription> */}
-        <div className="flex justify-center items-center">
-{/* <DatePickerWithRange/> */}
-</div>
+        <CardTitle className="font-bold">What Stories Are Capturing Attention?</CardTitle>
       </CardHeader>
       <CardContent className="flex-1 pb-0">
-        <ChartContainer
-          config={chartConfig}
-          className="mx-auto aspect-square max-h-[350px]"
-        >
+        <ChartContainer config={chartConfig}>
           <PieChart>
-            <ChartTooltip
-              cursor={false}
-              content={<ChartTooltipContent hideLabel />}
-            />
+            <ChartTooltip cursor={false} />
             <Pie
               data={chartData}
               dataKey="visitors"
               nameKey="browser"
-              innerRadius={80}
+              innerRadius={60}
               strokeWidth={5}
             >
               <Label
@@ -118,18 +144,19 @@ export function Top() {
                           y={viewBox.cy}
                           className="fill-text text-4xl font-bold"
                         >
-                          {totalVisitors.toLocaleString()}
+                          {totalArticles.toLocaleString()}
                         </tspan>
                         <tspan
                           x={viewBox.cx}
                           y={(viewBox.cy || 0) + 24}
                           className="fill-muted-foreground"
                         >
-                          Visitors
+                          Articles
                         </tspan>
                       </text>
-                    )
+                    );
                   }
+                  return null;
                 }}
               />
             </Pie>
@@ -138,15 +165,12 @@ export function Top() {
       </CardContent>
       <CardFooter className="flex-col text-center gap-2 text-base">
         <div className="leading-none text-muted-foreground">
-          {/* Showing total visitors for the last 6 months */}
-The plot shows that {mostLabel} is receiving the most attention, while {leastLabel} is getting the least. To enhance overall engagement, attention should be directed toward increasing content for {leastLabel} while maintaining the strong appeal of {mostLabel}.
+          The plot shows that {mostCategory.category} is receiving the most attention, while {leastCategory.category} is getting the least. Consider focusing more on {leastCategory.category} while maintaining the appeal of {mostCategory.category}.
         </div>
       </CardFooter>
     </Card>
-    
-  )
+  );
 }
-
 const chart2Data = [
   { browser: "politics", visitors: generateRandomNumber(100, 500), fill: "var(--color-politics)" },
   { browser: "art", visitors: generateRandomNumber(100, 500), fill: "var(--color-art)" },
@@ -173,7 +197,7 @@ export function PerAuthor() {
   return (
     <Card>
       <CardHeader className="items-center pb-0">
-        <CardTitle>Personalized Content by Author</CardTitle>
+        <CardTitle className="font-bold">Personalized Content by Author</CardTitle>
         <div className="flex justify-center items-center">
           {/* <DatePickerWithRange/> */}
         </div>
@@ -234,15 +258,15 @@ const age = [
 const charConfig = {
   housing: {
     label: "Housing",
-    color: "hsl(var(--chart-1))",
+    color: "hsl(var(--chart-a5))",
   },
   politics: {
     label: "Politics",
-    color: "hsl(var(--chart-2))",
+    color: "hsl(var(--chart-a1))",
   },
   government: {
-    label: "Government",
-    color: "hsl(var(--chart-3))",
+    label: "Arts",
+    color: "hsl(var(--chart-a2))",
   },
 } satisfies ChartConfig
 
@@ -281,7 +305,7 @@ export function AgeGroup() {
   return (
     <Card>
       <CardHeader className="items-center pb-0">
-        <CardTitle>Reaching Every Age Group</CardTitle>
+        <CardTitle className="font-bold">Reaching Every Age Group</CardTitle>
         <div className="flex justify-center items-center">
           {/* <DatePickerWithRange/> */}
         </div>
@@ -345,7 +369,7 @@ export function VisitorStoryRatio() {
   return (
     <Card>
       <CardHeader className="items-center pb-0">
-        <CardTitle>Are Readers Staying Engaged?</CardTitle>
+        <CardTitle className="font-bold">Are Readers Staying Engaged?</CardTitle>
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig}>
@@ -368,7 +392,7 @@ export function VisitorStoryRatio() {
               cursor={false}
               content={<ChartTooltipContent hideLabel />}
             />
-            <Bar dataKey="desktop" fill="var(--color-desktop)" radius={8}>
+            <Bar dataKey="desktop" fill="hsl(var(--ring))" radius={8}>
               <LabelList
                 position="top"
                 offset={12}
@@ -388,12 +412,15 @@ export function VisitorStoryRatio() {
   )
 }
 
+type TagsProps = {
+  selectedMonth?: Date;
+};
 
-const Tags = () => {
+const Tags : React.FC<TagsProps> = ({ selectedMonth }) =>{
   return (
       <>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-              <Top />
+              <Top selectedMonth={selectedMonth}/>
               <AgeGroup />
               <PerAuthor />
               <VisitorStoryRatio />
