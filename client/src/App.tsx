@@ -2,7 +2,6 @@
 
 import './App.css';
 import { useState } from 'react';
-import { MantineProvider } from '@mantine/core'; 
 import Dashboard from './pages/Dashboard'; // Import the main dashboard component
 import Login from './pages/Login'; // Import the login page
 

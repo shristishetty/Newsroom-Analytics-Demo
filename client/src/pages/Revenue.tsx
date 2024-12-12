@@ -12,7 +12,7 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import {
-  ChartConfig,
+  // ChartConfig,
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
@@ -195,10 +195,16 @@ console.log(sortedData);
 import * as React from "react"
 
   
-  const chartConfig = {
-    visitors: {
-      label: "Visitors",
-    },
+
+interface ChartConfig {
+  [key: string]: { label: string; color: string };
+}
+
+// Example chartConfig object
+const chartConfig: ChartConfig = {
+    // visitors: {
+    //   label: "Visitors",
+    // },
     Politics: {
       label: "Politics",
       color: "hsl(var(--chart-a1))",
@@ -231,7 +237,7 @@ import * as React from "react"
       label: "Event Count",
       color: "hsl(var(--chart-1))",
     }
-  } satisfies ChartConfig
+  } 
   
 
 
@@ -243,10 +249,12 @@ import * as React from "react"
     const revenueData = Object.entries(
       dataJson.graphs.find((graph) => graph.title === "Revenue per Article Theme (USD)")?.data || {}
     ).map(([theme, revenuePerMonth]) => {
+      const revenue = (revenuePerMonth as Record<string, number>)[selectedMonthName] || 0; // Cast to Record for safety
+    
       return {
         theme,
-        revenue: revenuePerMonth[selectedMonthName as keyof typeof revenuePerMonth] || 0,
-        color: chartConfig[theme]?.color || "#ff0",
+        revenue,
+        color: chartConfig[theme as keyof typeof chartConfig]?.color || "#ff0", // Safe dynamic access
       };
     });
     

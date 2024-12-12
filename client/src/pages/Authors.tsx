@@ -1,6 +1,5 @@
 "use client"
 
-import { TrendingUp } from "lucide-react"
 import { Bar, BarChart, CartesianGrid, LabelList, XAxis,YAxis } from "recharts"
 
 import {
@@ -35,15 +34,23 @@ export function Overperformance({ selectedMonth }: { selectedMonth?: Date }) {
     return <div>No data available</div>;
   }
 
-  // Prepare the month data for each author
+  type AuthorData = {
+    [key: string]: number | string; // Generic properties
+    fill: string; // Force 'fill' to always be a string
+  };
+  
   const monthData = Object.keys(graphData).reduce((acc, author) => {
-    const authorData = graphData[author];
+    const authorData = graphData[author as keyof typeof graphData] as Partial<AuthorData>;
+  
     acc[author] = {
-      overperformance: authorData ? authorData[selectedMonthName as keyof typeof authorData] : 0,
-      fill: authorData?.fill || '',  // Add fill color
+      overperformance: authorData
+        ? (authorData[selectedMonthName as keyof typeof authorData] as number) || 0
+        : 0,
+      fill: authorData?.fill || '', // Default value ensures 'fill' is a string
     };
+  
     return acc;
-  }, {} as Record<string, { overperformance: number, fill: string }>);
+  }, {} as Record<string, { overperformance: number; fill: string }>);
 
   // Convert the monthData object into an array for sorting and chart rendering
   const sortedData = Object.entries(monthData)
@@ -217,18 +224,18 @@ const generateRandomNumber = (min: number, max: number) => {
 };
 
 // Top
-const chartData = [
-  { browser: "politics", visitors: generateRandomNumber(1000, 5000), fill: "var(--color-politics)" },
-  { browser: "art", visitors: generateRandomNumber(1000, 5000), fill: "var(--color-art)" },
-  { browser: "environment", visitors: generateRandomNumber(1000, 5000), fill: "var(--color-environment)" },
-  { browser: "health", visitors: generateRandomNumber(1000, 5000), fill: "var(--color-health)" },
-  { browser: "housing", visitors: generateRandomNumber(1000, 5000), fill: "var(--color-housing)" },
-];
-const mostStory = Math.max(...chartData.map((item) => item.visitors));
-const mostLabel = chartData.find((item) => item.visitors === mostStory)?.browser || "";
+// const chartData = [
+//   { browser: "politics", visitors: generateRandomNumber(1000, 5000), fill: "var(--color-politics)" },
+//   { browser: "art", visitors: generateRandomNumber(1000, 5000), fill: "var(--color-art)" },
+//   { browser: "environment", visitors: generateRandomNumber(1000, 5000), fill: "var(--color-environment)" },
+//   { browser: "health", visitors: generateRandomNumber(1000, 5000), fill: "var(--color-health)" },
+//   { browser: "housing", visitors: generateRandomNumber(1000, 5000), fill: "var(--color-housing)" },
+// ];
+// const mostStory = Math.max(...chartData.map((item) => item.visitors));
+// const mostLabel = chartData.find((item) => item.visitors === mostStory)?.browser || "";
 
-const leastStory = Math.min(...chartData.map((item) => item.visitors));
-const leastLabel = chartData.find((item) => item.visitors === leastStory)?.browser || "";
+// const leastStory = Math.min(...chartData.map((item) => item.visitors));
+// const leastLabel = chartData.find((item) => item.visitors === leastStory)?.browser || "";
 
 const chartConfig = {
   visitors: {
@@ -335,14 +342,6 @@ export function PerAuthor() {
 
 
 
-const age = [
-  { month: "18-24", housing: generateRandomNumber(50, 200), politics: generateRandomNumber(50, 150), government: generateRandomNumber(100, 300) },
-  { month: "25-34", housing: generateRandomNumber(100, 300), politics: generateRandomNumber(100, 250), government: generateRandomNumber(200, 500) },
-  { month: "35-44", housing: generateRandomNumber(100, 250), politics: generateRandomNumber(80, 200), government: generateRandomNumber(100, 400) },
-  { month: "45-54", housing: generateRandomNumber(50, 150), politics: generateRandomNumber(100, 250), government: generateRandomNumber(150, 400) },
-  { month: "55-64", housing: generateRandomNumber(100, 300), politics: generateRandomNumber(50, 200), government: generateRandomNumber(100, 350) },
-  { month: "65+", housing: generateRandomNumber(100, 250), politics: generateRandomNumber(50, 200), government: generateRandomNumber(100, 300) },
-];
 
 
 
