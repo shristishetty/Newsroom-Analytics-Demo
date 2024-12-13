@@ -259,7 +259,7 @@ const chartConfig: ChartConfig = {
       return {
         theme,
         revenue,
-        color: isChartConfigKey(theme) ? String(chartConfig[theme].color) : "#ff0",
+        color: isChartConfigKey(theme) ? chartConfig[theme].color : "#ff0", // Safely access chartConfig
       };
     });
   
@@ -272,7 +272,7 @@ const chartConfig: ChartConfig = {
     const chartData = revenueData.map((data) => ({
       browser: data.theme, // Use the theme name as the browser label
       visitors: data.revenue, // Map revenue to the 'visitors' field
-      fill: String(data.color), // Ensure the fill color is a string
+      fill: data.color, // Color is guaranteed to be a string
     }));
   
     return (
@@ -343,8 +343,6 @@ const chartConfig: ChartConfig = {
     );
   }
   
-  
-
 type RevenueProps = {
   selectedMonth?: Date;
 };
