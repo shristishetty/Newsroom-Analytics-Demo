@@ -175,11 +175,7 @@ export function EventCount({ selectedMonth }: { selectedMonth?: Date }) {
   );
 }
 
-interface ChartConfig {
-  [key: string]: { label: string; color: string };
-}
-
-const chartConfig: ChartConfig = {
+const chartConfig: Record<string, { label: string; color: string }> = {
   Politics: { label: "Politics", color: "hsl(var(--chart-a1))" },
   Arts: { label: "Art & Culture", color: "hsl(var(--chart-a2))" },
   Environment: { label: "Environment", color: "hsl(var(--chart-a3))" },
