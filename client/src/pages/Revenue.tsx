@@ -246,17 +246,9 @@ export function RevenueAttribution({ selectedMonth }: { selectedMonth?: Date }) 
                         >
                           {totalRevenue.toLocaleString()}
                         </tspan>
-                        <tspan
-                          x={viewBox.cx}
-                          y={(viewBox.cy || 0) + 24}
-                          className="fill-muted-foreground"
-                        >
-                          Dollars ($)
-                        </tspan>
                       </text>
                     );
                   }
-                  return null;
                 }}
               />
             </Pie>
@@ -265,7 +257,8 @@ export function RevenueAttribution({ selectedMonth }: { selectedMonth?: Date }) 
       </CardContent>
       <CardFooter className="flex-col text-center gap-2 text-base">
         <div className="leading-none text-muted-foreground">
-          To maximize revenue potential, investing in Health and Politics, which attract the highest visitor engagement, could yield significant returns.
+          The data is showing the highest revenue in the Health and Politics sectors. This highlights
+          a profitable opportunity in these themes.
         </div>
       </CardFooter>
     </Card>
