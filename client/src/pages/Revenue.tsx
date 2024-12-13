@@ -245,19 +245,23 @@ const chartConfig: ChartConfig = {
     // Default to "Jan" if no month is provided
     const selectedMonthName = selectedMonth ? format(selectedMonth, "MMM") : "Jan";
   
+    // Type guard to ensure the key exists in chartConfig
+    function isChartConfigKey(key: string): key is keyof typeof chartConfig {
+      return key in chartConfig;
+    }
+  
     // Get the revenue data for the selected month
     const revenueData = Object.entries(
       dataJson.graphs.find((graph) => graph.title === "Revenue per Article Theme (USD)")?.data || {}
     ).map(([theme, revenuePerMonth]) => {
-      const revenue = (revenuePerMonth as Record<string, number>)[selectedMonthName] || 0; // Cast to Record for safety
-    
+      const revenue = (revenuePerMonth as Record<string, number>)[selectedMonthName] || 0;
+  
       return {
         theme,
         revenue,
-        color: chartConfig[theme as keyof typeof chartConfig]?.color || "#ff0", // Safe dynamic access
+        color: isChartConfigKey(theme) ? chartConfig[theme].color : "#ff0",
       };
     });
-    
   
     // Calculate total revenue for the selected month
     const totalRevenue = React.useMemo(() => {
@@ -338,6 +342,7 @@ const chartConfig: ChartConfig = {
       </Card>
     );
   }
+  
 
 type RevenueProps = {
   selectedMonth?: Date;

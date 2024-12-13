@@ -409,7 +409,7 @@ export function Source({ selectedMonth }: { selectedMonth?: Date }) {
       </CardContent>
       <CardFooter className="flex-col text-center gap-2 text-base">
         <div className="leading-none text-muted-foreground">
-          Visitor traffic peaks on {first} and {second}, while {least} and {least2} show lower engagement. <br/>Focus on strengthening successful channels and optimizing underperforming ones.
+          Visitor traffic peaks on {first} and {second}, while {least} and {least2} show lower engagement. Focus on strengthening successful channels and optimizing underperforming ones.
         </div>
       </CardFooter>
     </Card>
