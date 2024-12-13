@@ -2,13 +2,11 @@
 
 import * as React from "react"
 // import { TrendingUp } from "lucide-react"
-import { Label, Pie, PieChart } from "recharts"
 import { Bar, BarChart, XAxis, YAxis, CartesianGrid, LabelList } from "recharts"
 
 import {
   Card,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
@@ -18,30 +16,13 @@ import {
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
-  ChartLegend,
-  ChartLegendContent
 } from "../components/ui/chart"
 
-import dataJson from './data.json';
-import { format } from "date-fns";
 
 const generateRandomNumber = (min: number, max: number) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
-// Top
-const chartData = [
-  { browser: "politics", visitors: generateRandomNumber(1000, 5000), fill: "var(--color-politics)" },
-  { browser: "art", visitors: generateRandomNumber(1000, 5000), fill: "var(--color-art)" },
-  { browser: "environment", visitors: generateRandomNumber(1000, 5000), fill: "var(--color-environment)" },
-  { browser: "health", visitors: generateRandomNumber(1000, 5000), fill: "var(--color-health)" },
-  { browser: "housing", visitors: generateRandomNumber(1000, 5000), fill: "var(--color-housing)" },
-];
-const mostStory = Math.max(...chartData.map((item) => item.visitors));
-const mostLabel = chartData.find((item) => item.visitors === mostStory)?.browser || "";
-
-const leastStory = Math.min(...chartData.map((item) => item.visitors));
-const leastLabel = chartData.find((item) => item.visitors === leastStory)?.browser || "";
 
 const chartConfig = {
   visitors: {
@@ -146,19 +127,6 @@ export function PerAuthor() {
 
 
 
-
-
-const age = [
-  { month: "18-24", housing: generateRandomNumber(50, 200), politics: generateRandomNumber(50, 150), government: generateRandomNumber(100, 300) },
-  { month: "25-34", housing: generateRandomNumber(100, 300), politics: generateRandomNumber(100, 250), government: generateRandomNumber(200, 500) },
-  { month: "35-44", housing: generateRandomNumber(100, 250), politics: generateRandomNumber(80, 200), government: generateRandomNumber(100, 400) },
-  { month: "45-54", housing: generateRandomNumber(50, 150), politics: generateRandomNumber(100, 250), government: generateRandomNumber(150, 400) },
-  { month: "55-64", housing: generateRandomNumber(100, 300), politics: generateRandomNumber(50, 200), government: generateRandomNumber(100, 350) },
-  { month: "65+", housing: generateRandomNumber(100, 250), politics: generateRandomNumber(50, 200), government: generateRandomNumber(100, 300) },
-];
-
-
-
 const visitorChartData = [
   { month: "January", desktop: generateRandomNumber(50, 300) },
   { month: "February", desktop: generateRandomNumber(50, 300) },
@@ -220,7 +188,7 @@ type TagsProps = {
   selectedMonth?: Date;
 };
 
-const Tags : React.FC<TagsProps> = ({ selectedMonth }) =>{
+const Tags : React.FC<TagsProps> = ({}) =>{
   return (
       <>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">

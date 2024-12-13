@@ -1,10 +1,8 @@
 "use client"
 
 import * as React from "react"
-import { useEffect, useState } from "react";
 
-import { Facebook, TrendingUp } from "lucide-react"
-import { Area, AreaChart, CartesianGrid, XAxis,Bar, BarChart, LabelList, Pie, PieChart, Line, LineChart ,Label, PolarAngleAxis, PolarGrid, Radar, RadarChart, Rectangle  } from "recharts"
+import { Area, AreaChart, CartesianGrid, XAxis,Bar, BarChart, PolarAngleAxis, PolarGrid, Radar, RadarChart} from "recharts"
 import { format } from "date-fns";
 
 import {

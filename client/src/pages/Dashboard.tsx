@@ -2,7 +2,6 @@
 
 import '../App.css';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../components/ui/tabs";
-import Tags from "./Tags";
 import Authors from "./Authors";
 import Users from "./Users";
 import Revenue from './Revenue';
@@ -10,7 +9,6 @@ import Features from './Features';
 import Landing from './Landing';
 
 import { useState } from 'react';
-import React from "react";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
 import { CalendarIcon } from "lucide-react";

@@ -1,12 +1,10 @@
 "use client"
 import React from 'react'
 import { Label, Pie, PieChart } from "recharts"
-import { Bar, BarChart, XAxis, YAxis, CartesianGrid, LabelList } from "recharts"
 
 import {
   Card,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
@@ -16,8 +14,6 @@ import {
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
-  ChartLegend,
-  ChartLegendContent
 } from "../components/ui/chart"
 
 import dataJson from './data.json';

@@ -1,6 +1,5 @@
 "use client";
 
-import { TrendingUp } from "lucide-react";
 import {
   Bar,
   BarChart,
@@ -32,11 +31,6 @@ import dataJson from "./data.json";
 import { format } from "date-fns";
 import * as React from "react";
 
-// Helper function to generate random numbers
-const generateRandomNumber = (min: number, max: number) => {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-};
-
 // Random data for chart visualization
 const generateRandomData = () => {
   return [
@@ -50,7 +44,7 @@ const generateRandomData = () => {
 
 const graphchartData = generateRandomData();
 
-export function SubscriberThemes({ selectedMonth }: { selectedMonth?: Date }) {
+export function SubscriberThemes({ }: { selectedMonth?: Date }) {
   return (
     <Card>
       <CardHeader className="items-center pb-0">
