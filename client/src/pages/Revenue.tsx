@@ -134,7 +134,7 @@ export function EventCount({ selectedMonth }: { selectedMonth?: Date }) {
     NonSubscribers: graphData.NonSubscribers
       ? {
           value: Number(graphData.NonSubscribers[selectedMonthName as keyof typeof graphData.NonSubscribers]) || 0,
-          fill: graphData.NonSubscribers.fill,
+          fill: eventConfig['NonSubscribers'].color,
         }
       : { value: 0, fill: "" },
   };

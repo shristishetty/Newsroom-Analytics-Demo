@@ -1,37 +1,33 @@
 import json
 from flask import Flask, request, jsonify
-from transformers import pipeline
 import os
 from dotenv import load_dotenv
+from openai import OpenAI
 
 app = Flask(__name__)
 
-# Load environment variables
-load_dotenv()
-huggingface_token = os.getenv("HUGGINGFACE_API_KEY")
-
-# Initialize the pipeline with FLAN-T5
-pipe = pipeline("text2text-generation", model="google/flan-t5-base")
-
-# Load data from JSON
 with open('../client/src/pages/data.json', 'r') as f:
     data = json.load(f)
+
+load_dotenv()
+os.getenv('OPENAI_API_KEY')
+client = OpenAI()
 
 @app.route('/ask', methods=['POST'])
 def ask_question():
     question = request.json.get('question', None)
+    if not question:
+        return jsonify({"error": "No question provided."}), 400
 
     try:
-        # Prepare the prompt
-        prompt = (
-            f"The following is a dataset:\n{json.dumps(data)}\n\n"
-            f"Based on the dataset, answer the following question in complete sentences:\n{question}\n\n"
+        completion = client.chat.completions.create(
+            model="gpt-3.5-turbo",
+            messages=[{
+                "role": "user",
+                "content": f"Answer the following question based on this data:\n{json.dumps(data)}\n\nQuestion: {question}"
+            }]
         )
-
-        # Generate the response
-        generated_text = pipe(prompt, max_length=200, num_return_sequences=1)
-        answer = generated_text[0]["generated_text"].strip()
-
+        answer = completion.choices[0].message.content
         return jsonify({"question": question, "answer": answer})
 
     except Exception as e:
