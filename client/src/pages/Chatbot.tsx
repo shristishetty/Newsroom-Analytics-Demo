@@ -25,7 +25,7 @@ export default function Chatbot() {
 
     try {
       // Send message to Flask API
-      const response = await fetch("http://127.0.0.1:5000/ask", {
+      const response = await fetch("https://newsroom-analytics-demo.onrender.com/ask", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -3,8 +3,10 @@ from flask import Flask, request, jsonify
 import os
 from dotenv import load_dotenv
 from openai import OpenAI
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app, resources={r"/*": {"origins": "https://newsroom-analytics-demo.vercel.app/"}})
 
 import os
 
