@@ -6,7 +6,7 @@ from openai import OpenAI
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "https://newsroom-analytics-demo.vercel.app/"}})
+CORS(app, resources={r"/*": {"origins": ["https://newsroom-analytics-demo.vercel.app", "http://localhost:5173"]}})
 
 import os
 
@@ -20,8 +20,15 @@ load_dotenv()
 os.getenv('OPENAI_API_KEY')
 client = OpenAI()
 
-@app.route('/ask', methods=['POST'])
+@app.route('/ask', methods=['OPTIONS', 'POST'])
 def ask_question():
+    if request.method == 'OPTIONS':
+        # Handle preflight request
+        response = jsonify()
+        response.headers.add("Access-Control-Allow-Origin", "https://newsroom-analytics-demo.vercel.app")
+        response.headers.add("Access-Control-Allow-Headers", "Content-Type,Authorization")
+        response.headers.add("Access-Control-Allow-Methods", "OPTIONS,POST")
+        return response, 200
     question = request.json.get('question', None)
     if not question:
         return jsonify({"error": "No question provided."}), 400

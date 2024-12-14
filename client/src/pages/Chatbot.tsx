@@ -31,6 +31,7 @@ export default function Chatbot() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ question }),
+        mode: "cors",
       });
       
 
