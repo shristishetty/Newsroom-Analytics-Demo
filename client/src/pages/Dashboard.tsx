@@ -45,17 +45,19 @@ function Dashboard() {
         </p>
       </div>
       <div className="p-5">
-        <Tabs defaultValue="Landing">
-          <div className="flex flex-col md:flex-row items-start gap-4">
-            <div className="overflow-x-auto whitespace-nowrap flex-1">
-              <TabsList className="flex gap-2">
-              <TabsTrigger value="Landing" className="p-2">Info</TabsTrigger>
-                <TabsTrigger value="User" className="p-2">User Demographics</TabsTrigger>
-                <TabsTrigger value="Author" className="p-2">Author Performance</TabsTrigger>
-                <TabsTrigger value="Revenue" className="p-2">Revenue Attribution</TabsTrigger>
-                <TabsTrigger value="Features" className="p-2">Features</TabsTrigger>
-              </TabsList>
-            </div>
+  <Tabs defaultValue="Landing">
+    <div className="flex flex-col md:flex-row items-start gap-4">
+      {/* Tabs Section */}
+      <div className="w-full md:flex-1 overflow-x-auto whitespace-nowrap">
+        <TabsList className="flex gap-2 md:justify-start justify-center">
+          <TabsTrigger value="Landing" className="p-2 text-sm">Info</TabsTrigger>
+          <TabsTrigger value="User" className="p-2 text-sm">User Demographics</TabsTrigger>
+          <TabsTrigger value="Author" className="p-2 text-sm">Author Performance</TabsTrigger>
+          <TabsTrigger value="Revenue" className="p-2 text-sm">Revenue Attribution</TabsTrigger>
+          <TabsTrigger value="Features" className="p-2 text-sm">Features</TabsTrigger>
+        </TabsList>
+      </div>
+
 
             {/* DateRangePicker positioned next to TabsList on desktop */}
             <div className="mt-4 md:mt-0 md:ml-4">
