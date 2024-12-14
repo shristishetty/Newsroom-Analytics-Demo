@@ -1,4 +1,4 @@
 Flask
 OpenAI
 Gunicorn
-dotenv
+python-dotenv
