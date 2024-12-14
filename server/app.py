@@ -6,8 +6,13 @@ from openai import OpenAI
 
 app = Flask(__name__)
 
-with open('../client/src/pages/data.json', 'r') as f:
-    data = json.load(f)
+import os
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+data_path = os.path.join(BASE_DIR, '../client/src/pages/data.json')
+
+with open(data_path, 'r') as f:
+    data = f.read()
 
 load_dotenv()
 os.getenv('OPENAI_API_KEY')
