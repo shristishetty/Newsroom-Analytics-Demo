@@ -20,15 +20,8 @@ load_dotenv()
 os.getenv('OPENAI_API_KEY')
 client = OpenAI()
 
-@app.route('/ask', methods=['OPTIONS', 'POST'])
+@app.route('/ask', methods=['POST'])
 def ask_question():
-    if request.method == 'OPTIONS':
-        # Handle preflight request
-        response = jsonify()
-        response.headers.add("Access-Control-Allow-Origin", "https://newsroom-analytics-demo.vercel.app")
-        response.headers.add("Access-Control-Allow-Headers", "Content-Type,Authorization")
-        response.headers.add("Access-Control-Allow-Methods", "OPTIONS,POST")
-        return response, 200
     question = request.json.get('question', None)
     if not question:
         return jsonify({"error": "No question provided."}), 400
