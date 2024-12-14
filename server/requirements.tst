@@ -1,0 +1,3 @@
+Flask
+OpenAI
+Gunicorn
