@@ -13,25 +13,75 @@ export default function Chatbot() {
   ]);
   const [loading, setLoading] = useState(false);
 
+  // const handleSendMessage = async () => {
+  //   if (!input.trim()) return;
+
+  //   setMessages((prev) => [...prev, { type: "outgoing", text: input }]);
+
+  //   const question = input;
+  //   setInput("");
+  //   setLoading(true);
+
+  //   try {
+  //     const response = await fetch("https://newsroom-analytics-demo.onrender.com/ask", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({ question }),
+  //       mode: "cors",
+  //     });
+
+  //     const data = await response.json();
+  //     if (response.ok) {
+  //       setMessages((prev) => [
+  //         ...prev,
+  //         { type: "incoming", text: data.answer || "I'm sorry, I don't understand." },
+  //       ]);
+  //     } else {
+  //       setMessages((prev) => [
+  //         ...prev,
+  //         { type: "incoming", text: data.error || "An error occurred." },
+  //       ]);
+  //     }
+  //   } catch (error) {
+  //     console.error("Error:", error);
+  //     setMessages((prev) => [
+  //       ...prev,
+  //       { type: "incoming", text: "Failed to connect to the server." },
+  //     ]);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+
   const handleSendMessage = async () => {
     if (!input.trim()) return;
-
+  
     setMessages((prev) => [...prev, { type: "outgoing", text: input }]);
-
+  
     const question = input;
     setInput("");
     setLoading(true);
-
+  
+    // Prepare conversation context (convert messages to a format usable by backend)
+    const conversation = messages.map((msg) => {
+      return {
+        role: msg.type === "incoming" ? "assistant" : "user",
+        content: msg.text,
+      };
+    });
+    console.log({ question, conversation });
     try {
       const response = await fetch("https://newsroom-analytics-demo.onrender.com/ask", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ question }),
+        body: JSON.stringify({ question, conversation }), 
         mode: "cors",
       });
-
+  
       const data = await response.json();
       if (response.ok) {
         setMessages((prev) => [
@@ -54,7 +104,7 @@ export default function Chatbot() {
       setLoading(false);
     }
   };
-
+  
   return (
     <>
       {isOpen && (
