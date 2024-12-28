@@ -73,7 +73,7 @@ export default function Chatbot() {
     });
     console.log({ question, conversation });
     try {
-      const response = await fetch("https://newsroom-analytics-demo.onrender.com/ask", {
+      const response = await fetch("https://newsroom-analytics-demo.vercel.app/ask", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
