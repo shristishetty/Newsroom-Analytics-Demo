@@ -11,7 +11,7 @@ CORS(app, resources={r"/*": {"origins": ["https://newsroom-analytics-demo.vercel
 import os
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-data_path = os.path.join(BASE_DIR, '../client/src/pages/data.json')
+data_path = os.path.join(BASE_DIR, 'src/pages/data.json')
 
 with open(data_path, 'r') as f:
     data = f.read()
