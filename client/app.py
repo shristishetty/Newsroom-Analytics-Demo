@@ -28,7 +28,7 @@ def ask_question():
     conversation.append({
         "role": "system",
         "content": (
-            f"You are an AI assistant tasked with answering questions strictly based on the following dataset:\n{json.dumps(data)}\n"
+            f"You are an AI assistant that has access to data on local newsrooms and is tasked with answering questions related to audience analytics strictly based on the following dataset:\n{json.dumps(data)}\n"
             "Do not provide information that is not explicitly present in the dataset. "
             "Keep your answers short, concise, and directly relevant to the dataset."
         )
