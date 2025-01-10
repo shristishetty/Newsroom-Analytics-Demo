@@ -1,3 +1,5 @@
+
+
 // "use client";
 
 // import '../App.css';
@@ -7,8 +9,9 @@
 // import Revenue from './Revenue';
 // import Features from './Features';
 // import Landing from './Landing';
+// import TourGuide from './TourGuide';
 
-// import { useState } from 'react';
+// import { useEffect, useState } from 'react';
 // import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 // import { Button } from "@/components/ui/button";
 // import { CalendarIcon } from "lucide-react";
@@ -16,6 +19,8 @@
 // import { cn } from "@/lib/utils";
 // import { MonthPicker } from "@/components/ui/monthpicker";
 // import Chatbot from './Chatbot';
+
+// import { Select, SelectTrigger, SelectValue, SelectItem, SelectContent } from '@/components/ui/select'; // Import the Select components
 
 // function Date({ onMonthSelect, selectedMonth }: { onMonthSelect: (date: Date) => void, selectedMonth?: Date }) {
 //   return (
@@ -35,8 +40,31 @@
 
 // function Dashboard() {
 //   const [selectedMonth, setSelectedMonth] = useState<Date | undefined>(undefined);
+//   const [selectedTab, setSelectedTab] = useState<string>("Landing");
+//   const [startTour, setStartTour]= useState(true);
+//   const [loaded, setLoaded]= useState(false)
+
+
+//   useEffect(()=>{
+//     setLoaded(true);
+//   },[])
+
+//   const handleStartTour = () =>{
+//     setStartTour(true);
+//   }
+//   const handleTourEnd = () =>{
+//     setStartTour(false);
+//   }
+
+//   if(!loaded){
+//     return null;
+//   }
+
 
 //   return (
+//     <div className='w-full'>
+      
+
 //     <div className='bg-back text-text p-6'>
 //       <div className='w-full text-justify sm:w-1/2 sm:text-start'>
 //         <h1 className='text-3xl font-bold pl-5'>Newsroom Analytics</h1>
@@ -45,34 +73,53 @@
 //         </p>
 //       </div>
 //       <div className="p-5">
-//   <Tabs defaultValue="Landing">
-//     <div className="flex flex-col md:flex-row items-start gap-4">
-//       {/* Tabs Section */}
-//       <div className="w-full md:flex-1 overflow-x-auto whitespace-nowrap">
-//         <TabsList className="flex gap-2 md:justify-start justify-center">
-//           <TabsTrigger value="Landing" className="p-2 text-sm">Info</TabsTrigger>
-//           <TabsTrigger value="User" className="p-2 text-sm">User Demographics</TabsTrigger>
-//           <TabsTrigger value="Author" className="p-2 text-sm">Author Performance</TabsTrigger>
-//           <TabsTrigger value="Revenue" className="p-2 text-sm">Revenue Attribution</TabsTrigger>
-//           <TabsTrigger value="Features" className="p-2 text-sm">Features</TabsTrigger>
-//         </TabsList>
-//       </div>
+//         <Tabs value={selectedTab} onValueChange={setSelectedTab}>
+//           <div className="flex flex-col md:flex-row items-start gap-4">
+//             {/* Tabs Section */}
+//             <div className="w-full md:flex-1 overflow-x-auto whitespace-nowrap">
+//               {/* For larger screens, display TabsList */}
+//               <div className="hidden md:flex gap-2 justify-start">
+//                 <TabsList>
+//                   <TabsTrigger id="step-1" value="Landing" className="p-2 text-sm">Info</TabsTrigger>
+//                   <TabsTrigger id="step-2" value="User" className="p-2 text-sm">User Demographics</TabsTrigger>
+//                   <TabsTrigger id="step-3" value="Author" className="p-2 text-sm">Author Performance</TabsTrigger>
+//                   <TabsTrigger id="step-4" value="Revenue" className="p-2 text-sm">Revenue Attribution</TabsTrigger>
+//                   <TabsTrigger id="step-5" value="Features" className="p-2 text-sm">Features</TabsTrigger>
+//                 </TabsList>
+//               </div>
 
+//               {/* For smaller screens, display Select dropdown */}
+//               <div className="md:hidden w-full">
+//                 <Select value={selectedTab} onValueChange={setSelectedTab}>
+//                   <SelectTrigger className="w-full">
+//                     <SelectValue placeholder="Select Tab" />
+//                   </SelectTrigger>
+//                   <SelectContent>
+//                     <SelectItem value="Landing">Info</SelectItem>
+//                     <SelectItem value="User">User Demographics</SelectItem>
+//                     <SelectItem value="Author">Author Performance</SelectItem>
+//                     <SelectItem value="Revenue">Revenue Attribution</SelectItem>
+//                     <SelectItem value="Features">Features</SelectItem>
+//                   </SelectContent>
+//                 </Select>
+//               </div>
+//             </div>
 
 //             {/* DateRangePicker positioned next to TabsList on desktop */}
-//             <div className="mt-4 md:mt-0 md:ml-4">
+//             <div className="md:mt-0 md:ml-4 flex justify-center">
 //               <Date onMonthSelect={setSelectedMonth} selectedMonth={selectedMonth} />
 //             </div>
 //           </div>
 
+//           {/* Tab Contents */}
 //           <TabsContent value="User">
 //             <Users selectedMonth={selectedMonth} />
 //           </TabsContent>
 //           <TabsContent value="Author">
-//             <Authors selectedMonth={selectedMonth}/>
+//             <Authors selectedMonth={selectedMonth} />
 //           </TabsContent>
 //           <TabsContent value="Landing">
-//             <Landing/>
+//             <Landing />
 //           </TabsContent>
 //           <TabsContent value="Revenue">
 //             <Revenue selectedMonth={selectedMonth} />
@@ -83,15 +130,26 @@
 //         </Tabs>
 //       </div>
 
-//       <Chatbot/>
+//       <div className='flex justify-center'>
+//         <button className="px-4 py-2 text-white bg-blue-500 rounded-md absolute top-4" onClick={handleStartTour}>Start Tour</button>
+//       </div>
+//       {startTour && (
+//         <TourGuide start={startTour} setStartTour={setStartTour} onTourEnd={handleTourEnd}/>
+//       )}
+
+// <Chatbot id="step-6"/>
+
+      
 //       <hr />
 //       <h1 className='text-3xl text-center font-bold pl-5 mt-6'>Find Our Product Interesting?</h1>
 //       <h2 className='text-lg text-center pl-5'>Contact us at swapneet@mit.edu</h2>
+//     </div>
 //     </div>
 //   );
 // }
 
 // export default Dashboard;
+
 
 
 "use client";
@@ -103,8 +161,9 @@ import Users from "./Users";
 import Revenue from './Revenue';
 import Features from './Features';
 import Landing from './Landing';
+import TourGuide from './TourGuide';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
 import { CalendarIcon } from "lucide-react";
@@ -113,7 +172,7 @@ import { cn } from "@/lib/utils";
 import { MonthPicker } from "@/components/ui/monthpicker";
 import Chatbot from './Chatbot';
 
-import { Select, SelectTrigger, SelectValue, SelectItem, SelectContent } from '@/components/ui/select'; // Import the Select components
+import { Select, SelectTrigger, SelectValue, SelectItem, SelectContent } from '@/components/ui/select';
 
 function Date({ onMonthSelect, selectedMonth }: { onMonthSelect: (date: Date) => void, selectedMonth?: Date }) {
   return (
@@ -134,77 +193,105 @@ function Date({ onMonthSelect, selectedMonth }: { onMonthSelect: (date: Date) =>
 function Dashboard() {
   const [selectedMonth, setSelectedMonth] = useState<Date | undefined>(undefined);
   const [selectedTab, setSelectedTab] = useState<string>("Landing");
+  const [startTour, setStartTour] = useState(false);  // Don't trigger the tour immediately
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    setLoaded(true);
+    
+    // Check if the user has logged in and if they have seen the tour before
+    const hasSeenTour = localStorage.getItem('hasSeenTour');
+    if (!hasSeenTour) {
+      setStartTour(true);  // Start the tour if the user hasn't seen it yet
+      localStorage.setItem('hasSeenTour', 'true');  // Mark the tour as seen
+    }
+  }, []);
+
+  const handleTourEnd = () => {
+    setStartTour(false);  // End the tour when the user completes it
+  };
+
+  if (!loaded) {
+    return null;
+  }
 
   return (
-    <div className='bg-back text-text p-6'>
-      <div className='w-full text-justify sm:w-1/2 sm:text-start'>
-        <h1 className='text-3xl font-bold pl-5'>Newsroom Analytics</h1>
-        <p className='text-lg pl-5 mt-3 leading-normal'>
-          We help newsrooms make informed decisions, from identifying where to make their next hire to optimizing advertising spending, all aimed at enhancing audience engagement and driving revenue growth.
-        </p>
-      </div>
-      <div className="p-5">
-        <Tabs value={selectedTab} onValueChange={setSelectedTab}>
-          <div className="flex flex-col md:flex-row items-start gap-4">
-            {/* Tabs Section */}
-            <div className="w-full md:flex-1 overflow-x-auto whitespace-nowrap">
-              {/* For larger screens, display TabsList */}
-              <div className="hidden md:flex gap-2 justify-start">
-                <TabsList>
-                  <TabsTrigger value="Landing" className="p-2 text-sm">Info</TabsTrigger>
-                  <TabsTrigger value="User" className="p-2 text-sm">User Demographics</TabsTrigger>
-                  <TabsTrigger value="Author" className="p-2 text-sm">Author Performance</TabsTrigger>
-                  <TabsTrigger value="Revenue" className="p-2 text-sm">Revenue Attribution</TabsTrigger>
-                  <TabsTrigger value="Features" className="p-2 text-sm">Features</TabsTrigger>
-                </TabsList>
+    <div className='w-full'>
+      <div className='bg-back text-text p-6'>
+        <div className='w-full text-justify sm:w-1/2 sm:text-start'>
+          <h1 className='text-3xl font-bold pl-5'>Newsroom Analytics</h1>
+          <p className='text-lg pl-5 mt-3 leading-normal'>
+            We help newsrooms make informed decisions, from identifying where to make their next hire to optimizing advertising spending, all aimed at enhancing audience engagement and driving revenue growth.
+          </p>
+        </div>
+        <div className="p-5">
+          <Tabs value={selectedTab} onValueChange={setSelectedTab}>
+            <div className="flex flex-col md:flex-row items-start gap-4">
+              {/* Tabs Section */}
+              <div className="w-full md:flex-1 overflow-x-auto whitespace-nowrap">
+                {/* For larger screens, display TabsList */}
+                <div className="hidden md:flex gap-2 justify-start">
+                  <TabsList>
+                    <TabsTrigger id="step-1" value="Landing" className="p-2 text-sm">Info</TabsTrigger>
+                    <TabsTrigger id="step-2" value="User" className="p-2 text-sm">User Demographics</TabsTrigger>
+                    <TabsTrigger id="step-3" value="Author" className="p-2 text-sm">Author Performance</TabsTrigger>
+                    <TabsTrigger id="step-4" value="Revenue" className="p-2 text-sm">Revenue Attribution</TabsTrigger>
+                    <TabsTrigger id="step-5" value="Features" className="p-2 text-sm">Features</TabsTrigger>
+                  </TabsList>
+                </div>
+
+                {/* For smaller screens, display Select dropdown */}
+                <div className="md:hidden w-full">
+                  <Select value={selectedTab} onValueChange={setSelectedTab}>
+                    <SelectTrigger className="w-full">
+                      <SelectValue placeholder="Select Tab" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="Landing">Info</SelectItem>
+                      <SelectItem value="User">User Demographics</SelectItem>
+                      <SelectItem value="Author">Author Performance</SelectItem>
+                      <SelectItem value="Revenue">Revenue Attribution</SelectItem>
+                      <SelectItem value="Features">Features</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
               </div>
 
-              {/* For smaller screens, display Select dropdown */}
-              <div className="md:hidden w-full">
-                <Select value={selectedTab} onValueChange={setSelectedTab}>
-                  <SelectTrigger className="w-full">
-                    <SelectValue placeholder="Select Tab" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="Landing">Info</SelectItem>
-                    <SelectItem value="User">User Demographics</SelectItem>
-                    <SelectItem value="Author">Author Performance</SelectItem>
-                    <SelectItem value="Revenue">Revenue Attribution</SelectItem>
-                    <SelectItem value="Features">Features</SelectItem>
-                  </SelectContent>
-                </Select>
+              {/* DateRangePicker positioned next to TabsList on desktop */}
+              <div className="md:mt-0 md:ml-4 flex justify-center">
+                <Date onMonthSelect={setSelectedMonth} selectedMonth={selectedMonth} />
               </div>
             </div>
 
-            {/* DateRangePicker positioned next to TabsList on desktop */}
-            <div className="md:mt-0 md:ml-4 flex justify-center">
-              <Date onMonthSelect={setSelectedMonth} selectedMonth={selectedMonth} />
-            </div>
-          </div>
+            {/* Tab Contents */}
+            <TabsContent value="User">
+              <Users selectedMonth={selectedMonth} />
+            </TabsContent>
+            <TabsContent value="Author">
+              <Authors selectedMonth={selectedMonth} />
+            </TabsContent>
+            <TabsContent value="Landing">
+              <Landing />
+            </TabsContent>
+            <TabsContent value="Revenue">
+              <Revenue selectedMonth={selectedMonth} />
+            </TabsContent>
+            <TabsContent value="Features">
+              <Features />
+            </TabsContent>
+          </Tabs>
+        </div>
 
-          {/* Tab Contents */}
-          <TabsContent value="User">
-            <Users selectedMonth={selectedMonth} />
-          </TabsContent>
-          <TabsContent value="Author">
-            <Authors selectedMonth={selectedMonth} />
-          </TabsContent>
-          <TabsContent value="Landing">
-            <Landing />
-          </TabsContent>
-          <TabsContent value="Revenue">
-            <Revenue selectedMonth={selectedMonth} />
-          </TabsContent>
-          <TabsContent value="Features">
-            <Features />
-          </TabsContent>
-        </Tabs>
+        {startTour && (
+          <TourGuide start={startTour} setStartTour={setStartTour} onTourEnd={handleTourEnd} />
+        )}
+
+        <Chatbot id="step-6" />
+
+        <hr />
+        <h1 className='text-3xl text-center font-bold pl-5 mt-6'>Find Our Product Interesting?</h1>
+        <h2 className='text-lg text-center pl-5'>Contact us at swapneet@mit.edu</h2>
       </div>
-
-      <Chatbot />
-      <hr />
-      <h1 className='text-3xl text-center font-bold pl-5 mt-6'>Find Our Product Interesting?</h1>
-      <h2 className='text-lg text-center pl-5'>Contact us at swapneet@mit.edu</h2>
     </div>
   );
 }
