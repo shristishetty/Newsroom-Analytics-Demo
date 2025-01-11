@@ -1,71 +1,3 @@
-// import React, {useEffect, useState} from 'react';
-// import type {CallBackProps, Step} from "react-joyride";
-// import Joyride, {EVENTS, STATUS} from 'react-joyride';
-// // inport Image from "next/image";
-
-// interface State{
-//     run: boolean;
-//     stepIndex : number;
-//     steps: Step[];
-// }
-// interface TourGuideProps{
-//     start : boolean;
-//     setStartTour : (value: boolean) => void;
-//     onTourEnd : ()=> void;
-// }
-
-// const TourGuide = ({start, setStartTour, onTourEnd} : TourGuideProps) => {
-//     const [progress, setProgress] = useState<number>(1);
-//     const totalSteps : number = 4;
-
-//     const generateSteps = (val : number):Step[] => [
-//         {
-//             content:(
-//                 <div className='p-3'>
-//                     <p className='text-4xl'>news</p>
-//                 </div>
-//             ),
-//             locale:{skip: <strong aria-label='skip'>Skip</strong>},
-//             styles:{
-//                 options:{
-//                     width: 700
-//                 }
-//             },
-//             placement:"center",
-//             target: "body"
-//         }
-//     ];
-
-//     const [{run, steps}, setState]= useState<State>({
-//         run: start,
-//         stepIndex: 0,
-//         steps: generateSteps(progress),
-//     })
-
-//     useEffect(()=>{
-//         setState((prevState)=>({
-//             ...prevState,
-//             steps: generateSteps(progress),
-//         }));
-//     }, [progress]);
-
-//     useEffect(()=>{
-//         if(start){
-//             setState((prevState)=>({
-//                 ...prevState,
-//                 run:true,
-//                 stepIndex:0,
-//             }));
-//         }
-//     }, [start]);
-
-//     const handleJoyrideCallback = (data: CallBackProps) => {};
-
-//   return <Joyride continuous callback={handleJoyrideCallback} run={run} steps={steps} scrollToFirstStep debug/>
-// }
-
-// export default TourGuide
-
 import React from "react";
 import { useEffect, useState } from "react";
 import type { CallBackProps, Step } from "react-joyride";
@@ -290,12 +222,12 @@ const TourGuide = ({ start, setStartTour, onTourEnd }: TourGuideProps) => {
       disableCloseOnEsc
       disableOverlayClose
       spotlightPadding={5}
-      showProgress
-      showSkipButton
+      // showProgress
+      // showSkipButton
       debug
       styles={{
         overlay: {
-          border: "4px solid lightblue",
+          border: "4px solid lightblue p-1",
         },
         spotlight: {
           border: "2px solid lightblue",
@@ -320,7 +252,7 @@ const TourGuide = ({ start, setStartTour, onTourEnd }: TourGuideProps) => {
         },
         buttonBack: {
           outline: "2px solid transparent",
-          outlineOffset: "2px",
+          outlineOffset: "",
         },
         options: {
           zIndex: 100,
@@ -333,7 +265,7 @@ const TourGuide = ({ start, setStartTour, onTourEnd }: TourGuideProps) => {
       }}
       locale={{
         back: (
-          <p className="font-bold focus:ring-transparent focus-visible:outline-none">
+          <p className="font-bold focus:ring-transparent focus-visible:outline-none justify-start">
             {`<-`}
           </p>
         ),

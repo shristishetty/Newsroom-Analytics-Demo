@@ -1,12 +1,11 @@
-"use client";
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import axios from 'axios';
 
 interface LoginProps {
-  onLoginSuccess: () => void; // Define the expected type of onLoginSuccess
+  onLoginSuccess: () => void;
 }
 
 function Login({ onLoginSuccess }: LoginProps) {
@@ -14,21 +13,25 @@ function Login({ onLoginSuccess }: LoginProps) {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const handleLogin = () => {
-    // Hardcoded credentials
-    const validUsername = "admin";
-    const validPassword = "password123";
+  const handleLogin = async () => {
+    try {
+      const response = await axios.post("http://localhost:5000/login", {
+        username,
+        password
+      });
 
-    if (username === validUsername && password === validPassword) {
-      setError("");
-      onLoginSuccess();
-    } else {
-      setError("Invalid username or password");
+      if (response.status === 200) {
+        setError("");
+        onLoginSuccess(); // Call the success callback if login is successful
+      }
+    } catch (err: any) {
+      setError(err.response?.data?.message || "Something went wrong");
     }
   };
 
   return (
-    <div className="flex items-center justify-center h-screen bg-gray-50">
+    <div className="min-h-screen flex fle-col items-center justify-center py-6 px-4">
+      
       <Card className="w-96 shadow-lg">
         <CardHeader>
           <CardTitle className="text-center text-xl font-bold">Login</CardTitle>
@@ -61,3 +64,4 @@ function Login({ onLoginSuccess }: LoginProps) {
 }
 
 export default Login;
+
