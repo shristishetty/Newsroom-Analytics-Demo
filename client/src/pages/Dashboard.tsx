@@ -140,7 +140,7 @@ function Dashboard() {
 
         <hr />
         <h1 className='text-3xl text-center font-bold pl-5 mt-6'>Find Our Product Interesting?</h1>
-        <h2 className='text-lg text-center pl-5'>Contact us at swapneet@mit.edu</h2>
+        <h2 className='text-lg text-center pl-5'>Contact us at team@simppl.org</h2>
       </div>
     </div>
   );

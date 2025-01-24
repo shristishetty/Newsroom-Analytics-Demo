@@ -100,7 +100,7 @@ export function Overperformance({ selectedMonth }: { selectedMonth?: Date }) {
       </CardContent>
       <CardFooter className="flex-col text-center gap-2 text-base">
         <div className="leading-none text-muted-foreground">
-          The plot shows that {first_op} is the highest performer, while {least_op} is the lowest. To enhance overall results, it is important to work on increasing engagement for {least_op} while preserving the strong performance of {first_op}.
+        Nancy’s articles consistently led in performance, with 261 engagements in December, particularly driven by political content. Stephen showed strong growth in August and October, aligning with trends in breaking news. Charlie's engagement has been historically lower, especially in May and September. To address this, explore assigning Charlie more trending topics or promoting their work during high-traffic periods like late summer.
         </div>
       </CardFooter>
     </Card>
@@ -210,7 +210,7 @@ export function Post({ selectedMonth }: { selectedMonth?: Date }) {
       </CardContent>
       <CardFooter className="flex-col text-center gap-2 text-base">
         <div className="leading-none text-muted-foreground">
-          The plot shows that {first} has posted the most articles, while {least} has posted the fewest. To improve overall content output, focus on encouraging more contributions from {least} while sustaining the strong posting rate of {first}.
+        Nancy contributed the most articles, peaking at 30 in December, primarily in high-engagement categories like Politics and Health. Charlie, with fewer articles (17 in December), has focused mainly on niche topics. To balance contributions, consider incentivizing Charlie to cover broader themes like Politics or leveraging collaboration to increase output during slower months like May and September.
         </div>
       </CardFooter>
     </Card>
@@ -331,7 +331,7 @@ export function PerAuthor() {
       <CardFooter className="flex-col text-center gap-2 text-base">
         <div className="leading-none text-muted-foreground">
           {/* Showing total visitors for the last 6 months */}
-        The plot shows that Author has posted the most content on {mostLabel}, with {most} posts, while the least on {leastLabel}, with only {least} posts. To improve content balance, efforts should focus on increasing Author's posts on {leastLabel} while maintaining strong contribution to {mostLabel}.
+          In 2023, Politics led with 82 posts in December, driven by consistently high audience engagement across all months. Arts, with only 37 posts in December, has historically seen lower engagement, particularly from younger readers. To address this, focus on targeted campaigns or collaborations with authors who specialize in cultural content to attract new audiences while maintaining Politics' strong output.
         </div>
       </CardFooter>
     </Card>
@@ -346,12 +346,12 @@ export function PerAuthor() {
 
 
 const visitorChartData = [
-  { month: "January", desktop: generateRandomNumber(50, 300) },
-  { month: "February", desktop: generateRandomNumber(50, 300) },
-  { month: "March", desktop: generateRandomNumber(50, 300) },
-  { month: "April", desktop: generateRandomNumber(50, 300) },
-  { month: "May", desktop: generateRandomNumber(50, 300) },
-  { month: "June", desktop: generateRandomNumber(50, 300) },
+  { month: "January", desktop: 120 },
+  { month: "February", desktop: 140 },
+  { month: "March", desktop: 160 },
+  { month: "April", desktop: 200 },
+  { month: "May", desktop: 180 },
+  { month: "June", desktop: 250 },
 ];
 
 
@@ -395,7 +395,7 @@ export function VisitorStoryRatio() {
       </CardContent>
       <CardFooter className="flex-col text-center gap-2 text-base">
         <div className="leading-none text-muted-foreground">
-          Visitor Story Ratios
+        Visitor engagement per story peaked in June at 250 visitors, driven by increased interest in Health and Environment topics. January and February showed the lowest engagement (120 and 140 visitors, respectively), coinciding with fewer articles in trending themes. To sustain growth, consider publishing more content in high-engagement themes during the first quarter and maintaining consistent coverage in June to capitalize on seasonal trends.
         </div>
       </CardFooter>
     </Card>
