@@ -439,34 +439,34 @@ const age = [
 ];
 
 
-interface AgeGroupData {
-  month: string;
-  housing: number;
-  politics: number;
-  government: number;
-}
+// interface AgeGroupData {
+//   month: string;
+//   housing: number;
+//   politics: number;
+//   government: number;
+// }
 
-interface MaxMinStats {
-  mostLabel: string;
-  most: number;
-  leastLabel: string;
-  least: number;
-}
+// interface MaxMinStats {
+//   mostLabel: string;
+//   most: number;
+//   leastLabel: string;
+//   least: number;
+// }
 
 export function AgeGroup() {
   // Find the most and least for each category
-  const getMaxMin = (data: AgeGroupData[], key: keyof AgeGroupData): MaxMinStats => {
-    const maxData = data.reduce((max, current) => current[key] > max[key] ? current : max);
-    const minData = data.reduce((min, current) => current[key] < min[key] ? current : min);
+  // const getMaxMin = (data: AgeGroupData[], key: keyof AgeGroupData): MaxMinStats => {
+  //   const maxData = data.reduce((max, current) => current[key] > max[key] ? current : max);
+  //   const minData = data.reduce((min, current) => current[key] < min[key] ? current : min);
 
-    // Return an object with most and least as numbers, and labels as strings
-    return {
-      mostLabel: maxData.month,  // Month with the most value (string)
-      most: Number(maxData[key]), // Ensure that we are returning a number
-      leastLabel: minData.month, // Month with the least value (string)
-      least: Number(minData[key]), // Ensure that we are returning a number
-    };
-  };
+  //   // Return an object with most and least as numbers, and labels as strings
+  //   return {
+  //     mostLabel: maxData.month,  // Month with the most value (string)
+  //     most: Number(maxData[key]), // Ensure that we are returning a number
+  //     leastLabel: minData.month, // Month with the least value (string)
+  //     least: Number(minData[key]), // Ensure that we are returning a number
+  //   };
+  // };
 
   // const housingStats = getMaxMin(age, "housing");
   // const politicsStats = getMaxMin(age, "politics");
