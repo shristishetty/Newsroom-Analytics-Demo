@@ -57,9 +57,6 @@ export function Overperformance({ selectedMonth }: { selectedMonth?: Date }) {
   .map(([author, { overperformance, fill }]) => ({ author, overperformance, fill })) // Add fill here
   .sort((a, b) => b.overperformance - a.overperformance); // Sort descending by overperformance
 
-  // Get the first and last performers
-  const first_op = sortedData[0].author;
-  const least_op = sortedData[sortedData.length - 1].author;
 
   return (
     <Card>
@@ -164,10 +161,6 @@ export function Post({ selectedMonth }: { selectedMonth?: Date }) {
   // Sort the data by articles in descending order
   const sortedData = monthData.sort((a, b) => b.articles - a.articles);
   console.log(monthData)
-
-  // Get the first and last authors
-  const first = sortedData[0]?.author;
-  const least = sortedData[sortedData.length - 1]?.author;
 
   return (
     <Card>
@@ -278,18 +271,6 @@ const chart2Data = [
 
 
 export function PerAuthor() {
-  // Find the max and min visitors and their corresponding browser labels
-  const maxData = chart2Data.reduce((max, current) => {
-    return current.visitors > max.visitors ? current : max;
-  });
-  const minData = chart2Data.reduce((min, current) => {
-    return current.visitors < min.visitors ? current : min;
-  });
-
-  const mostLabel = maxData.browser;  // Browser with the most visitors
-  const most = maxData.visitors;      // Maximum number of visitors
-  const leastLabel = minData.browser; // Browser with the least visitors
-  const least = minData.visitors;    // Minimum number of visitors
 
   return (
     <Card>

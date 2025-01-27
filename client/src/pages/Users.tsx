@@ -279,12 +279,12 @@ export function Retention({ selectedMonth }: { selectedMonth?: Date }) {
   }
 
   // Find the max and min retention values for the chart
-  const mostRetention = Math.max(...filteredData.map(item => item.retention));
-  const leastRetention = Math.min(...filteredData.map(item => item.retention));
+  // const mostRetention = Math.max(...filteredData.map(item => item.retention));
+  // const leastRetention = Math.min(...filteredData.map(item => item.retention));
 
-  // Find the corresponding age group (label) for the most and least retention values
-  const mostLabel = filteredData.find(item => item.retention === mostRetention)?.ageGroup || "";
-  const leastLabel = filteredData.find(item => item.retention === leastRetention)?.ageGroup || "";
+  // // Find the corresponding age group (label) for the most and least retention values
+  // const mostLabel = filteredData.find(item => item.retention === mostRetention)?.ageGroup || "";
+  // const leastLabel = filteredData.find(item => item.retention === leastRetention)?.ageGroup || "";
 
   return (
     <Card>
@@ -374,10 +374,10 @@ export function Source({ selectedMonth }: { selectedMonth?: Date }) {
     .sort((a, b) => b.count - a.count); // Sort descending by count
 
   // Extract the months with the highest and lowest engagement
-  const first = sortedData[0].platform;
-  const second = sortedData[1].platform;
-  const least = sortedData[sortedData.length - 1].platform;
-  const least2 = sortedData[sortedData.length - 2].platform;
+  // const first = sortedData[0].platform;
+  // const second = sortedData[1].platform;
+  // const least = sortedData[sortedData.length - 1].platform;
+  // const least2 = sortedData[sortedData.length - 2].platform;
 
   return (
     <Card>
@@ -468,9 +468,9 @@ export function AgeGroup() {
     };
   };
 
-  const housingStats = getMaxMin(age, "housing");
-  const politicsStats = getMaxMin(age, "politics");
-  const governmentStats = getMaxMin(age, "government");
+  // const housingStats = getMaxMin(age, "housing");
+  // const politicsStats = getMaxMin(age, "politics");
+  // const governmentStats = getMaxMin(age, "government");
 
   return (
     <Card>
