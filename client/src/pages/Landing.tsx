@@ -76,15 +76,15 @@ export function Top({ selectedMonth }: { selectedMonth?: Date }) {
   }, [categoryData]);
 
   // Determine the most and least popular categories
-  const mostCategory = categoryData.reduce((prev, curr) =>
-    curr.articles > prev.articles ? curr : prev,
-    categoryData[0]
-  );
+  // const mostCategory = categoryData.reduce((prev, curr) =>
+  //   curr.articles > prev.articles ? curr : prev,
+  //   categoryData[0]
+  // );
 
-  const leastCategory = categoryData.reduce((prev, curr) =>
-    curr.articles < prev.articles ? curr : prev,
-    categoryData[0]
-  );
+  // const leastCategory = categoryData.reduce((prev, curr) =>
+  //   curr.articles < prev.articles ? curr : prev,
+  //   categoryData[0]
+  // );
 
   // Prepare chart data for the pie chart
   const chartData = categoryData.map((data) => ({
@@ -145,7 +145,7 @@ export function Top({ selectedMonth }: { selectedMonth?: Date }) {
       </CardContent>
       <CardFooter className="flex-col text-center gap-2 text-base">
         <div className="leading-none text-muted-foreground">
-          The plot shows that {mostCategory.category} is receiving the most attention, while {leastCategory.category} is getting the least. Consider focusing more on {leastCategory.category} while maintaining the appeal of {mostCategory.category}.
+          Articles in Politics maintain the widest reach, while the growing focus on Health and Environment suggests an increased emphasis on content for older audiences.
         </div>
       </CardFooter>
     </Card>
@@ -198,16 +198,13 @@ const generateRandomBoxData = () => {
     },
   } satisfies ChartConfig
   
-  interface Box1Props {
-    onTotalVisitors: (visitors: number) => void;
-  }
-  export function Box1({ onTotalVisitors }:Box1Props) {
+  // interface Box1Props {
+  //   onTotalVisitors: (visitors: number) => void;
+  // }
+  export function Box1() {
     const totalVisitors = React.useMemo(() => {
-      return box1Data.reduce((acc, curr) => acc + curr.visitors, 0)
-    }, [])
-    React.useEffect(() => {
-      onTotalVisitors(totalVisitors);
-    }, [totalVisitors, onTotalVisitors]);
+      return box1Data.reduce((acc, curr) => acc + curr.visitors, 0);
+    }, []);
   
     return (
       <Card className="flex flex-col w-full">
@@ -274,18 +271,15 @@ const generateRandomBoxData = () => {
   
   const generateRandomBox2Data = () => {
     const box2Data = [
-      { age: "1", fill: "var(--color-1)" },
-      { age: "2", fill: "var(--color-2)" },
-      { age: "3", fill: "var(--color-3)" },
-      { age: "4", fill: "var(--color-4)" },
-      { age: "5", fill: "var(--color-5)" },
+      { age: "1", fill: "var(--color-1)", visitors: 75 },
+      { age: "2", fill: "var(--color-2)", visitors: 66 },
+      { age: "3", fill: "var(--color-3)", visitors: 81 },
+      { age: "4", fill: "var(--color-4)", visitors: 107 },
+      { age: "5", fill: "var(--color-5)", visitors: 93 },
     ];
-  
-    // Update visitors with random numbers for each item
-    return box2Data.map((item) => ({
-      ...item,
-      visitors: generateRandomNumber(50, 100), // Generate random visitors count
-    }));
+    
+    // Return the updated array
+    return box2Data;
   };
   
   // Generate the random box data
@@ -317,16 +311,13 @@ const generateRandomBoxData = () => {
     
   } satisfies ChartConfig
 
-interface Box2Props {
-    onTotalVisitors: (visitors: number) => void;
-  }
-  export function Box2({ onTotalVisitors }:Box2Props) {
+// interface Box2Props {
+//     onTotalVisitors: (visitors: number) => void;
+//   }
+  export function Box2() {
     const totalVisitors = React.useMemo(() => {
-      return box2Data.reduce((acc, curr) => acc + curr.visitors, 0)
-    }, [])
-    React.useEffect(() => {
-      onTotalVisitors(totalVisitors);
-    }, [totalVisitors, onTotalVisitors]);
+      return box2Data.reduce((acc, curr) => acc + curr.visitors, 0);
+    }, []);
   
   
     return (
@@ -389,22 +380,23 @@ interface Box2Props {
   }
   
 export function Box() {
-    const [activeVisitors, setActiveVisitors] = React.useState(0);
-    const [newVisitors, setNewVisitors] = React.useState(0);
+    // const [activeVisitors, setActiveVisitors] = React.useState(0);
+    // const [newVisitors, setNewVisitors] = React.useState(0);
     return (
       <>
-      <div className="text-center bg-back border-[1px] border-white rounded-[6px] p-5 h-full font-bold text-lg">Who Are Our Readers?
-  
-      <div className="pt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
-      <Box1 onTotalVisitors={setActiveVisitors}/>
-      <Box2 onTotalVisitors={setNewVisitors}/>
+      <Card className="flex flex-col">
+      <CardHeader className="items-center pb-0">
+        <CardTitle className="font-bold text-lg">What Stories Are Capturing Attention?</CardTitle>
+      </CardHeader>
+      <div className="pt-4 grid grid-cols-1 md:grid-cols-2 gap-4 p-5">
+      <Box1 />
+      <Box2 />
       </div>
-      <CardFooter className="pt-5 flex-col text-center gap-2 text-base">
+      <CardFooter className="flex-col text-center gap-2 text-base">
             <div className="leading-none text-muted-foreground">
-      With {activeVisitors.toLocaleString()} active users and {newVisitors.toLocaleString()} new visitors, now is the time to strengthen engagement and convert these visitors into long-term supporters. Focus on building lasting connections to drive sustained growth.
-            </div>
+            An increase in articles on health and environment is effectively drawing in a growing number of older audiences, outpacing other age categories in attracting new users.            </div>
       </CardFooter>
-      </div>
+      </Card>
       
       </>
     )}

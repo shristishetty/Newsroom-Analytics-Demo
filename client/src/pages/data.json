@@ -20,11 +20,11 @@
     {
       "title": "Retention Percentage",
       "data": {
-        "18-24": {"fill":"var(--color-1)" ,"Jan": 42, "Feb": 43, "Mar": 41, "Apr": 44, "May": 40, "Jun": 45, "Jul": 43, "Aug": 46, "Sep": 42, "Oct": 47, "Nov": 44, "Dec": 48},
-        "25-34": {"fill":"var(--color-2)","Jan": 38, "Feb": 39, "Mar": 37, "Apr": 40, "May": 36, "Jun": 41, "Jul": 39, "Aug": 42, "Sep": 38, "Oct": 43, "Nov": 40, "Dec": 44},
-        "35-44": {"fill":"var(--color-3)","Jan": 35, "Feb": 36, "Mar": 34, "Apr": 37, "May": 33, "Jun": 38, "Jul": 36, "Aug": 39, "Sep": 35, "Oct": 40, "Nov": 37, "Dec": 41},
-        "45-54": {"fill":"var(--color-4)","Jan": 28, "Feb": 29, "Mar": 27, "Apr": 30, "May": 26, "Jun": 31, "Jul": 29, "Aug": 32, "Sep": 28, "Oct": 33, "Nov": 30, "Dec": 34},
-        "55+": {"fill":"var(--color-5)","Jan": 22, "Feb": 23, "Mar": 21, "Apr": 24, "May": 20, "Jun": 25, "Jul": 23, "Aug": 26, "Sep": 22, "Oct": 27, "Nov": 24, "Dec": 28}
+        "18-24": {"fill":"var(--color-1)" ,"Jan": 22, "Feb": 43, "Mar": 41, "Apr": 44, "May": 40, "Jun": 45, "Jul": 43, "Aug": 46, "Sep": 42, "Oct": 47, "Nov": 44, "Dec": 48},
+        "25-34": {"fill":"var(--color-2)","Jan": 28, "Feb": 39, "Mar": 37, "Apr": 40, "May": 36, "Jun": 41, "Jul": 39, "Aug": 42, "Sep": 38, "Oct": 43, "Nov": 40, "Dec": 44},
+        "35-44": {"fill":"var(--color-3)","Jan": 38, "Feb": 36, "Mar": 34, "Apr": 37, "May": 33, "Jun": 38, "Jul": 36, "Aug": 39, "Sep": 35, "Oct": 40, "Nov": 37, "Dec": 41},
+        "45-54": {"fill":"var(--color-4)","Jan": 35, "Feb": 29, "Mar": 27, "Apr": 30, "May": 26, "Jun": 31, "Jul": 29, "Aug": 32, "Sep": 28, "Oct": 33, "Nov": 30, "Dec": 34},
+        "55+": {"fill":"var(--color-5)","Jan": 42, "Feb": 23, "Mar": 21, "Apr": 24, "May": 20, "Jun": 25, "Jul": 23, "Aug": 26, "Sep": 22, "Oct": 27, "Nov": 24, "Dec": 28}
       }
     },
     {
@@ -53,8 +53,8 @@
         "Stephen": {"fill":"var(--color-step)","Jan": 12, "Feb": 15, "Mar": 14, "Apr": 16, "May": 13, "Jun": 18, "Jul": 17, "Aug": 20, "Sep": 18, "Oct": 21, "Nov": 19, "Dec": 23},
         "Peter": {"fill":"var(--color-peter)","Jan": 9, "Feb": 10, "Mar": 11, "Apr": 13, "May": 9, "Jun": 15, "Jul": 13, "Aug": 16, "Sep": 12, "Oct": 17, "Nov": 14, "Dec": 19},
         "Charlie": {"fill":"var(--color-charlie)","Jan": 8, "Feb": 10, "Mar": 10, "Apr": 12, "May": 8, "Jun": 13, "Jul": 11, "Aug": 15, "Sep": 10, "Oct": 14, "Nov": 12, "Dec": 17},
-        "Nancy": {"fill":"var(--color-nancy)","Jan": 15, "Feb": 17, "Mar": 18, "Apr": 20, "May": 16, "Jun": 23, "Jul": 21, "Aug": 25, "Sep": 19, "Oct": 26, "Nov": 22, "Dec": 30},
-        "Steve": {"fill":"var(--color-steve)","Jan": 11, "Feb": 13, "Mar": 12, "Apr": 14, "May": 11, "Jun": 16, "Jul": 14, "Aug": 18, "Sep": 13, "Oct": 19, "Nov": 16, "Dec": 22}
+        "Nancy": {"fill":"var(--color-nancy)","Jan": 11, "Feb": 17, "Mar": 18, "Apr": 20, "May": 16, "Jun": 23, "Jul": 21, "Aug": 25, "Sep": 19, "Oct": 26, "Nov": 22, "Dec": 30},
+        "Steve": {"fill":"var(--color-steve)","Jan": 15, "Feb": 13, "Mar": 12, "Apr": 14, "May": 11, "Jun": 16, "Jul": 14, "Aug": 18, "Sep": 13, "Oct": 19, "Nov": 16, "Dec": 22}
       }
     },
     {
@@ -109,17 +109,17 @@
       {
         "title": "Subscribers vs Non-Subscribers",
         "data": {
-          "Subscribers": {"Jan": 2500, "Feb": 2520, "Mar": 2530, "Apr": 2550, "May": 2570, "Jun": 2580, "Jul": 2600, "Aug": 2620, "Sep": 2630, "Oct": 2650, "Nov": 2670, "Dec": 2700},
-          "NonSubscribers": {"Jan": 7500, "Feb": 7520, "Mar": 7530, "Apr": 7550, "May": 7570, "Jun": 7580, "Jul": 7600, "Aug": 7620, "Sep": 7630, "Oct": 7650, "Nov": 7670, "Dec": 7700}
+          "Subscribers": {"Jan": 1269, "Feb": 2520, "Mar": 2530, "Apr": 2550, "May": 2570, "Jun": 2580, "Jul": 2600, "Aug": 2620, "Sep": 2630, "Oct": 2650, "Nov": 2670, "Dec": 2700},
+          "NonSubscribers": {"Jan": 2120, "Feb": 7520, "Mar": 7530, "Apr": 7550, "May": 7570, "Jun": 7580, "Jul": 7600, "Aug": 7620, "Sep": 7630, "Oct": 7650, "Nov": 7670, "Dec": 7700}
         }
       },
       {
         "title": "Revenue per Article Theme (USD)",
         "data": {
-          "Environment": {"Jan": 120, "Feb": 125, "Mar": 130, "Apr": 135, "May": 140, "Jun": 145, "Jul": 150, "Aug": 155, "Sep": 160, "Oct": 165, "Nov": 170, "Dec": 175},
+          "Environment": {"Jan": 150, "Feb": 125, "Mar": 130, "Apr": 135, "May": 140, "Jun": 145, "Jul": 150, "Aug": 155, "Sep": 160, "Oct": 165, "Nov": 170, "Dec": 175},
           "Health": {"Jan": 110, "Feb": 115, "Mar": 120, "Apr": 125, "May": 130, "Jun": 135, "Jul": 140, "Aug": 145, "Sep": 150, "Oct": 155, "Nov": 160, "Dec": 165},
           "Housing": {"Jan": 90, "Feb": 95, "Mar": 100, "Apr": 105, "May": 110, "Jun": 115, "Jul": 120, "Aug": 125, "Sep": 130, "Oct": 135, "Nov": 140, "Dec": 145},
-          "Politics": {"Jan": 150, "Feb": 155, "Mar": 160, "Apr": 165, "May": 170, "Jun": 175, "Jul": 180, "Aug": 185, "Sep": 190, "Oct": 195, "Nov": 200, "Dec": 205},
+          "Politics": {"Jan": 120, "Feb": 155, "Mar": 160, "Apr": 165, "May": 170, "Jun": 175, "Jul": 180, "Aug": 185, "Sep": 190, "Oct": 195, "Nov": 200, "Dec": 205},
           "Arts": {"Jan": 70, "Feb": 75, "Mar": 80, "Apr": 85, "May": 90, "Jun": 95, "Jul": 100, "Aug": 105, "Sep": 110, "Oct": 115, "Nov": 120, "Dec": 125}
         }
       },

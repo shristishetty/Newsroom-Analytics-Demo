@@ -97,8 +97,7 @@ export function Overperformance({ selectedMonth }: { selectedMonth?: Date }) {
       </CardContent>
       <CardFooter className="flex-col text-center gap-2 text-base">
         <div className="leading-none text-muted-foreground">
-        Nancy’s articles consistently led in performance, with 261 engagements in December, particularly driven by political content. Stephen showed strong growth in August and October, aligning with trends in breaking news. Charlie's engagement has been historically lower, especially in May and September. To address this, explore assigning Charlie more trending topics or promoting their work during high-traffic periods like late summer.
-        </div>
+        Nancy primarily focuses on Health and Environment topics, which resonate strongly with the platform's audience, resulting in higher engagement compared to other authors.        </div>
       </CardFooter>
     </Card>
   );
@@ -203,8 +202,7 @@ export function Post({ selectedMonth }: { selectedMonth?: Date }) {
       </CardContent>
       <CardFooter className="flex-col text-center gap-2 text-base">
         <div className="leading-none text-muted-foreground">
-        Nancy contributed the most articles, peaking at 30 in December, primarily in high-engagement categories like Politics and Health. Charlie, with fewer articles (17 in December), has focused mainly on niche topics. To balance contributions, consider incentivizing Charlie to cover broader themes like Politics or leveraging collaboration to increase output during slower months like May and September.
-        </div>
+        Although Steve has published more articles, Nancy achieves higher engagement by focusing on trending topics that resonate with the audience.        </div>
       </CardFooter>
     </Card>
   );
@@ -262,11 +260,11 @@ const chartConfig = {
 
 
 const chart2Data = [
-  { browser: "politics", visitors: generateRandomNumber(100, 500), fill: "var(--color-politics)" },
-  { browser: "arts", visitors: generateRandomNumber(100, 500), fill: "var(--color-arts)" },
-  { browser: "environment", visitors: generateRandomNumber(100, 500), fill: "var(--color-environment)" },
-  { browser: "health", visitors: generateRandomNumber(100, 500), fill: "var(--color-health)" },
-  { browser: "housing", visitors: generateRandomNumber(100, 500), fill: "var(--color-housing)" },
+  { browser: "politics", visitors:  24, fill: "var(--color-politics)" },
+  { browser: "arts", visitors: 11, fill: "var(--color-arts)" },
+  { browser: "environment", visitors: 33, fill: "var(--color-environment)" },
+  { browser: "health", visitors: 46, fill: "var(--color-health)" },
+  { browser: "housing", visitors: 17, fill: "var(--color-housing)" },
 ];
 
 
@@ -312,8 +310,7 @@ export function PerAuthor() {
       <CardFooter className="flex-col text-center gap-2 text-base">
         <div className="leading-none text-muted-foreground">
           {/* Showing total visitors for the last 6 months */}
-          In 2023, Politics led with 82 posts in December, driven by consistently high audience engagement across all months. Arts, with only 37 posts in December, has historically seen lower engagement, particularly from younger readers. To address this, focus on targeted campaigns or collaborations with authors who specialize in cultural content to attract new audiences while maintaining Politics' strong output.
-        </div>
+          Nancy has streamlined her focus to Environment and Health, leading to better engagement by prioritizing quality over quantity across multiple topics.        </div>
       </CardFooter>
     </Card>
   );
@@ -376,8 +373,7 @@ export function VisitorStoryRatio() {
       </CardContent>
       <CardFooter className="flex-col text-center gap-2 text-base">
         <div className="leading-none text-muted-foreground">
-        Visitor engagement per story peaked in June at 250 visitors, driven by increased interest in Health and Environment topics. January and February showed the lowest engagement (120 and 140 visitors, respectively), coinciding with fewer articles in trending themes. To sustain growth, consider publishing more content in high-engagement themes during the first quarter and maintaining consistent coverage in June to capitalize on seasonal trends.
-        </div>
+        The total visitors per story show a pattern similar to engaged sessions, with noticeable increases during months with more holidays.        </div>
       </CardFooter>
     </Card>
   )
