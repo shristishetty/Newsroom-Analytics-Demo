@@ -5,7 +5,11 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 
-export default function Chatbot() {
+interface ChatbotProps {
+  id: string;  // Define 'id' as a string
+}
+
+export default function Chatbot({ id }: ChatbotProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState([
@@ -114,7 +118,7 @@ export default function Chatbot() {
       {/* Chatbot Container */}
       <div className="fixed bottom-4 right-4 z-50">
         {/* Floating Button */}
-        <Button
+        <Button id={id}
           onClick={() => setIsOpen(!isOpen)}
           className="shadow-lg bg-blue-600 hover:bg-blue-700 text-white rounded-xl p-2 flex items-center justify-center"
         >

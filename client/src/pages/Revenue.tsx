@@ -72,7 +72,7 @@ export function SubscriberThemes({ }: { selectedMonth?: Date }) {
       </CardContent>
       <CardFooter className="flex-col text-center gap-2 text-base">
         <div className="leading-none text-muted-foreground">
-          With Non-Subscribers driving higher event counts in Health and Politics, there’s a greater opportunity to target this audience for increased engagement, especially on-the-go topics.
+        Non-subscribers are driving higher event counts in Health (6,879) and Politics (4,215), highlighting significant engagement with on-the-go topics. To capitalize on this trend, focus on mobile-first content strategies, such as bite-sized articles or push notifications, to sustain and grow engagement in these high-performing categories.
         </div>
       </CardFooter>
     </Card>
@@ -162,7 +162,7 @@ export function EventCount({ selectedMonth }: { selectedMonth?: Date }) {
       </CardContent>
       <CardFooter className="flex-col text-center gap-2 text-base">
         <div className="leading-none text-muted-foreground">
-          Considering the significantly higher event count from Non-Subscribers, there is a larger audience that needs to be targeted for greater reach.
+        In January, Non-Subscribers contributed three times as many events (7,500) compared to Subscribers (2,500). This highlights a significant opportunity to engage this larger audience. Consider implementing targeted strategies like offering free trials or exclusive previews to convert Non-Subscribers into loyal Subscribers during this early period of the year.
         </div>
       </CardFooter>
     </Card>
@@ -247,8 +247,7 @@ export function RevenueAttribution({ selectedMonth }: { selectedMonth?: Date }) 
       </CardContent>
       <CardFooter className="flex-col text-center gap-2 text-base">
         <div className="leading-none text-muted-foreground">
-          The data is showing the highest revenue in the Health and Politics sectors. This highlights
-          a profitable opportunity in these themes.
+        Politics and Health consistently generated the highest revenue across the year, peaking at $205 and $165 in December, respectively. These themes highlight significant profit potential. To maximize revenue, consider investing in sustained coverage, exclusive content, or partnerships in these areas while exploring strategies to boost engagement and monetization for underperforming themes like Arts and Housing.
         </div>
       </CardFooter>
     </Card>

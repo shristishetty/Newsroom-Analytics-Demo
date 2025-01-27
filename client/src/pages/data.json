@@ -122,6 +122,53 @@
           "Politics": {"Jan": 150, "Feb": 155, "Mar": 160, "Apr": 165, "May": 170, "Jun": 175, "Jul": 180, "Aug": 185, "Sep": 190, "Oct": 195, "Nov": 200, "Dec": 205},
           "Arts": {"Jan": 70, "Feb": 75, "Mar": 80, "Apr": 85, "May": 90, "Jun": 95, "Jul": 100, "Aug": 105, "Sep": 110, "Oct": 115, "Nov": 120, "Dec": 125}
         }
-      }
+      },
+      {
+        "title": "Off Platform Analysis",
+        "categories": {
+          "Technology": 700,
+          "Health": 535,
+          "Environment": 860,
+          "Education": 590,
+          "Politics": 710
+        },
+        "data": {
+          "Technology": {
+            "The Rise of AI in Everyday Life": 150,
+            "Blockchain’s Impact on Finance": 120,
+            "IoT Revolutionizing Smart Homes": 90,
+            "Cybersecurity Challenges in 2025": 110,
+            "The Future of Cloud Computing": 130
+          },
+          "Health": {
+            "Managing Stress in Modern Times": 140,
+            "Top Fitness Trends in 2025": 100,
+            "The Role of Nutrition in Longevity": 120,
+            "Breaking Down Common Diseases": 80,
+            "How Tech is Transforming Healthcare": 95
+          },
+          "Environment": {
+            "The Urgency of Climate Action": 200,
+            "Renewable Energy Trends to Watch": 180,
+            "Sustainability in Urban Development": 170,
+            "Solutions to Air and Water Pollution": 150,
+            "Preserving Biodiversity in 2025": 160
+          },
+          "Education": {
+            "Adapting to Online Learning": 110,
+            "Why STEM Education is Key": 140,
+            "Emerging EdTech Startups to Watch": 120,
+            "Rethinking Traditional Learning Methods": 90,
+            "Navigating Higher Education Costs": 130
+          },
+          "Politics": {
+            "The Key Policies Shaping 2025": 180,
+            "Elections and Their Global Impact": 150,
+            "The Future of International Relations": 130,
+            "Addressing Local Political Issues": 110,
+            "Social Media in Political Campaigns": 140
+          }
+        }
+      }      
   ]
 }

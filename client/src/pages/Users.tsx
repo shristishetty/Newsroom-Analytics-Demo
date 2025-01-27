@@ -207,7 +207,7 @@ export function EngagedSession() {
         <div className="flex w-full text-center gap-2 text-base">
           <div className="grid gap-2">
             <div className="leading-none text-muted-foreground">
-              Engaged sessions show {most} sessions per month for the {mostLabel} age group, compared to {least} sessions per month for the {leastLabel} group. To enhance overall engagement, prioritize increasing session frequency in the lower-performing segment while continuing to nurture high levels of activity in the more engaged group.
+              Engaged sessions show {most} sessions per month for the {mostLabel} age group, compared to {least} sessions per month for the {leastLabel} group. To boost engagement, target seasonal content like holiday shopping trends or summer travel for the underperforming segment, as they have shown less interest during those months.
               {/* January - December 2024 */}
             </div>
           </div>
@@ -330,8 +330,7 @@ export function Retention({ selectedMonth }: { selectedMonth?: Date }) {
       </CardContent>
       <CardFooter className="flex-col text-center gap-2 text-sm">
         <div className="leading-none text-muted-foreground">
-          Retention rates show {mostRetention}% for the {mostLabel} age group, compared to {leastRetention}% for the {leastLabel} group. 
-          To improve overall retention, focus on boosting engagement in the lower-performing segment while maintaining strong connections with the higher-performing group.
+        Retention rates are highest among the 18-24 age group at 48% in December, while the 55+ group shows the lowest retention at 28%. To improve overall retention, focus on boosting engagement for the 55+ group by incorporating topics that resonate with their interests, such as health, finance, and lifestyle. At the same time, continue to strengthen content that engages the 18-24 group, like trending entertainment, pop culture, and technology news, to maintain their strong connection with the platform.
         </div>
       </CardFooter>
     </Card>
@@ -407,7 +406,7 @@ export function Source({ selectedMonth }: { selectedMonth?: Date }) {
       </CardContent>
       <CardFooter className="flex-col text-center gap-2 text-base">
         <div className="leading-none text-muted-foreground">
-          Visitor traffic peaks on {first} and {second}, while {least} and {least2} show lower engagement. Focus on strengthening successful channels and optimizing underperforming ones.
+        Visitor traffic is highest on Google and Instagram, with Google seeing consistent growth, especially in December. Facebook and Bluesky show lower engagement, with Facebook peaking in July but dipping throughout the year. To optimize performance, invest in SEO and targeted ad campaigns on Google and Instagram, while refining Facebook content with more visual posts and interactive features, and increase Bluesky engagement by leveraging niche topics and community-driven discussions.
         </div>
       </CardFooter>
     </Card>
@@ -431,12 +430,12 @@ const ageConfig = {
 } satisfies ChartConfig
 
 const age = [
-  { month: "18-24", housing: generateRandomNumber(50, 200), politics: generateRandomNumber(50, 150), government: generateRandomNumber(100, 300) },
-  { month: "25-34", housing: generateRandomNumber(100, 300), politics: generateRandomNumber(100, 250), government: generateRandomNumber(200, 500) },
-  { month: "35-44", housing: generateRandomNumber(100, 250), politics: generateRandomNumber(80, 200), government: generateRandomNumber(100, 400) },
-  { month: "45-54", housing: generateRandomNumber(50, 150), politics: generateRandomNumber(100, 250), government: generateRandomNumber(150, 400) },
-  { month: "55-64", housing: generateRandomNumber(100, 300), politics: generateRandomNumber(50, 200), government: generateRandomNumber(100, 350) },
-  { month: "65+", housing: generateRandomNumber(100, 250), politics: generateRandomNumber(50, 200), government: generateRandomNumber(100, 300) },
+  { month: "18-24", housing: 120, politics: 130, government: 150 },
+  { month: "25-34", housing: 250, politics: 180, government: 400 },
+  { month: "35-44", housing: 200, politics: 120, government: 300 },
+  { month: "45-54", housing: 100, politics: 150, government: 350 },
+  { month: "55-64", housing: 150, politics: 90, government: 200 },
+  { month: "65+", housing: 130, politics: 70, government: 180 },
 ];
 
 
@@ -518,7 +517,7 @@ export function AgeGroup() {
       <CardFooter className="flex-col text-center gap-2 text-base">
         <div className="leading-none text-muted-foreground">
           {/* Showing total visitors for the last 6 months */}
-          The plot shows that Politics is most popular among the {politicsStats.mostLabel} age group, while it is least popular with the {politicsStats.mostLabel} group. Government has the highest reach with the {governmentStats.mostLabel} age group, while it has the lowest reach with the {governmentStats.leastLabel} group. Housing, on the other hand, is most engaged with by the {housingStats.mostLabel} age group, and least engaged with by the {housingStats.leastLabel} group.
+          To increase engagement, focus on expanding political content for the 25-34 age group, as they show the highest interest. For government topics, prioritize reaching the 25-34 group while exploring strategies to boost engagement with the 65+ group, such as highlighting topics relevant to their interests. For housing content, continue to target the 25-34 group, but consider developing more tailored content for the 45-54 group to improve engagement.
         </div>
       </CardFooter>
     </Card>
