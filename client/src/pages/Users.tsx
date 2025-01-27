@@ -25,9 +25,9 @@ import {
 import dataJson from './data.json';
 
 
-const generateRandomNumber = (min: number, max: number) => {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-};
+// const generateRandomNumber = (min: number, max: number) => {
+//   return Math.floor(Math.random() * (max - min + 1)) + min;
+// };
 
 // Engaged Session
 const generateRandomChartData = () => {
@@ -108,37 +108,37 @@ const charConfig = {
 
 type AgeGroup = "18-24" | "25-34" | "35-44" | "45-54" | "55-64" ;
 
-type TotalSessions = {
-  [key in AgeGroup]: number;
-};
+// type TotalSessions = {
+//   [key in AgeGroup]: number;
+// };
 export function EngagedSession() {
   // Calculate total sessions for each age group
-  const totalSessions: TotalSessions = charData.reduce((totals, data) => {
-    Object.keys(data).forEach((key) => {
-      if (key !== "month") {
-        // TypeScript now knows that key is one of the valid AgeGroup keys
-        const ageGroupKey = key as AgeGroup; // Cast to AgeGroup
-        totals[ageGroupKey] = (totals[ageGroupKey] || 0) + data[ageGroupKey];
-      }
-    });
-    return totals;
-  }, {} as TotalSessions);
+  // const totalSessions: TotalSessions = charData.reduce((totals, data) => {
+  //   Object.keys(data).forEach((key) => {
+  //     if (key !== "month") {
+  //       // TypeScript now knows that key is one of the valid AgeGroup keys
+  //       const ageGroupKey = key as AgeGroup; // Cast to AgeGroup
+  //       totals[ageGroupKey] = (totals[ageGroupKey] || 0) + data[ageGroupKey];
+  //     }
+  //   });
+  //   return totals;
+  // }, {} as TotalSessions);
 
   // Find the age group with the most and least sessions
-  const mostLabel = Object.keys(totalSessions).reduce((maxLabel, currentKey) => {
-    return totalSessions[currentKey as AgeGroup] > totalSessions[maxLabel as AgeGroup]
-      ? currentKey
-      : maxLabel;
-  }, "18-24");
+  // const mostLabel = Object.keys(totalSessions).reduce((maxLabel, currentKey) => {
+  //   return totalSessions[currentKey as AgeGroup] > totalSessions[maxLabel as AgeGroup]
+  //     ? currentKey
+  //     : maxLabel;
+  // }, "18-24");
 
-  const leastLabel = Object.keys(totalSessions).reduce((minLabel, currentKey) => {
-    return totalSessions[currentKey as AgeGroup] < totalSessions[minLabel as AgeGroup]
-      ? currentKey
-      : minLabel;
-  }, "18-24");
+  // const leastLabel = Object.keys(totalSessions).reduce((minLabel, currentKey) => {
+  //   return totalSessions[currentKey as AgeGroup] < totalSessions[minLabel as AgeGroup]
+  //     ? currentKey
+  //     : minLabel;
+  // }, "18-24");
 
-  const most = totalSessions[mostLabel as AgeGroup];
-  const least = totalSessions[leastLabel as AgeGroup];
+  // const most = totalSessions[mostLabel as AgeGroup];
+  // const least = totalSessions[leastLabel as AgeGroup];
 
   return (
     <Card>

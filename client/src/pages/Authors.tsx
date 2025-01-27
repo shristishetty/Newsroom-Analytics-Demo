@@ -210,9 +210,9 @@ export function Post({ selectedMonth }: { selectedMonth?: Date }) {
 
 
 
-const generateRandomNumber = (min: number, max: number) => {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-};
+// const generateRandomNumber = (min: number, max: number) => {
+//   return Math.floor(Math.random() * (max - min + 1)) + min;
+// };
 
 // Top
 // const chartData = [

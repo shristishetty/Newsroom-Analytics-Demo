@@ -8,7 +8,6 @@ import {
   PieChart,
   Pie,
   Label,
-  LabelList,
 } from "recharts";
 
 import {
