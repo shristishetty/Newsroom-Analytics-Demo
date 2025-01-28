@@ -374,9 +374,7 @@ export function Source({ selectedMonth }: { selectedMonth?: Date }) {
     <Card>
       <CardHeader className="items-center pb-0">
         <CardTitle className="font-bold text-lg">Where Does Our Audience Come From?</CardTitle>
-        <CardDescription>
-          Showing total visitors for the selected month: {selectedMonthName}
-        </CardDescription>
+        
       </CardHeader>
       <CardContent className="pb-1">
         <ChartContainer
@@ -397,7 +395,7 @@ export function Source({ selectedMonth }: { selectedMonth?: Date }) {
       </CardContent>
       <CardFooter className="flex-col text-center gap-2 text-base">
         <div className="leading-none text-muted-foreground">
-        With the majority of the audience coming from Google and Instagram, Google users show higher engagement with health topics, while Instagram users are more inclined towards politics.
+        With the majority of the audience coming from Google and Instagram, Google users show higher engagement with Health topics, while Instagram users are more inclined towards politics.
         </div>
       </CardFooter>
     </Card>
@@ -493,8 +491,9 @@ export function AgeGroup() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <Source selectedMonth={selectedMonth} />
                 <EngagedSession />
-                <Retention selectedMonth={selectedMonth} />
+                
                 <AgeGroup/>
+                <Retention selectedMonth={selectedMonth} />
             </div>
         </>
     );
