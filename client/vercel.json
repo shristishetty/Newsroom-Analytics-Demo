@@ -26,6 +26,7 @@
       "src": "/login",
       "dest": "index.js"
     },
+
     {
       "src": "/(.*)",
       "dest": "/static/$1"
