@@ -35,8 +35,8 @@ const chartConfig = {
     label: "Art & Culture",
     color: "hsl(var(--chart-a2))",
   },
-  environment: {
-    label: "Environment",
+  Security: {
+    label: "Security",
     color: "hsl(var(--chart-a3))",
   },
   health: {
@@ -145,7 +145,7 @@ export function Top({ selectedMonth }: { selectedMonth?: Date }) {
       </CardContent>
       <CardFooter className="flex-col text-center gap-2 text-base">
         <div className="leading-none text-muted-foreground">
-        Articles in Politics make up the highest volume, while the growing focus on Health and Environment drives older audiences.        </div>
+        Articles in Politics make up the highest volume, with increasing focus on Health and Security in recent months.        </div>
       </CardFooter>
     </Card>
   );
@@ -153,19 +153,16 @@ export function Top({ selectedMonth }: { selectedMonth?: Date }) {
 
 
 const generateRandomBoxData = () => {
-    const boxData = [
-      { age: "1", fill: "var(--color-1)" },
-      { age: "2", fill: "var(--color-2)" },
-      { age: "3", fill: "var(--color-3)" },
-      { age: "4", fill: "var(--color-4)" },
-      { age: "5", fill: "var(--color-5)" },
-    ];
+  const boxData = [
+    { age: "1", fill: "var(--color-1)", visitors: 429 },
+    { age: "2", fill: "var(--color-2)", visitors: 715 },
+    { age: "3", fill: "var(--color-3)", visitors: 501 },
+    { age: "4", fill: "var(--color-4)", visitors: 833 },
+    { age: "5", fill: "var(--color-5)", visitors: 767 },
+  ];
   
-    // Update visitors with random numbers for each item
-    return boxData.map((item) => ({
-      ...item,
-      visitors: generateRandomNumber(1000, 300), // Generate random visitors count
-    }));
+  // Return the updated array
+  return boxData;
   };
   
   // Generate the random box data
@@ -393,7 +390,8 @@ export function Box() {
       </div>
       <CardFooter className="flex-col text-center gap-2 text-base">
             <div className="leading-none text-muted-foreground">
-            An increase in articles on health and environment is effectively drawing in a growing number of older audiences, outpacing other age categories in attracting new users.            </div>
+              Older audiences make up a large share of Active and New Users. The increase in articles on Health and Security has attracted more older readers, surpassing other age groups in bringing in new users.            
+            </div>
       </CardFooter>
       </Card>
       

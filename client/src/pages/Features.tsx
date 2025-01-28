@@ -17,7 +17,7 @@ export function OffPlatform() {
       </CardHeader>
       <CardFooter className="flex-col text-center gap-2 text-base">
         <div className="leading-none text-muted-foreground">
-        It leverages real-time insights, such as those from Google Trends, to identify trending topics in the current landscape. Unlike traditional methods that rely on past data, this approach enables editorial teams to craft timely and relevant content that aligns with audience interests, maximizing engagement and ensuring up-to-date relevance in a rapidly evolving digital environment.
+        It leverages real-time insights, such as those from Google Trends, to identify trending topics in the current landscape. Unlike traditional methods that rely on past data, this approach enables editorial teams to craft timely and relevant content that aligns with audience interests, maximizing engagement and ensuring up-to-date relevance in a rapidly evolving digital Security.
         </div>
       </CardFooter>
     </Card>

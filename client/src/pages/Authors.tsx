@@ -97,7 +97,7 @@ export function Overperformance({ selectedMonth }: { selectedMonth?: Date }) {
       </CardContent>
       <CardFooter className="flex-col text-center gap-2 text-base">
         <div className="leading-none text-muted-foreground">
-        Nancy primarily focuses on Health and Environment topics, which resonate strongly with the platform's audience, resulting in higher engagement compared to other authors.        </div>
+        Nancy primarily focuses on Health and Security topics, which resonate strongly with the platform's audience, resulting in higher engagement compared to other authors.        </div>
       </CardFooter>
     </Card>
   );
@@ -218,7 +218,7 @@ export function Post({ selectedMonth }: { selectedMonth?: Date }) {
 // const chartData = [
 //   { browser: "politics", visitors: generateRandomNumber(1000, 5000), fill: "var(--color-politics)" },
 //   { browser: "art", visitors: generateRandomNumber(1000, 5000), fill: "var(--color-art)" },
-//   { browser: "environment", visitors: generateRandomNumber(1000, 5000), fill: "var(--color-environment)" },
+//   { browser: "Security", visitors: generateRandomNumber(1000, 5000), fill: "var(--color-Security)" },
 //   { browser: "health", visitors: generateRandomNumber(1000, 5000), fill: "var(--color-health)" },
 //   { browser: "housing", visitors: generateRandomNumber(1000, 5000), fill: "var(--color-housing)" },
 // ];
@@ -240,8 +240,8 @@ const chartConfig = {
     label: "Art & Culture",
     color: "hsl(var(--chart-a2))",
   },
-  environment: {
-    label: "Environment",
+  Security: {
+    label: "Security",
     color: "hsl(var(--chart-a3))",
   },
   health: {
@@ -262,7 +262,7 @@ const chartConfig = {
 const chart2Data = [
   { browser: "politics", visitors:  24, fill: "var(--color-politics)" },
   { browser: "arts", visitors: 11, fill: "var(--color-arts)" },
-  { browser: "environment", visitors: 33, fill: "var(--color-environment)" },
+  { browser: "Security", visitors: 33, fill: "var(--color-Security)" },
   { browser: "health", visitors: 46, fill: "var(--color-health)" },
   { browser: "housing", visitors: 17, fill: "var(--color-housing)" },
 ];
@@ -310,7 +310,7 @@ export function PerAuthor() {
       <CardFooter className="flex-col text-center gap-2 text-base">
         <div className="leading-none text-muted-foreground">
           {/* Showing total visitors for the last 6 months */}
-          Nancy has streamlined her focus to Environment and Health, leading to better engagement by prioritizing quality over quantity across multiple topics.        </div>
+          Nancy has streamlined her focus to Security and Health, leading to better engagement by prioritizing quality over quantity across multiple topics.        </div>
       </CardFooter>
     </Card>
   );

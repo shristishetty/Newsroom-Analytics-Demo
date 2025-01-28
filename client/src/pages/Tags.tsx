@@ -36,8 +36,8 @@ const chartConfig = {
     label: "Art & Culture",
     color: "hsl(var(--chart-a2))",
   },
-  environment: {
-    label: "Environment",
+  Security: {
+    label: "Security",
     color: "hsl(var(--chart-a3))",
   },
   health: {
@@ -58,7 +58,7 @@ const chartConfig = {
 const chart2Data = [
   { browser: "politics", visitors: generateRandomNumber(100, 500), fill: "var(--color-politics)" },
   { browser: "arts", visitors: generateRandomNumber(100, 500), fill: "var(--color-art)" },
-  { browser: "environment", visitors: generateRandomNumber(100, 500), fill: "var(--color-environment)" },
+  { browser: "Security", visitors: generateRandomNumber(100, 500), fill: "var(--color-Security)" },
   { browser: "health", visitors: generateRandomNumber(100, 500), fill: "var(--color-health)" },
   { browser: "housing", visitors: generateRandomNumber(100, 500), fill: "var(--color-housing)" },
 ];

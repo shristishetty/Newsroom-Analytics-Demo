@@ -35,7 +35,7 @@ const generateRandomData = () => {
   return [
     { browser: "Politics", desktop: 3123, mobile: 4215 },
     { browser: "Art", desktop: 2789, mobile: 1567 },
-    { browser: "Environment", desktop: 4897, mobile: 2196 },
+    { browser: "Security", desktop: 4897, mobile: 2196 },
     { browser: "Health", desktop: 5234, mobile: 6879 },
     { browser: "Housing", desktop: 3421, mobile: 1845 },
   ];
@@ -71,7 +71,7 @@ export function SubscriberThemes({ }: { selectedMonth?: Date }) {
       </CardContent>
       <CardFooter className="flex-col text-center gap-2 text-base">
         <div className="leading-none text-muted-foreground">
-        Larger audiences, who make up the majority of subscribers, tend to engage more with topics like Environment and Health, while non-subscribers show more interest in a broader range of topics.        </div>
+        Larger audiences, who make up the majority of subscribers, tend to engage more with topics like Security and Health, while non-subscribers show more interest in a broader range of topics.        </div>
       </CardFooter>
     </Card>
   );
@@ -168,7 +168,7 @@ export function EventCount({ selectedMonth }: { selectedMonth?: Date }) {
 const chartConfig: Record<string, { label: string; color: string }> = {
   Politics: { label: "Politics", color: "hsl(var(--chart-a1))" },
   Arts: { label: "Art & Culture", color: "hsl(var(--chart-a2))" },
-  Environment: { label: "Environment", color: "hsl(var(--chart-a3))" },
+  Security: { label: "Security", color: "hsl(var(--chart-a3))" },
   Health: { label: "Health", color: "hsl(var(--chart-a4))" },
   Housing: { label: "Housing", color: "hsl(var(--chart-a5))" },
   desktop: { label: "Subscribers", color: "hsl(var(--chart-sub))" },
@@ -243,7 +243,7 @@ export function RevenueAttribution({ selectedMonth }: { selectedMonth?: Date }) 
       </CardContent>
       <CardFooter className="flex-col text-center gap-2 text-base">
         <div className="leading-none text-muted-foreground">
-        Environment and Politics have generated the most revenue, reflecting both strong subscriber engagement and the potential to expand reach by focusing on topics that appeal to larger audiences.        </div>
+        Security and Politics have generated the most revenue, reflecting both strong subscriber engagement and the potential to expand reach by focusing on topics that appeal to larger audiences.        </div>
       </CardFooter>
     </Card>
   );

@@ -546,7 +546,7 @@ export function AgeGroup() {
       </CardContent>
       <CardFooter className="flex-col text-center gap-2 text-base">
         <div className="leading-none text-muted-foreground">
-          While the older audiences show a stronger preference for Health and Environment, younger audiences are more engaged with Housing, Politics and Arts.
+          While the older audiences show a stronger preference for Health and Security, younger audiences are more engaged with Housing, Politics and Arts.
         </div>
       </CardFooter>
     </Card>
