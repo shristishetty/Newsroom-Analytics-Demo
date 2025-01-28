@@ -25,7 +25,7 @@ function Login({ onLoginSuccess }: LoginProps) {
         onLoginSuccess(); // Call the success callback if login is successful
       }
     } catch (err: any) {
-      setError(err.response?.data?.message || err);
+      setError(err.response?.data?.message || "Something went wrong");
     }
   };
 
