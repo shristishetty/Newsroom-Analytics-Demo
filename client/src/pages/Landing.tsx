@@ -96,7 +96,7 @@ export function Top({ selectedMonth }: { selectedMonth?: Date }) {
   return (
     <Card className="flex flex-col">
       <CardHeader className="items-center pb-0">
-        <CardTitle className="font-bold text-lg">What Stories Are Capturing Attention?</CardTitle>
+        <CardTitle className="font-bold text-lg">What Categories are covered?</CardTitle>
       </CardHeader>
       <CardContent className="flex-1 pb-0">
         <ChartContainer config={chartConfig}>
@@ -145,8 +145,7 @@ export function Top({ selectedMonth }: { selectedMonth?: Date }) {
       </CardContent>
       <CardFooter className="flex-col text-center gap-2 text-base">
         <div className="leading-none text-muted-foreground">
-          Articles in Politics maintain the widest reach, while the growing focus on Health and Environment suggests an increased emphasis on content for older audiences.
-        </div>
+        Articles in Politics make up the highest volume, while the growing focus on Health and Environment drives older audiences.        </div>
       </CardFooter>
     </Card>
   );
@@ -386,7 +385,7 @@ export function Box() {
       <>
       <Card className="flex flex-col">
       <CardHeader className="items-center pb-0">
-        <CardTitle className="font-bold text-lg">What Stories Are Capturing Attention?</CardTitle>
+        <CardTitle className="font-bold text-lg">Who are Our Readers?</CardTitle>
       </CardHeader>
       <div className="pt-4 grid grid-cols-1 md:grid-cols-2 gap-4 p-5">
       <Box1 />

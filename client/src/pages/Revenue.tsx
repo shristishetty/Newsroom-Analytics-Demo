@@ -143,7 +143,7 @@ export function EventCount({ selectedMonth }: { selectedMonth?: Date }) {
     <Card>
       <CardHeader className="items-center pb-0">
         <CardTitle className="font-bold text-lg">How Do Subscribers and Non-Subscribers Compare?</CardTitle>
-        <CardDescription>Showing data for {selectedMonthName} 2024</CardDescription>
+        <CardDescription>Showing data for {selectedMonthName}</CardDescription>
       </CardHeader>
       <CardContent>
         <ChartContainer config={eventConfig}>

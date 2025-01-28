@@ -386,10 +386,12 @@ const Authors: React.FC<UsersProps> = ({ selectedMonth }) =>{
   return (
     <>
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-        <Overperformance selectedMonth={selectedMonth}/>
+        
         <Post selectedMonth={selectedMonth}/>
-        <PerAuthor/>
         <VisitorStoryRatio/>
+        <Overperformance selectedMonth={selectedMonth}/>
+        <PerAuthor/>
+        
     </div>
     </>
   )
