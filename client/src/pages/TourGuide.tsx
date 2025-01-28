@@ -222,7 +222,7 @@ const TourGuide = ({ start, setStartTour, onTourEnd }: TourGuideProps) => {
       disableOverlayClose
       spotlightPadding={5}
       // showProgress
-      // showSkipButton
+      showSkipButton
       debug
       styles={{
         overlay: {

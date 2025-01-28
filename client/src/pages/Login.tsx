@@ -14,19 +14,24 @@ function Login({ onLoginSuccess }: LoginProps) {
   const [error, setError] = useState("");
 
   const handleLogin = async () => {
-    try {
-      const response = await axios.post("https://newsroom-analytics-demo.vercel.app/login", {
-        username,
-        password
-      });
 
-      if (response.status === 200) {
-        setError("");
-        onLoginSuccess(); // Call the success callback if login is successful
-      }
-    } catch (err: any) {
-      setError(err.response?.data?.message || "Something went wrong");
-    }
+    const apiUrl = process.env.NODE_ENV === 'production' 
+  ? 'https://newsroom-analytics-demo.vercel.app/login' 
+  : 'http://localhost:5000/login';
+
+try {
+  const response = await axios.post(apiUrl, {
+    username,
+    password
+  });
+
+  if (response.status === 200) {
+    setError("");
+    onLoginSuccess(); 
+  }
+} catch (err: any) {
+  setError(err.response?.data?.message || "Something went wrong");
+}
   };
 
   return (

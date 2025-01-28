@@ -25,9 +25,6 @@ import {
 import dataJson from './data.json';
 
 
-// const generateRandomNumber = (min: number, max: number) => {
-//   return Math.floor(Math.random() * (max - min + 1)) + min;
-// };
 
 // Engaged Session
 const generateRandomChartData = () => {
@@ -108,37 +105,8 @@ const charConfig = {
 
 type AgeGroup = "18-24" | "25-34" | "35-44" | "45-54" | "55-64" ;
 
-// type TotalSessions = {
-//   [key in AgeGroup]: number;
-// };
 export function EngagedSession() {
-  // Calculate total sessions for each age group
-  // const totalSessions: TotalSessions = charData.reduce((totals, data) => {
-  //   Object.keys(data).forEach((key) => {
-  //     if (key !== "month") {
-  //       // TypeScript now knows that key is one of the valid AgeGroup keys
-  //       const ageGroupKey = key as AgeGroup; // Cast to AgeGroup
-  //       totals[ageGroupKey] = (totals[ageGroupKey] || 0) + data[ageGroupKey];
-  //     }
-  //   });
-  //   return totals;
-  // }, {} as TotalSessions);
-
-  // Find the age group with the most and least sessions
-  // const mostLabel = Object.keys(totalSessions).reduce((maxLabel, currentKey) => {
-  //   return totalSessions[currentKey as AgeGroup] > totalSessions[maxLabel as AgeGroup]
-  //     ? currentKey
-  //     : maxLabel;
-  // }, "18-24");
-
-  // const leastLabel = Object.keys(totalSessions).reduce((minLabel, currentKey) => {
-  //   return totalSessions[currentKey as AgeGroup] < totalSessions[minLabel as AgeGroup]
-  //     ? currentKey
-  //     : minLabel;
-  // }, "18-24");
-
-  // const most = totalSessions[mostLabel as AgeGroup];
-  // const least = totalSessions[leastLabel as AgeGroup];
+ 
 
   return (
     <Card>
@@ -308,13 +276,6 @@ export function Retention({ selectedMonth }: { selectedMonth?: Date }) {
     return null;
   }
 
-  // Find the max and min retention values for the chart
-  // const mostRetention = Math.max(...filteredData.map(item => item.retention));
-  // const leastRetention = Math.min(...filteredData.map(item => item.retention));
-
-  // // Find the corresponding age group (label) for the most and least retention values
-  // const mostLabel = filteredData.find(item => item.retention === mostRetention)?.ageGroup || "";
-  // const leastLabel = filteredData.find(item => item.retention === leastRetention)?.ageGroup || "";
 
   return (
     <Card>
@@ -468,46 +429,15 @@ const age = [
   { month: "65+", housing: 130, politics: 70, government: 180 },
 ];
 
-
-// interface AgeGroupData {
-//   month: string;
-//   housing: number;
-//   politics: number;
-//   government: number;
-// }
-
-// interface MaxMinStats {
-//   mostLabel: string;
-//   most: number;
-//   leastLabel: string;
-//   least: number;
-// }
-
 export function AgeGroup() {
-  // Find the most and least for each category
-  // const getMaxMin = (data: AgeGroupData[], key: keyof AgeGroupData): MaxMinStats => {
-  //   const maxData = data.reduce((max, current) => current[key] > max[key] ? current : max);
-  //   const minData = data.reduce((min, current) => current[key] < min[key] ? current : min);
-
-  //   // Return an object with most and least as numbers, and labels as strings
-  //   return {
-  //     mostLabel: maxData.month,  // Month with the most value (string)
-  //     most: Number(maxData[key]), // Ensure that we are returning a number
-  //     leastLabel: minData.month, // Month with the least value (string)
-  //     least: Number(minData[key]), // Ensure that we are returning a number
-  //   };
-  // };
-
-  // const housingStats = getMaxMin(age, "housing");
-  // const politicsStats = getMaxMin(age, "politics");
-  // const governmentStats = getMaxMin(age, "government");
+  
 
   return (
     <Card>
       <CardHeader className="items-center pb-0">
         <CardTitle className="font-bold text-lg">Reaching Every Age Group</CardTitle>
         <div className="flex justify-center items-center">
-          {/* <DatePickerWithRange/> */}
+          
         </div>
       </CardHeader>
       <CardContent>
@@ -519,7 +449,6 @@ export function AgeGroup() {
               tickLine={false}
               tickMargin={10}
               axisLine={false}
-              // tickFormatter={(value) => value.slice(0, 3)}
             />
             <ChartTooltip cursor={false} content={<ChartTooltipContent hideLabel />} />
             <ChartLegend content={<ChartLegendContent />} />

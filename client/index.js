@@ -47,7 +47,7 @@ const PORT = process.env.PORT || 5000;
 
 // Middleware
 app.use(cors({
-  origin: "https://newsroom-analytics-demo.vercel.app", 
+  origin: ["https://newsroom-analytics-demo.vercel.app", "http://localhost:5173"], 
   methods: ["GET", "POST"]
 }));
 app.use(bodyParser.json()); // To parse JSON request body
