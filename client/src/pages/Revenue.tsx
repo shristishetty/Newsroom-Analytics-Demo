@@ -13,7 +13,6 @@ import {
 import {
   Card,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
@@ -77,16 +76,6 @@ export function SubscriberThemes({ }: { selectedMonth?: Date }) {
   );
 }
 
-interface VisitorData {
-  value: number;
-  fill: string;
-}
-
-interface MonthData {
-  Subscribers: VisitorData;
-  NonSubscribers: VisitorData;
-}
-
 const CustomTooltip = ({ active, payload }: any) => {
   if (active && payload && payload.length) {
     const { value } = payload[0];
@@ -99,61 +88,34 @@ const CustomTooltip = ({ active, payload }: any) => {
   return null;
 };
 
-const eventConfig = {
-  visitors: { label: "Visitors" },
-  Subscribers: { label: "Subscribers", color: "hsl(var(--chart-sub))" },
-  NonSubscribers: { label: "Non Subscribers", color: "hsl(var(--chart-nonsub))" },
+const generateRandomData1 = () => {
+  return [
+    { browser: "18-24", desktop: 273, mobile: 410 }, // Younger group, mobile-heavy
+    { browser: "25-34", desktop: 386, mobile: 591 }, // Middle group, balanced
+    { browser: "35-44", desktop: 266, mobile: 522 }, // Younger group, balanced
+    { browser: "45-54", desktop: 879, mobile: 220 }, // Older group, desktop-heavy
+    { browser: "55+", desktop: 919, mobile: 181 },  // Oldest group, strongly desktop-heavy
+  ];
 };
 
-export function EventCount({ selectedMonth }: { selectedMonth?: Date }) {
-  const selectedMonthName = selectedMonth ? format(selectedMonth, "MMM") : "Jan";
+const graphchartData1 = generateRandomData1();
 
-  const graphData = dataJson.graphs.find(
-    (graph) => graph.title === "Subscribers vs Non-Subscribers"
-  )?.data;
-
-  if (!graphData) {
-    return <div>No data available</div>;
-  }
-
-  const monthData: MonthData = {
-    Subscribers: graphData.Subscribers
-      ? {
-          value: Number(graphData.Subscribers[selectedMonthName as keyof typeof graphData.Subscribers]) || 0,
-          fill: eventConfig["Subscribers"].color,
-        }
-      : { value: 0, fill: "" },
-    NonSubscribers: graphData.NonSubscribers
-      ? {
-          value: Number(graphData.NonSubscribers[selectedMonthName as keyof typeof graphData.NonSubscribers]) || 0,
-          fill: eventConfig['NonSubscribers'].color,
-        }
-      : { value: 0, fill: "" },
-  };
-
-  const sortedData = Object.entries(monthData)
-    .map(([cate, data]) => ({
-      cate,
-      visitors: data.value,
-      fill: data.fill,
-    }))
-    .sort((a, b) => b.visitors - a.visitors);
+export function EventCount({ }: {selectedMonth?: Date }) {
 
   return (
     <Card>
       <CardHeader className="items-center pb-0">
         <CardTitle className="font-bold text-lg">How Do Subscribers and Non-Subscribers Compare?</CardTitle>
-        <CardDescription>Showing data for {selectedMonthName}</CardDescription>
       </CardHeader>
       <CardContent>
-        <ChartContainer config={eventConfig}>
-          <BarChart accessibilityLayer data={sortedData}>
+        <ChartContainer config={chartConfig}>
+          <BarChart accessibilityLayer data={graphchartData1}>
             <CartesianGrid vertical={false} />
-            <XAxis dataKey="cate" tickLine={false} tickMargin={10} axisLine={false} />
-            <ChartTooltip cursor={false} content={<CustomTooltip />} />
+            <XAxis dataKey="browser" tickLine={false} tickMargin={10} axisLine={false} />
+            <ChartTooltip cursor={false} content={<CustomTooltip indicator="dashed"/>} />
             <ChartLegend content={<ChartLegendContent />} />
-            <Bar dataKey="visitors" radius={8}>
-            </Bar>
+            <Bar dataKey="desktop" fill="var(--color-desktop)" radius={4} />
+            <Bar dataKey="mobile" fill="var(--color-mobile)" radius={4} />
           </BarChart>
         </ChartContainer>
       </CardContent>
