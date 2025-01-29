@@ -40,11 +40,11 @@
     {
       "title": "Article Overperformance",
       "data": {
-        "Stephen": {"fill":"var(--color-step)","Jan": 153, "Feb": 164, "Mar": 176, "Apr": 182, "May": 147, "Jun": 201, "Jul": 174, "Aug": 211, "Sep": 162, "Oct": 223, "Nov": 185, "Dec": 232},
-        "Peter": {"fill":"var(--color-peter)","Jan": 138, "Feb": 145, "Mar": 153, "Apr": 162, "May": 127, "Jun": 178, "Jul": 152, "Aug": 189, "Sep": 140, "Oct": 198, "Nov": 163, "Dec": 207},
-        "Charlie": {"fill":"var(--color-charlie)","Jan": 129, "Feb": 136, "Mar": 149, "Apr": 152, "May": 115, "Jun": 172, "Jul": 142, "Aug": 180, "Sep": 129, "Oct": 191, "Nov": 155, "Dec": 200},
-        "Nancy": {"fill":"var(--color-nancy)","Jan": 181, "Feb": 195, "Mar": 207, "Apr": 215, "May": 173, "Jun": 229, "Jul": 202, "Aug": 243, "Sep": 191, "Oct": 254, "Nov": 216, "Dec": 261},
-        "Steve": {"fill":"var(--color-steve)","Jan": 141, "Feb": 155, "Mar": 161, "Apr": 172, "May": 137, "Jun": 193, "Jul": 167, "Aug": 203, "Sep": 154, "Oct": 218, "Nov": 176, "Dec": 225}
+        "Stephen": {"fill":"var(--color-step)","Jan": 1.53, "Feb": 164, "Mar": 176, "Apr": 182, "May": 147, "Jun": 201, "Jul": 174, "Aug": 211, "Sep": 162, "Oct": 223, "Nov": 185, "Dec": 232},
+        "Peter": {"fill":"var(--color-peter)","Jan": 1.38, "Feb": 145, "Mar": 153, "Apr": 162, "May": 127, "Jun": 178, "Jul": 152, "Aug": 189, "Sep": 140, "Oct": 198, "Nov": 163, "Dec": 207},
+        "Charlie": {"fill":"var(--color-charlie)","Jan": 1.29, "Feb": 136, "Mar": 149, "Apr": 152, "May": 115, "Jun": 172, "Jul": 142, "Aug": 180, "Sep": 129, "Oct": 191, "Nov": 155, "Dec": 200},
+        "Nancy": {"fill":"var(--color-nancy)","Jan": 1.81, "Feb": 195, "Mar": 207, "Apr": 215, "May": 173, "Jun": 229, "Jul": 202, "Aug": 243, "Sep": 191, "Oct": 254, "Nov": 216, "Dec": 261},
+        "Steve": {"fill":"var(--color-steve)","Jan": 1.41, "Feb": 155, "Mar": 161, "Apr": 172, "May": 137, "Jun": 193, "Jul": 167, "Aug": 203, "Sep": 154, "Oct": 218, "Nov": 176, "Dec": 225}
       }
     },
     {
