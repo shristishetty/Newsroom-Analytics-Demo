@@ -387,7 +387,7 @@ export function Box() {
       </div>
       <CardFooter className="flex-col text-center gap-2 text-base">
             <div className="leading-none text-muted-foreground">
-              Older audiences make up a large share of Active and New Users. The increase in articles on Health and Security has attracted more older readers, surpassing other age groups in bringing in new users.            
+              Older audiences make up a large share of Active and New Users. The increase in articles on Health and Security has attracted more older readers, surpassing other age groups in bringing in New Users.            
             </div>
       </CardFooter>
       </Card>

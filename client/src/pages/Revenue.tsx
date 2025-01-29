@@ -70,7 +70,7 @@ export function SubscriberThemes({ }: { selectedMonth?: Date }) {
       </CardContent>
       <CardFooter className="flex-col text-center gap-2 text-base">
         <div className="leading-none text-muted-foreground">
-        Larger audiences, who make up the majority of subscribers, tend to engage more with topics like Security and Health, while non-subscribers show more interest in a broader range of topics.        </div>
+        Older audiences, who make up the majority of subscribers, tend to engage more with topics like Security and Health, while non-subscribers show more interest in a broader range of topics.        </div>
       </CardFooter>
     </Card>
   );

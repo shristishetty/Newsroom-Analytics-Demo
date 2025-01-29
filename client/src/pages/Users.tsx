@@ -205,7 +205,7 @@ export function EngagedSession() {
         <div className="flex w-full text-center gap-2 text-base">
           <div className="grid gap-2">
             <div className="leading-none text-muted-foreground">
-            Engagement peaks in December and November due to holiday-driven interest across all age groups, while April shows a rise in family-centric content interest among older audiences. July sees younger audiences engaging more with lighter topics.
+            Engagement peaks in November and December with holiday interest in Travel and Food across all age groups. In April, older audiences engage more with family-related topics like Housing and Health, while in July, younger audiences focus more on lighter content such as Arts and Movies.
               {/* January - December 2024 */}
             </div>
           </div>
@@ -374,7 +374,6 @@ export function Source({ selectedMonth }: { selectedMonth?: Date }) {
     <Card>
       <CardHeader className="items-center pb-0">
         <CardTitle className="font-bold text-lg">Where Does Our Audience Come From?</CardTitle>
-        
       </CardHeader>
       <CardContent className="pb-1">
         <ChartContainer
@@ -395,7 +394,7 @@ export function Source({ selectedMonth }: { selectedMonth?: Date }) {
       </CardContent>
       <CardFooter className="flex-col text-center gap-2 text-base">
         <div className="leading-none text-muted-foreground">
-        With the majority of the audience coming from Google and Instagram, Google users show higher engagement with Health topics, while Instagram users are more inclined towards politics.
+        With most users arriving through browsing and link redirections, Google and Instagram emerge as the dominant traffic sources.
         </div>
       </CardFooter>
     </Card>

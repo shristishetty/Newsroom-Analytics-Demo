@@ -163,7 +163,6 @@ export function Post({ selectedMonth }: { selectedMonth?: Date }) {
     <Card>
       <CardHeader className="items-center pb-0">
         <CardTitle className="font-bold text-lg">Numbers of Articles Posted By Authors</CardTitle>
-
       </CardHeader>
       <CardContent>
         <ChartContainer config={postchart}>
@@ -185,7 +184,7 @@ export function Post({ selectedMonth }: { selectedMonth?: Date }) {
                 postchart[value.toLowerCase() as keyof typeof postchart]?.label || value
               }
             />
-            <XAxis dataKey="articles" type="number" hide />
+            <XAxis dataKey="articles" type="number" />
             <ChartTooltip
               cursor={false}
               content={<ChartTooltipContent hideLabel />}
@@ -279,7 +278,7 @@ export function PerAuthor() {
                 chartConfig[value as keyof typeof chartConfig]?.label
               }
             />
-            <XAxis dataKey="visitors" type="number" hide />
+            <XAxis dataKey="visitors" type="number" />
             <ChartTooltip
               cursor={false}
               content={<ChartTooltipContent hideLabel />}
