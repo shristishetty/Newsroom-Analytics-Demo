@@ -69,7 +69,7 @@ function Dashboard() {
     <div className='w-full'>
       <div className='bg-back text-text p-6'>
         <div className='w-full text-justify sm:w-1/2 sm:text-start'>
-          <h1 className='text-3xl font-bold pl-5'>Newsroom Analytics</h1>
+          <h1 className='text-3xl font-bold pl-5'>Axioma</h1>
           <p className='text-lg pl-5 mt-3 leading-normal'>
             We help newsrooms make informed decisions, from identifying where to make their next hire to optimizing advertising spending, all aimed at enhancing audience engagement and driving revenue growth.
           </p>
