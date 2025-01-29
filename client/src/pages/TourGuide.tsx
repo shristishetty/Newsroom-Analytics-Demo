@@ -91,9 +91,9 @@ const TourGuide = ({ start, setStartTour, onTourEnd }: TourGuideProps) => {
         <div className="mb-4 flex flex-col gap-4 px-2 text-left">
           <p className="mr-4 text-base font-bold">Analyze Author Performances</p>
           <p className="mr-2 text-sm">
-            Understand which Author carters to which age groups and their expertise in diverse topics
+            Understand which Author carters to which age groups and their expertise in diverse topics.
           </p>
-          <div className="absolute bottom-[30px] left-[8%] text-sm text-neutral-400">
+          <div className="absolute bottom-[30px] left-[38%] text-sm text-neutral-400">
             {val} of {totalSteps}
           </div>
         </div>
@@ -110,11 +110,11 @@ const TourGuide = ({ start, setStartTour, onTourEnd }: TourGuideProps) => {
     {
         content: (
           <div className="mb-4 flex flex-col gap-4 px-2 text-left">
-            <p className="mr-4 text-base font-bold">Figure Out where Revenue</p>
+            <p className="mr-4 text-base font-bold">Identify Revenue Sources</p>
             <p className="mr-2 text-sm">
                 Visualise how subscibers and non subscribers consume content and how revenue is generated
             </p>
-            <div className="absolute bottom-[30px] left-[8%] text-sm text-neutral-400">
+            <div className="absolute bottom-[30px] left-[38%] text-sm text-neutral-400">
               {val} of {totalSteps}
             </div>
           </div>
@@ -133,9 +133,9 @@ const TourGuide = ({ start, setStartTour, onTourEnd }: TourGuideProps) => {
           <div className="mb-4 flex flex-col gap-4 px-2 text-left">
             <p className="mr-4 text-base font-bold">Additional Features</p>
             <p className="mr-2 text-sm">
-                Features to added
+                Features to be added
             </p>
-            <div className="absolute bottom-[30px] left-[8%] text-sm text-neutral-400">
+            <div className="absolute bottom-[30px] left-[38%] text-sm text-neutral-400">
               {val} of {totalSteps}
             </div>
           </div>
@@ -154,10 +154,10 @@ const TourGuide = ({ start, setStartTour, onTourEnd }: TourGuideProps) => {
           <div className="mb-4 flex flex-col gap-4 px-2 text-left">
             <p className="mr-4 text-base font-bold">Conversational Chatbot</p>
             <p className="mr-2 text-sm">
-                Ask queries and get all information on the data along with it detailed insights
+                Ask queries, get relevant information and insights with source of truth available.
 
             </p>
-            <div className="absolute bottom-[30px] left-[8%] text-sm text-neutral-400">
+            <div className="absolute bottom-[30px] left-[38%] text-sm text-neutral-400">
               {val} of {totalSteps}
             </div>
           </div>
