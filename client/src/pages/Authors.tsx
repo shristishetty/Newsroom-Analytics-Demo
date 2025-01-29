@@ -208,23 +208,6 @@ export function Post({ selectedMonth }: { selectedMonth?: Date }) {
 
 
 
-// const generateRandomNumber = (min: number, max: number) => {
-//   return Math.floor(Math.random() * (max - min + 1)) + min;
-// };
-
-// Top
-// const chartData = [
-//   { browser: "politics", visitors: generateRandomNumber(1000, 5000), fill: "var(--color-politics)" },
-//   { browser: "art", visitors: generateRandomNumber(1000, 5000), fill: "var(--color-art)" },
-//   { browser: "Security", visitors: generateRandomNumber(1000, 5000), fill: "var(--color-Security)" },
-//   { browser: "health", visitors: generateRandomNumber(1000, 5000), fill: "var(--color-health)" },
-//   { browser: "housing", visitors: generateRandomNumber(1000, 5000), fill: "var(--color-housing)" },
-// ];
-// const mostStory = Math.max(...chartData.map((item) => item.visitors));
-// const mostLabel = chartData.find((item) => item.visitors === mostStory)?.browser || "";
-
-// const leastStory = Math.min(...chartData.map((item) => item.visitors));
-// const leastLabel = chartData.find((item) => item.visitors === leastStory)?.browser || "";
 
 const chartConfig = {
   visitors: {
