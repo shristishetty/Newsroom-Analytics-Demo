@@ -21,7 +21,8 @@ app.get('/', (req, res) => {
 // Hardcoded credentials
 const validCredentials = [
   { username: "admin", password: "password123" },
-  { username: "sglover", password: "whyy@1234" }
+  { username: "sglover", password: "whyy@1234" },
+  { username: "sam", password: "nypr123"}
 ];
 
 // Login endpoint
