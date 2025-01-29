@@ -95,7 +95,7 @@ export function Overperformance({ selectedMonth }: { selectedMonth?: Date }) {
       </CardContent>
       <CardFooter className="flex-col text-center gap-2 text-base">
         <div className="leading-none text-muted-foreground">
-        Nancy primarily focuses on Health and Security topics, which resonate strongly with the platform's audience, resulting in higher engagement compared to other authors.        </div>
+        Nancy primarily focuses on Health and Security topics, which resonate strongly with the platform's audience, resulting in consistently higher engagement in the past 3 months as compared to other authors.        </div>
       </CardFooter>
     </Card>
   );
@@ -199,7 +199,7 @@ export function Post({ selectedMonth }: { selectedMonth?: Date }) {
       </CardContent>
       <CardFooter className="flex-col text-center gap-2 text-base">
         <div className="leading-none text-muted-foreground">
-        Although Steve has published more articles, Nancy achieves higher engagement by focusing on trending topics that resonate with the audience.        </div>
+        Steve and Stephen have been consistent in the last few months, publishing articles spanning diverse topics.    </div>
       </CardFooter>
     </Card>
   );
@@ -307,7 +307,7 @@ export function PerAuthor() {
       <CardFooter className="flex-col text-center gap-2 text-base">
         <div className="leading-none text-muted-foreground">
           {/* Showing total visitors for the last 6 months */}
-          Nancy has streamlined her focus to Security and Health, leading to better engagement by prioritizing quality over quantity across multiple topics.        </div>
+          The reason Nancy received better engagement was due to her streamlined focus on Security and Health, thereby prioritizing quality over quantity across multiple topics.        </div>
       </CardFooter>
     </Card>
   );
@@ -370,7 +370,7 @@ export function VisitorStoryRatio() {
       </CardContent>
       <CardFooter className="flex-col text-center gap-2 text-base">
         <div className="leading-none text-muted-foreground">
-        The total visitors per story show a pattern similar to engaged sessions, with noticeable increases during months with more holidays.        </div>
+        The total visitors per story show a pattern similar to engaged sessions, with noticeable increases during months with more holidays. Thus it is important to understand which authors are capturing attention.    </div>
       </CardFooter>
     </Card>
   )
@@ -383,9 +383,9 @@ const Authors: React.FC<UsersProps> = ({ selectedMonth }) =>{
   return (
     <>
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-        
+    <VisitorStoryRatio/>
         <Post selectedMonth={selectedMonth}/>
-        <VisitorStoryRatio/>
+        
         <Overperformance selectedMonth={selectedMonth}/>
         <PerAuthor/>
         

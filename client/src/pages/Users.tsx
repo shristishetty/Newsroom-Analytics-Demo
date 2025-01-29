@@ -490,8 +490,9 @@ export function AgeGroup() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <Source selectedMonth={selectedMonth} />
                 <EngagedSession />
-                <Retention selectedMonth={selectedMonth} />
+                
                 <AgeGroup/>
+                <Retention selectedMonth={selectedMonth} />
             </div>
         </>
     );

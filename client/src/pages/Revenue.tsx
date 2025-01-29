@@ -191,7 +191,7 @@ export function RevenueAttribution({ selectedMonth }: { selectedMonth?: Date }) 
                           x={viewBox.cx}
                           y={viewBox.cy}
                           className="fill-text text-4xl font-bold"
-                        >
+                        >$
                           {totalRevenue.toLocaleString()}
                         </tspan>
                       </text>
