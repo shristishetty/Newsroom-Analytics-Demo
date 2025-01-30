@@ -23,7 +23,7 @@ const TourGuide = ({ start, setStartTour, onTourEnd }: TourGuideProps) => {
     {
       content: (
         <div className="p-3">
-          <p className="text-4xl">Newsroom Analytics</p>
+          <p className="text-4xl">Axioma</p>
           
           <p className="mt-12 text-2xl font-bold">
             Analyze and Understand how efficiently your Newsroom operates
@@ -217,7 +217,7 @@ const TourGuide = ({ start, setStartTour, onTourEnd }: TourGuideProps) => {
       run={run}
       steps={steps}
       scrollToFirstStep
-      hideCloseButton={false}
+      hideCloseButton={true}
       disableCloseOnEsc
       disableOverlayClose
       spotlightPadding={5}
