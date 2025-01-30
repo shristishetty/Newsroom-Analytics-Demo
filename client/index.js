@@ -22,7 +22,8 @@ app.get('/', (req, res) => {
 const validCredentials = [
   { username: "admin", password: "password123" },
   { username: "sglover", password: "whyy@1234" },
-  { username: "sam", password: "nypr123"}
+  { username: "sam", password: "nypr123"},
+  { username: "stacey", password: "simppl123"}
 ];
 
 // Login endpoint
