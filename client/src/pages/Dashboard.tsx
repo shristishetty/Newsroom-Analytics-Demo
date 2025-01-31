@@ -1,7 +1,3 @@
-
-
-
-
 "use client";
 
 import '../App.css';
@@ -23,6 +19,9 @@ import { MonthPicker } from "@/components/ui/monthpicker";
 import Chatbot from './Chatbot';
 
 import { Select, SelectTrigger, SelectValue, SelectItem, SelectContent } from '@/components/ui/select';
+
+import jsPDF from "jspdf";
+import html2canvas from "html2canvas";
 
 function Date({ onMonthSelect, selectedMonth }: { onMonthSelect: (date: Date) => void, selectedMonth?: Date }) {
   return (
@@ -65,6 +64,42 @@ function Dashboard() {
     return null;
   }
 
+  const generatePDF = async () => {
+    const pdf = new jsPDF("p", "mm", "a4");
+    const sections = ["Landing", "User", "Author", "Revenue", "Features"];
+    
+    // Save the original selectedTab to restore after generating the PDF
+    const originalTab = selectedTab;
+  
+    // Temporarily set the selectedTab to each section one by one to render content
+    for (let i = 0; i < sections.length; i++) {
+      setSelectedTab(sections[i]);  // Activate the current tab
+      await new Promise((resolve) => setTimeout(resolve, 1700)); // 🕒 Small delay to ensure charts load
+      
+      const element = document.getElementById(`tab-${sections[i]}`);
+      if (!element) continue;
+  
+      // Ensure the element is visible and rendered
+      element.style.transform = "scale(1)";
+      element.style.opacity = "1"; 
+  
+      const canvas = await html2canvas(element, { scale: 2, useCORS: true });
+      const imgData = canvas.toDataURL("image/png");
+  
+      if (i > 0) pdf.addPage();
+      pdf.setFont("helvetica", "bold");
+      pdf.setFontSize(16);
+      pdf.text(sections[i], 95, 20);
+      
+      pdf.addImage(imgData, "PNG", 10, 25, 190, 0); // Keeping default width
+    }
+  
+    // Restore the original selectedTab after generating the PDF
+    setSelectedTab(originalTab);
+  
+    pdf.save("dashboard-report.pdf");
+  };
+
   return (
     <div className='w-full'>
       <div className='bg-back text-text p-6'>
@@ -88,6 +123,9 @@ function Dashboard() {
                     <TabsTrigger id="step-4" value="Revenue" className="p-2 text-sm">Revenue Attribution</TabsTrigger>
                     <TabsTrigger id="step-5" value="Features" className="p-2 text-sm">Features</TabsTrigger>
                   </TabsList>
+                  <div className="text-center my-5">
+                    <Button onClick={generatePDF}>Download Report</Button>
+                  </div>
                 </div>
 
                 {/* For smaller screens, display Select dropdown */}
@@ -114,21 +152,32 @@ function Dashboard() {
             </div>
 
             {/* Tab Contents */}
+            <TabsContent value="Landing">
+              <div id="tab-Landing">
+                <Landing />
+              </div>
+            </TabsContent>
             <TabsContent value="User">
-              <Users selectedMonth={selectedMonth} />
+              <div id="tab-User">
+                <Users selectedMonth={selectedMonth} />
+              </div>
             </TabsContent>
             <TabsContent value="Author">
-              <Authors selectedMonth={selectedMonth} />
-            </TabsContent>
-            <TabsContent value="Landing">
-              <Landing />
+              <div id="tab-Author">
+                <Authors selectedMonth={selectedMonth} />
+              </div>
             </TabsContent>
             <TabsContent value="Revenue">
-              <Revenue selectedMonth={selectedMonth} />
+              <div id="tab-Revenue">
+                <Revenue selectedMonth={selectedMonth} />
+              </div>
             </TabsContent>
             <TabsContent value="Features">
-              <Features />
+              <div id="tab-Features">
+                <Features />
+              </div>
             </TabsContent>
+
           </Tabs>
         </div>
 
