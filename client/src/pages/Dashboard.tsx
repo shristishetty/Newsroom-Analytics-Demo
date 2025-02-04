@@ -22,6 +22,7 @@ import { Select, SelectTrigger, SelectValue, SelectItem, SelectContent } from '@
 
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
+import GoogleTrends from './GoogleTrends';
 
 function Date({ onMonthSelect, selectedMonth }: { onMonthSelect: (date: Date) => void, selectedMonth?: Date }) {
   return (
@@ -122,6 +123,7 @@ function Dashboard() {
                     <TabsTrigger id="step-3" value="Author" className="p-2 text-sm">Author Performance</TabsTrigger>
                     <TabsTrigger id="step-4" value="Revenue" className="p-2 text-sm">Revenue Attribution</TabsTrigger>
                     <TabsTrigger id="step-5" value="Features" className="p-2 text-sm">Features</TabsTrigger>
+                    <TabsTrigger value="Trends" className="p-2 text-sm">Trends</TabsTrigger>
                   </TabsList>
                   <div className="text-center my-5">
                     <Button onClick={generatePDF}>Download Report</Button>
@@ -140,6 +142,7 @@ function Dashboard() {
                       <SelectItem value="Author">Author Performance</SelectItem>
                       <SelectItem value="Revenue">Revenue Attribution</SelectItem>
                       <SelectItem value="Features">Features</SelectItem>
+                      <SelectItem value="Trends">Trends</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -175,6 +178,11 @@ function Dashboard() {
             <TabsContent value="Features">
               <div id="tab-Features">
                 <Features />
+              </div>
+            </TabsContent>
+            <TabsContent value="Trends">
+              <div id="tab-Trends">
+                <GoogleTrends />
               </div>
             </TabsContent>
 
