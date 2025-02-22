@@ -169,6 +169,52 @@
             "Social Media in Political Campaigns": 140
           }
         }
-      }      
+      },
+      {
+        "title": "News Topic Counts by Source",
+        "sources": [
+          {
+            "source": "bbc-news",
+            "topics": [
+              { "topic": "kanye", "count": 10 },
+              { "topic": "grammy", "count": 56 },
+              { "topic": "elections", "count": 34 },
+              { "topic": "climate", "count": 22 },
+              { "topic": "AI", "count": 45 }
+            ]
+          },
+          {
+            "source": "abc-news",
+            "topics": [
+              { "topic": "kanye", "count": 18 },
+              { "topic": "grammy", "count": 43 },
+              { "topic": "stock market", "count": 27 },
+              { "topic": "football", "count": 52 },
+              { "topic": "COVID", "count": 38 }
+            ]
+          },
+          {
+            "source": "new-york-magazine",
+            "topics": [
+              { "topic": "kanye", "count": 25 },
+              { "topic": "grammy", "count": 60 },
+              { "topic": "politics", "count": 47 },
+              { "topic": "fashion", "count": 29 },
+              { "topic": "technology", "count": 33 }
+            ]
+          },
+          {
+            "source": "rt-news",
+            "topics": [
+              { "topic": "kanye", "count": 12 },
+              { "topic": "grammy", "count": 50 },
+              { "topic": "war", "count": 40 },
+              { "topic": "economy", "count": 36 },
+              { "topic": "crypto", "count": 44 }
+            ]
+          }
+        ]
+      }
+      
   ]
 }

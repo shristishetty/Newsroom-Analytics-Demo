@@ -8,6 +8,7 @@ import Revenue from './Revenue';
 import Features from './Features';
 import Landing from './Landing';
 import TourGuide from './TourGuide';
+import Plots from './Plots';
 
 import { useEffect, useState } from 'react';
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
@@ -67,7 +68,7 @@ function Dashboard() {
 
   const generatePDF = async () => {
     const pdf = new jsPDF("p", "mm", "a4");
-    const sections = ["Landing", "User", "Author", "Revenue", "Features"];
+    const sections = ["Landing", "User", "Author", "Revenue", "Features", "Plots"];
     
     // Save the original selectedTab to restore after generating the PDF
     const originalTab = selectedTab;
@@ -124,6 +125,7 @@ function Dashboard() {
                     <TabsTrigger id="step-4" value="Revenue" className="p-2 text-sm">Revenue Attribution</TabsTrigger>
                     <TabsTrigger id="step-5" value="Features" className="p-2 text-sm">Features</TabsTrigger>
                     <TabsTrigger value="Trends" className="p-2 text-sm">Trends</TabsTrigger>
+                    <TabsTrigger value="Plots" className="p-2 text-sm">Plots</TabsTrigger>
                   </TabsList>
                   <div className="text-center my-5">
                     <Button onClick={generatePDF}>Download Report</Button>
@@ -143,6 +145,7 @@ function Dashboard() {
                       <SelectItem value="Revenue">Revenue Attribution</SelectItem>
                       <SelectItem value="Features">Features</SelectItem>
                       <SelectItem value="Trends">Trends</SelectItem>
+                      <SelectItem value="Plots">Plots</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -183,6 +186,11 @@ function Dashboard() {
             <TabsContent value="Trends">
               <div id="tab-Trends">
                 <GoogleTrends />
+              </div>
+            </TabsContent>
+            <TabsContent value="Plots">
+              <div id="tab-plots">
+                <Plots />
               </div>
             </TabsContent>
 
